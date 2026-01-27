@@ -1,1 +1,1 @@
-# brickQA
+# BrickQA

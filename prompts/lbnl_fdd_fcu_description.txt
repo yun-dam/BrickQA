@@ -1,0 +1,124 @@
+# Building Schema Sample - bldg59 (FCU System)
+
+**Today's date and time is September 30, 2018 at 1:00 AM.**
+
+This file describes the **EXACT** graph topology for the 'bldg59' building, which focuses on a detailed Fan Coil Unit (FCU) model.
+**CRITICAL**: This schema uses a deep hierarchy. Sensors are often attached to sub-components (Coils, Fans) rather than the main equipment.
+
+## 1. Standard Prefixes (REQUIRED)
+Use these exact prefixes for all SPARQL queries.
+
+PREFIX bldg: <bldg-59#>
+PREFIX brick: <https://brickschema.org/schema/Brick#>
+PREFIX ref: <https://brickschema.org/schema/Brick/ref#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+## 2. Graph Topology & Relationships (The "Verbs")
+
+**Rule A: The Main Chain (FCU → Zone)**
+* **Relationship**: `bldg:FCU brick:feeds bldg:Zone`
+* **Zone Points**: Room Temperature (`RM_TEMP`) and Setpoints (`RM...SPT`) are attached **directly to the Zone**, NOT the FCU.
+
+**Rule B: Component Hierarchy (The "Part" Trap)**
+Many points are NOT on the FCU directly. You must traverse `brick:hasPart`.
+1.  **Valves & Water Info**: Attached to **Coils**, not the FCU.
+    * Path: `FCU -> hasPart -> Cooling_coil -> hasPoint -> Valve/WaterTemp`
+2.  **Fan Speed/Power**: Attached to the **Fan**.
+    * Path: `FCU -> hasPart -> Supply_air_fan -> hasPoint -> Speed/Power`
+3.  **Damper Position**: Attached to the **Damper**.
+    * Path: `FCU -> hasPart -> Outdoor_air_damper -> hasPoint -> Position`
+
+**Rule C: FCU Direct Points**
+* **Air Temperatures**: Air stream sensors (`DAT`, `MAT`, `RAT`, `OAT`) are attached **directly to the FCU**.
+    * Path: `FCU -> hasPoint -> DAT/MAT/RAT`
+
+## 3. EXACT Entity URIs (USE THESE DIRECTLY)
+
+**IMPORTANT**: For timeseries queries, use these EXACT entity URIs directly instead of traversing the graph:
+
+**Air Side Sensors (on FCU):**
+| Natural Language | Entity URI | Brick Type |
+|-----------------|------------|------------|
+| Discharge Air Temperature | `bldg:FCU_DAT` | brick:Discharge_Air_Temperature_Sensor |
+| Discharge Air Flow / CFM | `bldg:FCU_DA_CFM` | brick:Discharge_Air_Flow_Sensor |
+| Mixed Air Temperature | `bldg:FCU_MAT` | brick:Mixed_Air_Temperature_Sensor |
+| Return Air Temperature | `bldg:FCU_RAT` | brick:Return_Air_Temperature_Sensor |
+| Outside Air Temperature | `bldg:FCU_OAT` | brick:Outside_Air_Temperature_Sensor |
+| Outside Air Humidity | `bldg:FCU_OA_HUMD` | brick:Outside_Air_Humidity_Sensor |
+| Discharge Air Humidity | `bldg:FCU_DA_HUMD` | brick:Discharge_Air_Humidity_Sensor |
+
+**Valve Sensors (on Coils):**
+| Natural Language | Entity URI | Brick Type |
+|-----------------|------------|------------|
+| Cooling Valve Position | `bldg:FCU_CVLV` | brick:Valve_Position_Sensor |
+| Heating Valve Position | `bldg:FCU_HVLV` | brick:Valve_Position_Sensor |
+| Cooling Water Flow / GPM | `bldg:FCU_CLG_GPM` | brick:Chilled_Water_Supply_Flow_Sensor |
+| Heating Water Flow / GPM | `bldg:FCU_HTG_GPM` | brick:Hot_Water_Supply_Flow_Sensor |
+
+**Fan Sensors:**
+| Natural Language | Entity URI | Brick Type |
+|-----------------|------------|------------|
+| Fan Speed | `bldg:FCU_SPD` | brick:Speed_Status |
+| Fan Power | `bldg:FCU_WAT` | brick:Electricial_Meter |
+
+**Damper Sensors:**
+| Natural Language | Entity URI | Brick Type |
+|-----------------|------------|------------|
+| Damper Position | `bldg:FCU_DMPR` | brick:Damper_Position_Sensor |
+
+**Zone Sensors:**
+| Natural Language | Entity URI | Brick Type |
+|-----------------|------------|------------|
+| Room Temperature | `bldg:RM_TEMP` | brick:Zone_Air_Temperature_Sensor |
+| Cooling Setpoint | `bldg:RMCLGSPT` | brick:Zone_Air_Cooling_Temperature_Setpoint |
+| Heating Setpoint | `bldg:RMHTGSPT` | brick:Zone_Air_Heating_Temperature_Setpoint |
+
+## 4. Timeseries Query Pattern
+
+**For temporal queries, use this pattern with EXACT entity URIs:**
+```sparql
+PREFIX bldg: <bldg-59#>
+PREFIX ref: <https://brickschema.org/schema/Brick/ref#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?value ?timestamp WHERE {
+    bldg:FCU_DAT ref:hasObservation ?obs .  # Use EXACT entity URI
+    ?obs ref:hasValue ?value ;
+         ref:hasTimestamp ?timestamp .
+    FILTER(?timestamp >= "2018-09-29T00:00:00"^^xsd:dateTime)
+}
+ORDER BY DESC(?timestamp)
+```
+
+## 5. Multi-Sensor Join Pattern (for comparisons)
+
+**When comparing two sensors at the same timestamp:**
+```sparql
+SELECT ?timestamp ?temp_value ?setpoint_value WHERE {
+    bldg:RM_TEMP ref:hasObservation ?obs1 .
+    ?obs1 ref:hasValue ?temp_value ;
+          ref:hasTimestamp ?timestamp .
+
+    bldg:RMCLGSPT ref:hasObservation ?obs2 .
+    ?obs2 ref:hasValue ?setpoint_value ;
+          ref:hasTimestamp ?timestamp .  # Same timestamp = JOIN
+
+    FILTER(?timestamp >= "2018-09-01T00:00:00"^^xsd:dateTime &&
+           ?timestamp <= "2018-09-01T23:59:59"^^xsd:dateTime)
+}
+```
+
+## 6. Aggregation Pattern
+
+**For AVG, MAX, COUNT queries:**
+```sparql
+SELECT (AVG(?value) AS ?avg_temp) WHERE {
+    bldg:FCU_DAT ref:hasObservation ?obs .
+    ?obs ref:hasValue ?value ;
+         ref:hasTimestamp ?timestamp .
+    FILTER(?timestamp >= "2018-08-25T00:00:00"^^xsd:dateTime &&
+           ?timestamp <= "2018-08-25T23:59:59"^^xsd:dateTime)
+}
+```

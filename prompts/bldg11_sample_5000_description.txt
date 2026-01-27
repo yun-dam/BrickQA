@@ -1,0 +1,93 @@
+# Building Schema Sample - bldg11
+
+This file contains the First 5000 lines of the Brick Schema for the 'bldg11' building.
+
+## Standard Prefixes
+**Crucial**: Use these prefixes for all SPARQL queries.
+
+PREFIX brick: <https://brickschema.org/schema/Brick#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX ns2: <http://buildsys.org/ontologies/bldg11#>
+
+## What These Triples Represent
+
+This sample includes three main categories of information:
+
+### 1. Schema Definitions (Ontology)
+   - Defines standard Brick/RealEstateCore classes (e.g., `brick:Air_Handling_Unit`, `brick:Temperature_Sensor`).
+   - Includes `rdfs:subClassOf` hierarchies which are essential for broad querying.
+
+### 2. Building Instance Data (The 'bldg11' Namespace)
+   - **Namespace**: Uses `ns2:` prefix (`http://buildsys.org/ontologies/bldg11#`).
+   - **Key Equipment**:
+     * **AHUs**: `ns2:AHU01` through `ns2:AHU11` (Air Handling Units)
+     * **VAVs**: `ns2:vav*` or `ns2:damperVAVRM*` (Variable Air Volume units)
+   - **Meters**:
+     * `ns2:bldg11_ChilledWater_Demand_kBtu`
+     * `ns2:bldg11_Electricity_Demand_kBtu`
+
+## Graph Topology & Relationships (CRITICAL)
+
+**Since the file is partial, you must infer the graph structure using these standard patterns:**
+
+1.  **Equipment → Point**
+    * **Relationship:** `brick:hasPoint`
+    * **Pattern:** `?equipment brick:hasPoint ?point`
+    * *Example:* `ns2:AHU01 brick:hasPoint ns2:AHU01_Supply_Air_Temp_Sensor`
+
+2.  **Location → Equipment**
+    * **Relationship:** `brick:hasLocation` (or `brick:isLocationOf` inverse)
+    * **Pattern:** `?equipment brick:hasLocation ?room`
+
+3.  **Air Flow (AHU → VAV)**
+    * **Relationship:** `brick:feeds`
+    * **Pattern:** `?ahu brick:feeds ?vav`
+    * *Inference:* AHUs typically feed VAVs or Dampers downstream.
+
+## Entity Naming Convention (Regex Patterns)
+
+Use these naming patterns to filter entities even if they are not explicitly listed in the first 5000 lines.
+
+1.  **Air Handling Units (AHU)**:
+    * Pattern: `AHU##`
+    * SPARQL Filter: `FILTER(REGEX(STR(?ahu), "AHU[0-9]+", "i"))`
+
+2.  **VAV / Dampers**:
+    * Pattern: `damperVAVRM` followed by room number
+    * SPARQL Filter: `FILTER(CONTAINS(STR(?vav), "damperVAVRM"))`
+
+3.  **Sensors & Points**:
+    * **Supply Air Temp**: `Supply_Air_Temp`
+    * **Zone Temp**: `Zone_Temperature` or similar
+    * **Meters**: `_Demand_kBtu`
+
+## SPARQL Query Tips
+
+1.  **Generic Class Search (Safest Strategy)**:
+    Do not query for specific IDs like `ns2:AHU05` unless requested. Query by type.
+    ```sparql
+    ?equipment rdf:type brick:Air_Handling_Unit .
+    ```
+
+2.  **Use Property Paths for Subtypes**:
+    Because the ontology definitions are in the file, use `*` to catch subclasses.
+    ```sparql
+    ?sensor rdf:type/rdfs:subClassOf* brick:Temperature_Sensor .
+    ```
+
+3.  **Find Points by Equipment Name**:
+    If you need points for AHU01, rely on the string containment if links are missing in the sample.
+    ```sparql
+    ?point rdf:type/rdfs:subClassOf* brick:Point .
+    FILTER(CONTAINS(STR(?point), "AHU01"))
+    ```
+
+4.  **Find Meters**:
+    ```sparql
+    ?meter rdf:type/rdfs:subClassOf* brick:Meter .
+    # OR
+    FILTER(CONTAINS(STR(?meter), "Demand_kBtu"))
+    ```
+

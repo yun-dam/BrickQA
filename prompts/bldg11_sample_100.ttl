@@ -1,0 +1,213 @@
+@prefix brick: <https://brickschema.org/schema/Brick#> .
+@prefix bsh: <https://brickschema.org/schema/BrickShape#> .
+@prefix ns2: <http://buildsys.org/ontologies/bldg11#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rec: <https://w3id.org/rec#> .
+@prefix ref: <https://brickschema.org/schema/Brick/ref#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix tag: <https://brickschema.org/schema/BrickTag#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns2:AHU03 brick:feeds ns2:VAVRM2220B .
+
+ns2:RM1103 a brick:HVAC_Zone .
+
+ns2:VAVRM6202 brick:hasPoint ns2:bldg11.ZONE.AHU07.RM6202.Zone_Air_Temp .
+
+ns2:bldg11.ZONE.AHU05.RM3510.Zone_Air_Temp_Setpoint a brick:Zone_Air_Temperature_Setpoint .
+
+ns2:bldg11.ZONE.AHU05.RM6502.Zone_Air_Temp a brick:Zone_Air_Temperature_Sensor .
+
+ns2:bldg11.ZONE.AHU09.RM0622.Zone_Air_Temp rdfs:label "bldg11.ZONE.AHU09.RM0622.Zone Air Temp" .
+
+brick:Air_Static_Pressure_Step_Parameter sh:rule [ ] .
+
+brick:Alarm_Sensitivity_Parameter sh:rule [ ] .
+
+brick:Average_Heating_Demand_Sensor skos:definition "Measures the average power consumed by a heating process as the amount of power consumed over some interval"@en .
+
+brick:Building_Disconnect_Switch brick:hasAssociatedTag tag:Disconnect .
+
+brick:CO2_Sensor sh:rule [ ] .
+
+brick:Chilled_Water_Valve skos:definition "A valve that modulates the flow of chilled water"@en .
+
+brick:Computer_Room_Air_Handler owl:equivalentClass brick:CRAH .
+
+brick:Cooling_Enable_Command skos:definition "Command that enables cooling functionality in equipment but certain condition(s) must be met first before actively cooling. For the actively cooling control, see Cooling_Command."@en .
+
+brick:Copy_Room brick:hasAssociatedTag tag:Space .
+
+brick:Current_Output_Sensor a sh:NodeShape .
+
+brick:Curtailment_Override_Command rdfs:subClassOf brick:Override_Command .
+
+brick:Differential_Pressure_Setpoint sh:rule [ ] .
+
+brick:Drive_Ready_Status brick:hasAssociatedTag tag:Ready .
+
+brick:Enable_Hot_Water_System_Outside_Air_Temperature_Setpoint a sh:NodeShape .
+
+brick:Energy_Zone rdfs:subClassOf brick:Zone .
+
+brick:Entering_Condenser_Water_Flow_Sensor brick:hasAssociatedTag tag:Condenser .
+
+brick:Ethernet_Switch brick:hasAssociatedTag tag:Equipment .
+
+brick:Exhaust_Air_Humidity_Setpoint brick:hasAssociatedTag tag:Exhaust .
+
+brick:Field_Of_Play sh:rule [ ] .
+
+brick:Heat_Pump_Ground_Source_Condensing_Unit a owl:Class .
+
+brick:Ice_Tank_Leaving_Water_Temperature_Sensor brick:hasAssociatedTag tag:Leaving .
+
+brick:Integral_Gain_Parameter rdfs:subClassOf brick:Gain_Parameter .
+
+brick:Max_Air_Flow_Setpoint_Limit brick:hasAssociatedTag tag:Max .
+
+brick:Min_Hot_Water_Differential_Pressure_Setpoint_Limit rdfs:subClassOf brick:Min_Limit .
+
+brick:Occupancy_Sensor_Equipment rdfs:label "Occupancy Sensor Equipment"@en .
+
+brick:Outside_Air_Flow_Sensor sh:rule [ ] .
+
+brick:PM10_Sensor sh:rule [ ] .
+
+brick:Piezoelectric_Sensor rdfs:label "Piezoelectric Sensor"@en .
+
+brick:Return_Air_Dewpoint_Sensor rdfs:subClassOf brick:Dewpoint_Sensor .
+
+brick:Server rdfs:label "Server"@en .
+
+brick:Standby_Load_Shed_Command sh:rule [ ] .
+
+brick:Start_Stop_Status sh:rule [ ] .
+
+brick:Static_Pressure_Deadband_Setpoint sh:rule [ ] .
+
+brick:Supply_Air_Temperature_High_Reset_Setpoint brick:hasAssociatedTag tag:Differential .
+
+brick:Temperature_Low_Reset_Setpoint brick:hasAssociatedTag tag:Temperature .
+
+brick:Tunnel brick:hasAssociatedTag tag:Space .
+
+brick:Unoccupied_Cooling_Supply_Air_Flow_Setpoint owl:equivalentClass brick:Unoccupied_Cooling_Discharge_Air_Flow_Setpoint .
+
+brick:ratedMaximumCurrentInput a brick:EntityProperty .
+
+bsh:BuildingMeterRule a sh:NodeShape .
+
+bsh:Wet_Bulb_TemperatureQuantityShape sh:property [ ] .
+
+tag:Lounge rdfs:label "Lounge"@en .
+
+tag:Preheat rdfs:label "Preheat"@en .
+
+rec:LuminousFluxObservation a sh:NodeShape .
+
+rec:OccupancySensorEquipment brick:deprecationMitigationMessage "REC ICT classes are being phased out in favor of Brick classes. For a replacement, consider brick:Occupancy_Sensor_Equipment" .
+
+rec:Polygon rdfs:subClassOf rec:Geometry .
+
+rec:ResistanceObservation a <dtmi:dtdl:class:Component> .
+
+rec:includes a owl:AsymmetricProperty .
+
+tag:Ready rdfs:label "Ready"@en .
+
+[] sh:object tag:Point .
+
+[] sh:object tag:Point .
+
+[] sh:predicate brick:hasTag .
+
+[] sh:object tag:Location .
+
+[] sh:subject sh:this .
+
+[] sh:subject sh:this .
+
+[] sh:object tag:Load .
+
+[] sh:object tag:Equipment .
+
+[] sh:predicate brick:hasTag .
+
+[] sh:predicate brick:hasTag .
+
+[] sh:predicate brick:hasTag .
+
+[] sh:object tag:Return .
+
+[] a sh:TripleRule .
+
+[] sh:predicate brick:hasTag .
+
+[] sh:subject sh:this .
+
+[] sh:predicate brick:hasTag .
+
+[] sh:subject sh:this .
+
+[] a sh:TripleRule .
+
+[] a sh:TripleRule .
+
+[] a sh:TripleRule .
+
+[] sh:name "IP address"^^xsd:string .
+
+[] rdf:rest [ ] .
+
+[] sh:predicate brick:hasTag .
+
+[] a sh:TripleRule .
+
+[] ref:hasTimeseriesId "d6f6d77d-c60a-4c2d-83ee-54c7d391f5da" .
+
+[] sh:predicate brick:hasTag .
+
+[] sh:predicate brick:hasTag .
+
+[] a sh:TripleRule .
+
+[] sh:predicate brick:hasTag .
+
+[] sh:object tag:High .
+
+[] sh:subject sh:this .
+
+[] sh:object tag:Setpoint .
+
+[] sh:predicate brick:hasTag .
+
+[] rdf:rest [ ] .
+
+[] sh:predicate brick:hasTag .
+
+[] sh:subject sh:this .
+
+[] sh:object tag:Sensor .
+
+[] sh:subject sh:this .
+
+[] a sh:TripleRule .
+
+[] a sh:TripleRule .
+
+[] sh:predicate brick:hasTag .
+
+[] sh:predicate brick:hasTag .
+
+[] sh:predicate brick:hasTag .
+
+[] a sh:PropertyShape .
+
+[] sh:predicate brick:hasTag .
+
+[] a sh:TripleRule .
+

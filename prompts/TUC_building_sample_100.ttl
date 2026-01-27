@@ -1,0 +1,198 @@
+@prefix brick: <https://brickschema.org/schema/Brick#> .
+@prefix om: <http://openmetrics.eu/openmetrics#> .
+@prefix ref: <https://brickschema.org/schema/Brick/ref#> .
+@prefix s4bldg: <https://saref.etsi.org/saref4bldg#> .
+@prefix s4ener: <https://saref.etsi.org/saref4ener#> .
+@prefix saref: <https://saref.etsi.org/core#> .
+
+om:BuildingStorey_173 brick:hasPart om:Space_3692,
+        om:Space_4035 .
+
+om:PresProperty a saref:Property .
+
+om:RC04N0041_TempSetpointMin brick:isPointOf om:RC04N0041_Equipment .
+
+om:RC04N0042_Equipment brick:hasPoint om:RC04N0042_TempSetpointMin .
+
+om:RC04N0043_Run_Request_Command brick:isPointOf om:RC04N0043_Equipment .
+
+om:RC04N0044_OccSensingPoint ref:hasExternalReference [ ] .
+
+om:RC04N0044_TempSensingPoint a brick:Temperature_Sensor .
+
+om:RC04N0044_TempSetpointMin brick:isPointOf om:RC04N0044_Equipment .
+
+om:RC04N0045_Mode_Command brick:isPointOf om:RC04N0045_Equipment .
+
+om:RC04N0045_Run_Request_Command ref:hasExternalReference [ ] .
+
+om:RC04N0045_TempSetpoint a brick:Temperature_Setpoint ;
+    brick:isPointOf om:RC04N0045_Equipment .
+
+om:RC04N0046_OccSensingPoint ref:hasExternalReference [ ] .
+
+om:RC04N0046_OnOffCommand a brick:On_Off_Command .
+
+om:RC04N0047_Equipment s4ener:serialNumber "RC04N0047" .
+
+om:RC04N0047_TempSetpoint saref:controls om:TempProperty .
+
+om:RC04N0048_Equipment saref:consistOf om:RC04N0048_TempSensingPoint,
+        om:RC04N0048_TempSetpointMax .
+
+om:RC04N0048_Run_Request_Command ref:hasExternalReference [ ] .
+
+om:RC04N0048_TempSetpoint a saref:Actuator .
+
+om:RC04N0049_Mode_Command brick:isPointOf om:RC04N0049_Equipment .
+
+om:RC04N0049_TempSetpoint saref:controls om:TempProperty .
+
+om:RC04N0050_Equipment ref:hasExternalReference [ ] ;
+    saref:consistOf om:RC04N0050_TempSetpointMin .
+
+om:RC04N0050_TempSetpointMax a brick:Max_Air_Temperature_Setpoint .
+
+om:RC04N0051_TempSetpoint ref:hasExternalReference [ ] .
+
+om:RC04N0052_Equipment brick:hasPoint om:RC04N0052_Run_Request_Command,
+        om:RC04N0052_TempSensingPoint .
+
+om:RC04N0052_TempSetpoint saref:controls om:TempProperty .
+
+om:RC04N0053_Run_Request_Command brick:isPointOf om:RC04N0053_Equipment .
+
+om:RC04N0053_TempSensingPoint a brick:Temperature_Sensor .
+
+om:RC04N0053_TempSetpointMin ref:hasExternalReference [ ] .
+
+om:RC04N0054_TempSensingPoint a saref:Sensor .
+
+om:RC04N0054_TempSetpoint saref:controls om:TempProperty .
+
+om:RC04N0055_TempSetpointMax brick:isPointOf om:RC04N0055_Equipment .
+
+om:RC04N0056_OccSensingPoint a brick:Occupancy_Sensor .
+
+om:RC04N0056_TempSensingPoint brick:isPointOf om:RC04N0056_Equipment ;
+    ref:hasExternalReference [ ] .
+
+om:RC04N0057_OnOffCommand brick:isPointOf om:RC04N0057_Equipment .
+
+om:RC04N0058_Delay_Parameter brick:isPointOf om:RC04N0058_Equipment .
+
+om:RC04N0058_Lockout_Command brick:isPointOf om:RC04N0058_Equipment .
+
+om:RC04N00_Equipment brick:hasPoint om:RC04N00_Mode_Command .
+
+om:Space_1857 a brick:Space .
+
+om:Space_2409 a brick:Space .
+
+om:Space_2786 a brick:Space .
+
+om:Space_3320 a s4bldg:BuildingSpace .
+
+om:Space_4953 a s4bldg:BuildingSpace .
+
+om:Space_5300 ref:hasExternalReference [ ] .
+
+om:Space_5844 a s4bldg:BuildingSpace .
+
+om:Space_6037 a s4bldg:BuildingSpace .
+
+om:Space_6220 s4bldg:contains om:RC04N0049_Equipment .
+
+om:Space_6903 a brick:Space .
+
+om:Space_7094 a brick:Space .
+
+om:Space_960 a brick:Space .
+
+om:ZoneRef_62124 ref:ifcGlobalID "06B2afrsv0uBHvTl5DaaCm" .
+
+om:ZoneRef_62684 ref:ifcName "A6:453256" .
+
+om:ZoneRef_62910 ref:ifcGlobalID "0_Cl1t7onEZwpCblUnHZTe" .
+
+om:ZoneRef_62985 a ref:IFCReference .
+
+om:ZoneRef_63286 a ref:IFCReference ;
+    ref:ifcName "I3:453264" .
+
+om:Zone_62310 brick:hasPart om:Space_7283 .
+
+om:Zone_62384 brick:hasPart om:Space_7468 .
+
+om:Zone_62534 a brick:Zone .
+
+om:Zone_63511 brick:hasPart om:Space_347 .
+
+om:null_Equipment ref:hasExternalReference [ ] .
+
+om:RC04N0044_Equipment saref:consistOf om:RC04N0044_Run_Request_Command .
+
+om:RC04N0046_Equipment s4ener:serialNumber "RC04N0046" .
+
+om:RC04N0048_TempSensingPoint a saref:Sensor .
+
+om:RC04N0051_Equipment brick:hasLocation om:Space_5676 .
+
+om:RC04N0053_Equipment brick:hasPoint om:RC04N0053_Delay_Parameter .
+
+om:RC04N0055_Equipment a s4bldg:UnitaryControlElement .
+
+om:RC04N0056_Equipment brick:hasPoint om:RC04N0056_TempSetpoint .
+
+om:Space_347 brick:isLocationOf om:RC04N0046_Equipment .
+
+om:Space_5676 a s4bldg:BuildingSpace ;
+    s4bldg:contains om:RC04N0051_Equipment .
+
+om:RC04N0049_Equipment brick:hasPoint om:RC04N0049_Lockout_Command .
+
+om:RC04N0058_Equipment saref:consistOf om:RC04N0058_OnOffCommand .
+
+[] ref:hasTimeseriesId "TUC.245.76.R106" .
+
+[] ref:ifcGlobalID "1$hwS2P_zBQfIJrrfYGZba" .
+
+[] ref:ifcGlobalID "1$hwS2P_zBQfIJrrfYGWU4" .
+
+[] ref:hasTimeseriesId "TUC.245.76.R244" .
+
+[] ref:ifcName "ROOM_I2" .
+
+[] ref:ifcGlobalID "04fvfeI2P3MOmu2cRam2pk" .
+
+[] ref:hasTimeseriesId "TUC.245.76.R214" .
+
+[] ref:ifcGlobalID "2wUZvbW4v3wOwtjicQlQAx" .
+
+[] ref:ifcGlobalID "04fvfeI2P3MOmu2cRam3GU" .
+
+[] ref:ifcGlobalID "3a1tR809rAReA0vyWW$Og1" .
+
+[] ref:ifcGlobalID "04fvfeI2P3MOmu2cRam3LY" .
+
+[] ref:ifcGlobalID "3a1tR809rAReA0vyWW$Oeq" .
+
+[] ref:ifcGlobalID "04fvfeI2P3MOmu2cRam3GT" .
+
+[] ref:ifcGlobalID "3kT8I8pp95QAZ7pLPg6v4l" .
+
+[] ref:hasTimeseriesId "TUC.245.76.R237" .
+
+[] ref:hasTimeseriesId "TUC.245.76.R406" .
+
+[] ref:hasTimeseriesId "TUC.245.76.R257" .
+
+[] ref:ifcGlobalID "04fvfeI2P3MOmu2cRam2pa" .
+
+[] ref:ifcGlobalID "3kT8I8pp95QAZ7pLPg6v4O" ;
+    ref:ifcName "WC_I5" .
+
+[] ref:hasTimeseriesId "TUC.245.76.R255" .
+
+[] ref:hasTimeseriesId "TUC.245.76.R28" .
+

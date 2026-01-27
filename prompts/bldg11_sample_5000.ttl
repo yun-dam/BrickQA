@@ -1,0 +1,5000 @@
+@prefix bacnet: <http://data.ashrae.org/bacnet/2020#> .
+@prefix brick: <https://brickschema.org/schema/Brick#> .
+@prefix bsh: <https://brickschema.org/schema/BrickShape#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ns2: <http://buildsys.org/ontologies/bldg11#> .
+@prefix ns3: <http://buildsys.org/ontologies/bldg11#bldg11.CHW.Pump1_Start/> .
+@prefix ns4: <http://buildsys.org/ontologies/bldg11#bldg11.CHW.Pump2_Start/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix qudtqk: <http://qudt.org/vocab/quantitykind/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rec: <https://w3id.org/rec#> .
+@prefix ref: <https://brickschema.org/schema/Brick/ref#> .
+@prefix s223: <http://data.ashrae.org/standard223#> .
+@prefix sdo: <http://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix tag: <https://brickschema.org/schema/BrickTag#> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+rec:AbsoluteHumidityObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Absolute humidity observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:AbsoluteHumidity ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:AccelerationObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Acceleration observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:Acceleration ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:AccessControlZone a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Access control zone"^^xsd:string ;
+    rdfs:subClassOf rec:Zone .
+
+rec:AccessPanel a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Access panel"^^xsd:string ;
+    rdfs:subClassOf rec:BarrierAsset .
+
+rec:ActuationEvent a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Actuation event"^^xsd:string ;
+    rdfs:subClassOf rec:PointEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:string ;
+            sh:description "The command message/payload of this actuation event."^^xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ],
+        [ a sh:PropertyShape ;
+            sh:class brick:Point ;
+            sh:description "The brick:Point(s) (e.g., brick:Commands, brick:Setpoints, or brick:Parameters) that the actuation will target/execute."^^xsd:string ;
+            sh:minCount 1 ;
+            sh:name "target point"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:targetPoint ] .
+
+rec:AdmittingRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Admitting room"^^xsd:string ;
+    rdfs:subClassOf rec:HealthcareRoom .
+
+rec:Agent a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Agent"^^xsd:string ;
+    rdfs:comment "The human, group, or machine that consumes or acts upon an object or data. This higher-level grouping allows properties that are shared among its subclasses (Person, Organization, ....) to be anchored in one joint place, on the Agent class."^^xsd:string ;
+    rdfs:subClassOf rdfs:Resource ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class rec:Organization ;
+            sh:description "Indicates membership in an organization. Note that componency (e.g., departments of a corporation) are expressed using the more generic Organization.isPartOf property."^^xsd:string ;
+            sh:name "is member of"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:isMemberOf ],
+        [ a sh:PropertyShape ;
+            sh:description "Indicates ownership of some thing, e.g., a building, an asset, an organization, etc."^^xsd:string ;
+            sh:name "owns"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:owns ] .
+
+rec:AlarmObject a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Alarm object"^^xsd:string ;
+    rdfs:subClassOf rec:ServiceObject .
+
+rec:AngleObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Angle observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:Angle ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:AngularAccelerationObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Angular acceleration observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:AngularAcceleration ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:AngularVelocityObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Angular velocity observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:AngularVelocity ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:Apartment a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Apartment"^^xsd:string ;
+    rdfs:subClassOf rec:Collection ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class rec:Room ;
+            sh:minCount 1 ;
+            sh:name "includes"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:includes ] .
+
+rec:ArchitecturalAsset a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Architectural asset"^^xsd:string ;
+    rdfs:subClassOf rec:Asset .
+
+rec:Architecture a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Architecture"^^xsd:string ;
+    rdfs:comment "A designed/landscaped (or potentially designed/landscaped) part of the physical world that has a 3D spatial extent. E.g., a building site, a building, levels within the building, rooms, etc."^^xsd:string ;
+    rdfs:subClassOf rec:Space ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class rec:Agent ;
+            sh:name "architected by"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:architectedBy ],
+        [ a sh:PropertyShape ;
+            sh:class rec:ArchitectureArea ;
+            sh:maxCount 1 ;
+            sh:name "area"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:area ],
+        [ a sh:PropertyShape ;
+            sh:class rec:PostalAddress ;
+            sh:description "Physical address of the architecture (site, building, sub-building, entrance room, etc.) in question."^^xsd:string ;
+            sh:name "address"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:address ],
+        [ a sh:PropertyShape ;
+            sh:class rec:Agent ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:constructedBy ],
+        [ a sh:PropertyShape ;
+            sh:class rec:BuildingElement ;
+            sh:description "Links an Architecture to BuildingElement that is contained in the Space."^^xsd:string ;
+            sh:name "contains element"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:containsElement ],
+        [ a sh:PropertyShape ;
+            sh:class rec:BuildingElement ;
+            sh:name "adjacent element"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:adjacentElement ],
+        [ a sh:PropertyShape ;
+            sh:class rec:ArchitectureCapacity ;
+            sh:maxCount 1 ;
+            sh:name "capacity"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:capacity ],
+        [ a sh:PropertyShape ;
+            sh:class brick:Point ;
+            sh:name "has point"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:hasPoint ],
+        [ a sh:PropertyShape ;
+            sh:class rec:BuildingElement ;
+            sh:name "intersecting element"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:intersectingElement ],
+        [ a sh:PropertyShape ;
+            sh:class rec:Agent ;
+            sh:name "operated by"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:operatedBy ],
+        [ a sh:PropertyShape ;
+            sh:class rec:Document ;
+            sh:name "documentation"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:documentation ],
+        [ a sh:PropertyShape ;
+            sh:name "is fed by"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:isFedBy ],
+        [ a sh:PropertyShape ;
+            sh:class rec:Agent ;
+            sh:name "owned by"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:ownedBy ] .
+
+rec:ArchitectureArea a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Architecture area"^^xsd:string ;
+    rdfs:comment "Describes business-relevant area measurements typically associated with architected spaces. As the exact requirements on these measurements will vary from case to case or jurisdiction to jurisdiction, subclassing and specializing this definition is encouraged."^^xsd:string ;
+    rdfs:subClassOf rec:Information ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:float ;
+            sh:maxCount 1 ;
+            sh:name "rentable area"^^xsd:string ;
+            sh:path rec:rentableArea ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:float ;
+            sh:maxCount 1 ;
+            sh:name "net area"^^xsd:string ;
+            sh:path rec:netArea ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:float ;
+            sh:maxCount 1 ;
+            sh:name "gross area"^^xsd:string ;
+            sh:path rec:grossArea ] .
+
+rec:ArchitectureCapacity a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Architecture capacity"^^xsd:string ;
+    rdfs:comment "Describes business-relevant capacity measurements typically associated with architected spaces. As the exact requirements on these measurements will vary from case to case or jurisdiction to jurisdiction, subclassing and specializing this definition is encouraged."^^xsd:string ;
+    rdfs:subClassOf rec:Information ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:name "seating capacity"^^xsd:string ;
+            sh:path rec:seatingCapacity ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:integer ;
+            sh:description "E.g., per Building Code"^^xsd:string ;
+            sh:maxCount 1 ;
+            sh:name "maximum occupancy"^^xsd:string ;
+            sh:path rec:maxOccupancy ] .
+
+rec:AreaObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Area observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:Area ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:Asset a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Asset"^^xsd:string ;
+    rdfs:comment "Something which is placed inside of a building, but is not an integral part of that building's structure; e.g., furniture, equipment, systems, etc."^^xsd:string ;
+    rdfs:subClassOf rdfs:Resource ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class rec:BuildingElement ;
+            sh:description "An asset may be mounted on some part of the building construction (e.g., a blind on a facade, a camera on a wall, etc)."^^xsd:string ;
+            sh:maxCount 1 ;
+            sh:name "mounted on"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:mountedOn ],
+        [ a sh:PropertyShape ;
+            sh:class rec:Space ;
+            sh:name "located in"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:locatedIn ],
+        [ a sh:PropertyShape ;
+            sh:class rec:Agent ;
+            sh:name "installed by"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:installedBy ],
+        [ a sh:PropertyShape ;
+            sh:class rec:Asset ;
+            sh:name "is part of"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:isPartOf ],
+        [ a sh:PropertyShape ;
+            sh:class rec:Agent ;
+            sh:name "commissioned by"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:commissionedBy ],
+        [ a sh:PropertyShape ;
+            sh:class rec:Geometry ;
+            sh:description "A GeoJSON Geometry representing the position or extent of the asset."^^xsd:string ;
+            sh:maxCount 1 ;
+            sh:name "geometry"^^xsd:string ;
+            sh:path rec:geometry ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:string ;
+            sh:name "asset tag"^^xsd:string ;
+            sh:path rec:assetTag ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:date ;
+            sh:maxCount 1 ;
+            sh:name "turnover date"^^xsd:string ;
+            sh:path rec:turnoverDate ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:duration ;
+            sh:name "maintenance interval"^^xsd:string ;
+            sh:path rec:maintenanceInterval ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:string ;
+            sh:name "IP address"^^xsd:string ;
+            sh:path rec:IPAddress ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:date ;
+            sh:maxCount 1 ;
+            sh:name "commissioning date"^^xsd:string ;
+            sh:path rec:commissioningDate ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:string ;
+            sh:name "serial number"^^xsd:string ;
+            sh:path rec:serialNumber ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:decimal ;
+            sh:maxCount 1 ;
+            sh:name "weight"^^xsd:string ;
+            sh:path rec:weight ],
+        [ a sh:PropertyShape ;
+            sh:class brick:Point ;
+            sh:name "has point"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:hasPoint ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:date ;
+            sh:maxCount 1 ;
+            sh:name "installation date"^^xsd:string ;
+            sh:path rec:installationDate ],
+        [ a sh:PropertyShape ;
+            sh:class rec:Document ;
+            sh:name "documentation"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:documentation ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:string ;
+            sh:name "MAC address"^^xsd:string ;
+            sh:path rec:MACAddress ],
+        [ a sh:PropertyShape ;
+            sh:class rec:Agent ;
+            sh:name "manufactured by"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:manufacturedBy ],
+        [ a sh:PropertyShape ;
+            sh:class rec:Agent ;
+            sh:name "serviced by"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:servicedBy ],
+        [ a sh:PropertyShape ;
+            sh:class rec:Asset ;
+            sh:name "has part"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:hasPart ],
+        [ a sh:PropertyShape ;
+            sh:maxCount 1 ;
+            sh:name "initial cost"^^xsd:string ;
+            sh:nodeKind sh:Literal ;
+            sh:path rec:initialCost ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:string ;
+            sh:name "model number"^^xsd:string ;
+            sh:path rec:modelNumber ] .
+
+rec:Atrium a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Atrium"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:AudioVisualEquipment a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Audio Visual Equipment"^^xsd:string ;
+    rdfs:comment "Audio visual equipment."^^xsd:string ;
+    rdfs:subClassOf rec:ICTEquipment ;
+    owl:deprecated true ;
+    brick:deprecatedInVersion "1.4.0" ;
+    brick:deprecationMitigationMessage "REC ICT classes are being phased out in favor of Brick classes. For a replacement, consider brick:Audio_Visual_Equipment" ;
+    brick:isReplacedBy brick:Audio_Visual_Equipment .
+
+rec:Auditorium a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Auditorium"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:BACnetController a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "BACnet Controller"^^xsd:string ;
+    rdfs:comment "BACnet controller."^^xsd:string ;
+    rdfs:subClassOf rec:Controller ;
+    owl:deprecated true ;
+    brick:deprecatedInVersion "1.4.0" ;
+    brick:deprecationMitigationMessage "REC ICT classes are being phased out in favor of Brick classes. For a replacement, consider brick:BACnet_Controller" ;
+    brick:isReplacedBy brick:BACnet_Controller .
+
+rec:BackOffice a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Back office"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:Balcony a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Balcony"^^xsd:string ;
+    rdfs:subClassOf rec:BuildingElement .
+
+rec:BarRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Bar room"^^xsd:string ;
+    rdfs:subClassOf rec:FoodHandlingRoom .
+
+rec:BarrierAsset a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Barrier asset"^^xsd:string ;
+    rdfs:subClassOf rec:ArchitecturalAsset .
+
+rec:BasementLevel a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Basement level"^^xsd:string ;
+    rdfs:subClassOf rec:Level .
+
+rec:Bathroom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Bathroom"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:Bed a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Bed"^^xsd:string ;
+    rdfs:subClassOf rec:Furniture .
+
+rec:Bedroom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Bedroom"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:BicycleGarage a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Bicycle garage"^^xsd:string ;
+    rdfs:subClassOf rec:Garage .
+
+rec:Bookcase a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Bookcase"^^xsd:string ;
+    rdfs:subClassOf rec:Furniture .
+
+rec:BooleanValueObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Boolean value observation"^^xsd:string ;
+    rdfs:comment "Generic xsd:boolean value observation that is not specific to any particular QUDT quantitykind or unit."^^xsd:string ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:boolean ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:Building a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Building"^^xsd:string ;
+    rdfs:comment "A confined building structure."^^xsd:string ;
+    rdfs:subClassOf rec:Architecture .
+
+rec:BuildingElement a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Building element"^^xsd:string ;
+    rdfs:comment "A part that constitutes a piece of a building's structural makeup. E.g., Facade, Wall, Slab, Roof, etc."^^xsd:string ;
+    rdfs:subClassOf rdfs:Resource ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class rec:Document ;
+            sh:name "documentation"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:documentation ],
+        [ a sh:PropertyShape ;
+            sh:class rec:Architecture ;
+            sh:description "Indicates the architected space (site, building, level, room...) in which this building element is placed."^^xsd:string ;
+            sh:maxCount 1 ;
+            sh:name "located in"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:locatedIn ],
+        [ a sh:PropertyShape ;
+            sh:class rec:BuildingElement ;
+            sh:name "has part"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:hasPart ],
+        [ a sh:PropertyShape ;
+            sh:class rec:BuildingElement ;
+            sh:maxCount 1 ;
+            sh:name "is part of"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:isPartOf ] .
+
+rec:BulletinBoard a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Bulletin board"^^xsd:string ;
+    rdfs:subClassOf rec:Furniture .
+
+rec:Cabinet a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Cabinet"^^xsd:string ;
+    rdfs:subClassOf rec:UtilitiesRoom .
+
+rec:CableRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Cable room"^^xsd:string ;
+    rdfs:subClassOf rec:UtilitiesRoom .
+
+rec:CafeteriaRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Cafeteria room"^^xsd:string ;
+    rdfs:subClassOf rec:FoodHandlingRoom .
+
+rec:Campus a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Campus"^^xsd:string ;
+    rdfs:comment "A campus represents a collection of location entities. The constituent locations may have differing legal ownership and utilization purposes, but they are generally perceived as a coherent unit or sub-region within a city or other region. E.g., a university campus, a hospital campus, a corporate campus, etc."^^xsd:string ;
+    rdfs:subClassOf rec:Collection ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class rec:Architecture ;
+            sh:minCount 1 ;
+            sh:name "includes"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:includes ] .
+
+rec:CapacitanceObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Capacitance observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:Capacitance ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:Cart a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Cart"^^xsd:string ;
+    rdfs:subClassOf rec:Furniture .
+
+rec:Chair a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Chair"^^xsd:string ;
+    rdfs:subClassOf rec:Furniture .
+
+rec:Cinema a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Cinema"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:Classroom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Classroom"^^xsd:string ;
+    rdfs:subClassOf rec:EducationalRoom .
+
+rec:CleaningRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Cleaning room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:ClimateControlRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Climate-control room"^^xsd:string ;
+    rdfs:subClassOf rec:UtilitiesRoom .
+
+rec:CloakRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Cloak room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:CoatRack a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Coat rack"^^xsd:string ;
+    rdfs:subClassOf rec:Furniture .
+
+rec:CoffeeTable a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Coffee table"^^xsd:string ;
+    rdfs:subClassOf rec:Table .
+
+rec:Collection a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Collection"^^xsd:string ;
+    rdfs:comment "An administrative grouping of entities that are adressed and treated as a unit for some purpose. These entities may have some spatial arrangement (e.g., an apartment is typically contiguous) but that is not a requirement (see, e.g., a distributed campus consisting of spatially disjoint plots or buildings). Inclusion in a Collection is determined by the 'includes' field on a specific subclass."^^xsd:string ;
+    rdfs:subClassOf rdfs:Resource ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class rec:Document ;
+            sh:name "documentation"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:documentation ] .
+
+rec:Company a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Company"^^xsd:string ;
+    rdfs:subClassOf rec:Organization .
+
+rec:ComputerCart a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Computer cart"^^xsd:string ;
+    rdfs:subClassOf rec:Cart .
+
+rec:ConferenceRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Conference room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:ConferenceTable a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Conference table"^^xsd:string ;
+    rdfs:subClassOf rec:Table .
+
+rec:Controller a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Controller"^^xsd:string ;
+    rdfs:comment "Controller."^^xsd:string ;
+    rdfs:subClassOf rec:ICTEquipment ;
+    owl:deprecated true ;
+    brick:deprecatedInVersion "1.4.0" ;
+    brick:deprecationMitigationMessage "REC ICT classes are being phased out in favor of Brick classes. For a replacement, consider brick:Controller" ;
+    brick:isReplacedBy brick:Controller .
+
+rec:ConversationRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Conversation room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:CookingRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Cooking room"^^xsd:string ;
+    rdfs:subClassOf rec:FoodHandlingRoom .
+
+rec:CopyingRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Copying room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:DataNetworkEquipment a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Data Network Equipment"^^xsd:string ;
+    rdfs:comment "Data network equipment."^^xsd:string ;
+    rdfs:subClassOf rec:ICTEquipment ;
+    owl:deprecated true ;
+    brick:deprecatedInVersion "1.4.0" ;
+    brick:deprecationMitigationMessage "REC ICT classes are being phased out in favor of Brick classes. For a replacement, consider brick:Data_Network_Equipment" ;
+    brick:isReplacedBy brick:Data_Network_Equipment .
+
+rec:DataRateObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Data rate observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:DataRate ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:DataServerRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Data server room"^^xsd:string ;
+    rdfs:subClassOf rec:UtilitiesRoom .
+
+rec:DataSizeObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Data size observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:InformationEntropy ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:DaylightSensorEquipment a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Daylight Sensor"^^xsd:string ;
+    rdfs:comment "Daylight sensor."^^xsd:string ;
+    rdfs:subClassOf rec:SensorEquipment ;
+    owl:deprecated true ;
+    brick:deprecatedInVersion "1.4.0" ;
+    brick:deprecationMitigationMessage "REC ICT classes are being phased out in favor of Brick classes. For a replacement, consider brick:Daylight_Sensor_Equipment" ;
+    brick:isReplacedBy brick:Daylight_Sensor_Equipment .
+
+rec:DensityObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Density observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:Density ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:Department a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Department"^^xsd:string ;
+    rdfs:subClassOf rec:Organization .
+
+rec:Desk a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Desk"^^xsd:string ;
+    rdfs:subClassOf rec:Furniture .
+
+rec:DeskLamp a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Desk lamp"^^xsd:string ;
+    rdfs:subClassOf rec:Lamp .
+
+rec:DiningRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Dining room"^^xsd:string ;
+    rdfs:subClassOf rec:FoodHandlingRoom .
+
+rec:DisabledToilet a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Disabled toilet"^^xsd:string ;
+    rdfs:subClassOf rec:PersonalHygiene .
+
+rec:DishingRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Dishing room"^^xsd:string ;
+    rdfs:subClassOf rec:FoodHandlingRoom .
+
+rec:DistanceObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Distance observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:Distance ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:Document a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Document"^^xsd:string ;
+    rdfs:subClassOf rec:Information ;
+    sh:property [ a sh:PropertyShape ;
+            sh:name "document topic"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:documentTopic ],
+        [ a sh:PropertyShape ;
+            sh:name "URL"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:url ] .
+
+rec:Door a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Door"^^xsd:string ;
+    rdfs:subClassOf rec:BarrierAsset .
+
+rec:DoubleValueObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Double value observation"^^xsd:string ;
+    rdfs:comment "Generic xsd:double value observation that is not specific to any particular QUDT quantitykind or unit."^^xsd:string ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:DressingRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Dressing room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:EducationalRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Educational room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:ElectricChargeObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Electric charge observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:ElectricCharge ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:ElectricCurrentObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Elecric current observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:ElectricCurrent ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:ElectricityRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Electricity room"^^xsd:string ;
+    rdfs:subClassOf rec:UtilitiesRoom .
+
+rec:ElevatorRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Elevator room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:ElevatorShaft a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Elevator shaft"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:ElevatorTrip a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Elevator trip"^^xsd:string ;
+    rdfs:subClassOf rec:Event ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:name "start level"^^xsd:string ;
+            sh:path rec:startLevel ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:string ;
+            sh:in ( "Up"^^xsd:string "Down"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:name "trip direction"^^xsd:string ;
+            sh:path rec:tripDirection ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:name "end level"^^xsd:string ;
+            sh:path rec:endLevel ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:name "current level"^^xsd:string ;
+            sh:path rec:currentLevel ] .
+
+rec:EndTable a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "End table"^^xsd:string ;
+    rdfs:subClassOf rec:Table .
+
+rec:EnergyObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Energy observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:Energy ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:Entrance a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Entrance"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:EquipmentCollection a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Equipment collection"^^xsd:string ;
+    rdfs:subClassOf rec:Collection ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class brick:Equipment ;
+            sh:minCount 1 ;
+            sh:name "includes"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:includes ] .
+
+rec:ErrorReport a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Error report"^^xsd:string ;
+    rdfs:subClassOf rec:ServiceObject .
+
+rec:EthernetPort a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Ethernet Port"^^xsd:string ;
+    rdfs:comment "Ethernet port."^^xsd:string ;
+    rdfs:subClassOf rec:DataNetworkEquipment ;
+    owl:deprecated true ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:string ;
+            sh:in ( "Type1"^^xsd:string "Type2"^^xsd:string "Type3"^^xsd:string "Type4"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:name "PoE Type"^^xsd:string ;
+            sh:path rec:poeType ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:float ;
+            sh:description "The data rate of the port in Mib/s, i.e. mebibit (2^20 bit) per second."^^xsd:string ;
+            sh:maxCount 1 ;
+            sh:name "Port Speed"^^xsd:string ;
+            sh:path rec:portSpeed ] ;
+    brick:deprecatedInVersion "1.4.0" ;
+    brick:deprecationMitigationMessage "REC ICT classes are being phased out in favor of Brick classes. For a replacement, consider brick:Ethernet_Port" ;
+    brick:isReplacedBy brick:Ethernet_Port .
+
+rec:EthernetSwitch a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Ethernet Switch"^^xsd:string ;
+    rdfs:comment "Ethernet switch."^^xsd:string ;
+    rdfs:subClassOf rec:DataNetworkEquipment ;
+    owl:deprecated true ;
+    brick:deprecatedInVersion "1.4.0" ;
+    brick:deprecationMitigationMessage "REC ICT classes are being phased out in favor of Brick classes. For a replacement, consider brick:Ethernet_Switch" ;
+    brick:isReplacedBy brick:Ethernet_Switch .
+
+rec:Event a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Event"^^xsd:string ;
+    rdfs:comment "A temporally indexed entity, e.g., an observation, a lease, a construction project, etc. Can be instantaneous (timestamp property assigned) or have temporal extent (start and end properties assigned). Subclasses may define specific behaviour and requirements, e.g., on spatial indexing, agent participation, etc."^^xsd:string ;
+    rdfs:subClassOf rdfs:Resource ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:dateTime ;
+            sh:description "Event start timestamp."^^xsd:string ;
+            sh:maxCount 1 ;
+            sh:name "start"^^xsd:string ;
+            sh:path rec:start ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:dateTime ;
+            sh:maxCount 1 ;
+            sh:name "timestamp"^^xsd:string ;
+            sh:path rec:timestamp ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:dateTime ;
+            sh:description "Event ending timestamp."^^xsd:string ;
+            sh:maxCount 1 ;
+            sh:name "end"^^xsd:string ;
+            sh:path rec:end ] .
+
+rec:ExceptionEvent a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Exception event"^^xsd:string ;
+    rdfs:subClassOf rec:PointEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class brick:Point ;
+            sh:description "The brick:Point that emitted this exception."^^xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "source point"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:sourcePoint ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:string ;
+            sh:description "The message of this exception event."^^xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:ExerciseRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Exercise room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:ExhibitionRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Exhibition room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:Facade a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Facade"^^xsd:string ;
+    rdfs:subClassOf rec:BuildingElement .
+
+rec:FilingCabinet a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Filing cabinet"^^xsd:string ;
+    rdfs:subClassOf rec:Furniture .
+
+rec:FittingRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Fitting room"^^xsd:string ;
+    rdfs:subClassOf rec:RetailRoom .
+
+rec:FloorLamp a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Floor lamp"^^xsd:string ;
+    rdfs:subClassOf rec:Lamp .
+
+rec:FloorMat a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Floor mat"^^xsd:string ;
+    rdfs:subClassOf rec:Furniture .
+
+rec:FoldingChair a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Folding chair"^^xsd:string ;
+    rdfs:subClassOf rec:Chair .
+
+rec:FoldingTable a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Folding table"^^xsd:string ;
+    rdfs:subClassOf rec:Table .
+
+rec:FoodHandlingRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Food-handling room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:Footrest a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Footrest"^^xsd:string ;
+    rdfs:subClassOf rec:Furniture .
+
+rec:ForceObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Force observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:Force ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:FrequencyObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Frequency observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:Frequency ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:Furniture a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Furniture"^^xsd:string ;
+    rdfs:subClassOf rec:Asset .
+
+rec:FurnitureCollection a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Furniture collection"^^xsd:string ;
+    rdfs:subClassOf rec:Collection ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class rec:Furniture ;
+            sh:minCount 1 ;
+            sh:name "includes"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:includes ] .
+
+rec:Garage a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Garage"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:Gateway a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Gateway"^^xsd:string ;
+    rdfs:comment "Gateway."^^xsd:string ;
+    rdfs:subClassOf rec:ICTEquipment ;
+    owl:deprecated true ;
+    brick:deprecatedInVersion "1.4.0" ;
+    brick:deprecationMitigationMessage "REC ICT classes are being phased out in favor of Brick classes. For a replacement, consider brick:Gateway" ;
+    brick:isReplacedBy brick:Gateway .
+
+rec:Geometry a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Geometry"^^xsd:string ;
+    rdfs:subClassOf rec:Information ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:string ;
+            sh:in ( "WGS84"^^xsd:string "SWEREF99"^^xsd:string "LocalCoordinates"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:name "coordinate system"^^xsd:string ;
+            sh:nodeKind sh:Literal ;
+            sh:path rec:coordinateSystem ] .
+
+rec:Georeference a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Georeference"^^xsd:string ;
+    rdfs:comment "A georeference creates a relationship between a local coordinate system into a geographic coordinate system."^^xsd:string ;
+    rdfs:subClassOf rec:Information .
+
+rec:Geotransform a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Geotransform"^^xsd:string ;
+    rdfs:comment "A transform following GDAL's Affine Transform that transforms a local coordinate into a WGS84 coordinate. Created from Ground Control Points (GCP) using GDAL's GCPsToGeotransform method."^^xsd:string ;
+    rdfs:subClassOf rec:Georeference ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:name "origin y"^^xsd:string ;
+            sh:path rec:originY ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:name "width scale factor"^^xsd:string ;
+            sh:path rec:widthScaleFactor ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:description "Value will be zero if the local coordinate system is north-aligned."^^xsd:string ;
+            sh:maxCount 1 ;
+            sh:name "y rotational scale factor"^^xsd:string ;
+            sh:path rec:yRotationalScaleFactor ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:name "origin x"^^xsd:string ;
+            sh:path rec:originX ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:description "Value will be zero if the local coordinate system is north-aligned."^^xsd:string ;
+            sh:maxCount 1 ;
+            sh:name "x rotational scale factor"^^xsd:string ;
+            sh:path rec:xRotationalScaleFactor ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:name "height scale factor"^^xsd:string ;
+            sh:path rec:heightScaleFactor ] .
+
+rec:GroupRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Group room"^^xsd:string ;
+    rdfs:subClassOf rec:EducationalRoom .
+
+rec:HVACZone a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "HVAC zone"^^xsd:string ;
+    rdfs:subClassOf rec:Zone .
+
+rec:Hallway a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Hallway"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:HealthcareRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Healthcare room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:Hospital a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Hospital"^^xsd:string ;
+    rdfs:subClassOf rec:Building .
+
+rec:IAQSensorEquipment a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Indoor Air Quality Sensor"^^xsd:string ;
+    rdfs:comment "Indoor air quality sensor."^^xsd:string ;
+    rdfs:subClassOf rec:SensorEquipment ;
+    owl:deprecated true ;
+    brick:deprecatedInVersion "1.4.0" ;
+    brick:deprecationMitigationMessage "REC ICT classes are being phased out in favor of Brick classes. For a replacement, consider brick:IAQ_Sensor_Equipment" ;
+    brick:isReplacedBy brick:IAQ_Sensor_Equipment .
+
+rec:ICTEquipment a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "ICT Equipment"^^xsd:string ;
+    rdfs:comment "Equipment and devices that are part of a building's ICT infrastructure."^^xsd:string ;
+    rdfs:subClassOf brick:Equipment ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:integer ;
+            sh:name "Height (RUs)"^^xsd:string ;
+            sh:path rec:heightRUs ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:integer ;
+            sh:name "Number of Ports"^^xsd:string ;
+            sh:path rec:numberOfPorts ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:string ;
+            sh:description "The standard the equipment or device adheres to, e.g. IEEE 802.11."^^xsd:string ;
+            sh:name "Standard"^^xsd:string ;
+            sh:path rec:standard ] .
+
+rec:ICTHardware a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "ICT Hardware"^^xsd:string ;
+    rdfs:comment "ICT hardware."^^xsd:string ;
+    rdfs:subClassOf rec:ICTEquipment .
+
+rec:ITRack a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "IT Rack"^^xsd:string ;
+    rdfs:comment "IT rack."^^xsd:string ;
+    rdfs:subClassOf rec:ICTEquipment .
+
+rec:IlluminanceObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Illuminance observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:Illuminance ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:InductanceObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Inductance observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:Inductance ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:Information a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Information"^^xsd:string ;
+    rdfs:subClassOf rdfs:Resource .
+
+rec:IntegerValueObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Integer value observation"^^xsd:string ;
+    rdfs:comment "Generic xsd:int value observation that is not specific to any particular QUDT quantitykind or unit."^^xsd:string ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:Kitchenette a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Kitchenette"^^xsd:string ;
+    rdfs:subClassOf rec:FoodHandlingRoom .
+
+rec:Laboratory a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Laboratory"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:LaboratoryDry a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Laboratory (dry)"^^xsd:string ;
+    rdfs:subClassOf rec:Laboratory .
+
+rec:LaboratoryWet a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Laboratory (wet)"^^xsd:string ;
+    rdfs:subClassOf rec:Laboratory .
+
+rec:Lamp a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Lamp"^^xsd:string ;
+    rdfs:subClassOf rec:Furniture .
+
+rec:LaundryRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Laundry room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:LeakDetectorEquipment a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Leak Detector"^^xsd:string ;
+    rdfs:comment "Leak detector."^^xsd:string ;
+    rdfs:subClassOf rec:SensorEquipment ;
+    owl:deprecated true ;
+    brick:deprecatedInVersion "1.4.0" ;
+    brick:deprecationMitigationMessage "REC ICT classes are being phased out in favor of Brick classes. For a replacement, consider brick:Leak_Detector_Equipment" ;
+    brick:isReplacedBy brick:Leak_Detector_Equipment .
+
+rec:Lease a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Lease"^^xsd:string ;
+    rdfs:subClassOf rec:Event ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class rec:LeaseContract ;
+            sh:description "Indicates the contract regulating the terms of the lease in question. "^^xsd:string ;
+            sh:name "regulated by"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:regulatedBy ],
+        [ a sh:PropertyShape ;
+            sh:description "The object (e.g., property, equipment, etc) that this a lease of."^^xsd:string ;
+            sh:minCount 1 ;
+            sh:name "lease of"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:leaseOf ],
+        [ a sh:PropertyShape ;
+            sh:class rec:Agent ;
+            sh:description "The agent leasing some leasable object, i.e., the user of the asset."^^xsd:string ;
+            sh:minCount 1 ;
+            sh:name "leasee"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:leasee ],
+        [ a sh:PropertyShape ;
+            sh:class rec:Agent ;
+            sh:description "The agent leasing out some leasable object, i.e., the owner of the asset."^^xsd:string ;
+            sh:minCount 1 ;
+            sh:name "leasor"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:leasor ] .
+
+rec:LeaseContract a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Lease contract"^^xsd:string ;
+    rdfs:comment "Formal document that identifies the Tenant and the leased asset or property; states lease term and fee (rent), and detailed terms and conditions of the lease agreement."^^xsd:string ;
+    rdfs:subClassOf rec:Document ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class rec:Lease ;
+            sh:description "Indicates the lease(s) that this contract regulates the conditions of."^^xsd:string ;
+            sh:name "regulates"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:regulates ] .
+
+rec:LengthObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Length observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:Length ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:Level a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Level"^^xsd:string ;
+    rdfs:comment "The level of a building, a.k.a. storey, floor, etc."^^xsd:string ;
+    rdfs:subClassOf rec:Architecture ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:integer ;
+            sh:description "A number indicating the ordinal number of this level within the containing space (typically a Building or in the case of a Mezzanine, sometimes another level). Note that the implementation of this numbering scheme and its starting point is implementation-specific; e.g., the fifth floor below ground may be 0 in some systems, and -5 in others."^^xsd:string ;
+            sh:name "level number"^^xsd:string ;
+            sh:path rec:levelNumber ] .
+
+rec:Library a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Library"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:LivingRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Living room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:LoadingReceivingRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Loading/receiving room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:Lobby a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Lobby" ;
+    rdfs:comment "This concept definition comes from the Brick distribution until it is added in the REC ontology Turtle distribution." ;
+    rdfs:subClassOf rec:Room .
+
+rec:LockerRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Locker room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:Lounge a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Lounge" ;
+    rdfs:comment "This concept definition comes from the Brick distribution until it is added in the REC ontology Turtle distribution." ;
+    rdfs:subClassOf rec:Room .
+
+rec:LuminanceObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Luminance observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:Luminance ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:LuminousFluxObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Luminous flux observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:LuminousFlux ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:LuminousIntensityObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Luminous intensity observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:LuminousIntensity ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:MagneticFluxObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Magnetic flux observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:MagneticFlux ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:MailRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Mail room"^^xsd:string ;
+    rdfs:subClassOf rec:BackOffice .
+
+rec:MailroomCart a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Mailroom cart"^^xsd:string ;
+    rdfs:subClassOf rec:Cart .
+
+rec:MainEntrance a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Main entrance"^^xsd:string ;
+    rdfs:subClassOf rec:Entrance .
+
+rec:MassFlowRateObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Mass flow rate observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:MassFlowRate ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:MassObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Mass observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:Mass ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:MeditationRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Meditation room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:MezzanineLevel a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Mezzanine level"^^xsd:string ;
+    rdfs:subClassOf rec:Level .
+
+rec:MobileDesk a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Mobile desk"^^xsd:string ;
+    rdfs:subClassOf rec:Desk .
+
+rec:ModbusController a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Modbus Controller"^^xsd:string ;
+    rdfs:comment "Modbus controller."^^xsd:string ;
+    rdfs:subClassOf rec:Controller ;
+    owl:deprecated true ;
+    brick:deprecatedInVersion "1.4.0" ;
+    brick:deprecationMitigationMessage "REC ICT classes are being phased out in favor of Brick classes. For a replacement, consider brick:Modbus_Controller" ;
+    brick:isReplacedBy brick:Modbus_Controller .
+
+rec:Morgue a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Morgue"^^xsd:string ;
+    rdfs:subClassOf rec:HealthcareRoom .
+
+rec:MothersRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Mothers' room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:MultiPoint a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Multi point"^^xsd:string ;
+    rdfs:subClassOf rec:Geometry ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype <https://geojson.org/MultiPoint> ;
+            sh:description "A GeoJSON MultiPoint coordinate listing. Coordinates may be expressed in two or three dimensions. Ex: [[10.0, 40.0], [40.0, 30.0], [20.0, 20.0], [30.0, 10.0]]."^^xsd:string ;
+            sh:maxCount 1 ;
+            sh:name "coordinates"^^xsd:string ;
+            sh:path rec:coordinates ] .
+
+rec:MultiPolygon a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Multi polygon"^^xsd:string ;
+    rdfs:subClassOf rec:Geometry ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype <https://geojson.org/MultiPolygon> ;
+            sh:description "A GeoJSON MultiPolygon coordinate listing. Coordinates may be expressed in two or three dimensions. Ex: [[[[30.0, 20.0], [45.0, 40.0], [10.0, 40.0], [30.0, 20.0]]], [[[15.0, 5.0], [40.0, 10.0], [10.0, 20.0], [5.0, 10.0], [15.0, 5.0]]]]."^^xsd:string ;
+            sh:maxCount 1 ;
+            sh:name "coordinates"^^xsd:string ;
+            sh:path rec:coordinates ] .
+
+rec:MultiPurposeRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Multi-purpose room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:NeonatalNursingRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Neonatal nursing room"^^xsd:string ;
+    rdfs:subClassOf rec:HealthcareRoom .
+
+rec:NetworkRouter a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Network Router"^^xsd:string ;
+    rdfs:comment "Network router."^^xsd:string ;
+    rdfs:subClassOf rec:DataNetworkEquipment .
+
+rec:NetworkSecurityEquipment a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Network Security Equipment"^^xsd:string ;
+    rdfs:comment "Network security equipment."^^xsd:string ;
+    rdfs:subClassOf rec:DataNetworkEquipment ;
+    owl:deprecated true ;
+    brick:deprecatedInVersion "1.4.0" ;
+    brick:deprecationMitigationMessage "REC ICT classes are being phased out in favor of Brick classes. For a replacement, consider brick:Network_Security_Equipment" ;
+    brick:isReplacedBy brick:Network_Security_Equipment .
+
+rec:NotificationObject a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Notification object"^^xsd:string ;
+    rdfs:subClassOf rec:ServiceObject .
+
+rec:ObservationEvent a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Observation event"^^xsd:string ;
+    rdfs:subClassOf rec:PointEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class brick:Point ;
+            sh:description "The brick:Point that emitted this observation."^^xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "source point"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:sourcePoint ] .
+
+rec:OccupancySensorEquipment a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Occupancy Sensor"^^xsd:string ;
+    rdfs:comment "Occupancy sensor."^^xsd:string ;
+    rdfs:subClassOf rec:SensorEquipment ;
+    owl:deprecated true ;
+    brick:deprecatedInVersion "1.4.0" ;
+    brick:deprecationMitigationMessage "REC ICT classes are being phased out in favor of Brick classes. For a replacement, consider brick:Occupancy_Sensor_Equipment" ;
+    brick:isReplacedBy brick:Occupancy_Sensor_Equipment .
+
+rec:OccupancyZone a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Occupancy zone"^^xsd:string ;
+    rdfs:comment "Occupancy Zone is a spatial area where devices are monitoring or reporting on the concept of Occupancy (motion sensors, people counters, cameras, etc.)"^^xsd:string ;
+    rdfs:subClassOf rec:Zone .
+
+rec:Office a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Office"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:OfficeChair a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Office chair"^^xsd:string ;
+    rdfs:subClassOf rec:Chair .
+
+rec:OfficeLandscape a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "OfficeLandscape"^^xsd:string ;
+    rdfs:subClassOf rec:Office .
+
+rec:OfficeRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "OfficeRoom"^^xsd:string ;
+    rdfs:subClassOf rec:Office .
+
+rec:OperatingRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Operating room"^^xsd:string ;
+    rdfs:subClassOf rec:HealthcareRoom .
+
+rec:Organization a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Organization"^^xsd:string ;
+    rdfs:comment "An organization of any sort (e.g., a business, association, project, consortium, tribe, etc.)"^^xsd:string ;
+    rdfs:subClassOf rec:Agent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class rec:Organization ;
+            sh:description "Indicates parthood relations in organizations (e.g., departments of a corporation). Note that membership in an organization is expressed using the more specific hasMember property."^^xsd:string ;
+            sh:name "has part"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:hasPart ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:anyURI ;
+            sh:description "URL link to an image/logo that represents the organization."^^xsd:string ;
+            sh:name "logo"^^xsd:string ;
+            sh:path rec:logo ],
+        [ a sh:PropertyShape ;
+            sh:class rec:Agent ;
+            sh:description "Indicates membership in an organization. Note that componency (e.g., departments of a corporation) are expressed using the more generic hasPart property."^^xsd:string ;
+            sh:name "has member"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:hasMember ],
+        [ a sh:PropertyShape ;
+            sh:class rec:Organization ;
+            sh:description "Indicates parthood relations in organizations (e.g., departments of a corporation). Note that membership in an organization is expressed using the Agent.isMemberOf property."^^xsd:string ;
+            sh:name "is part of"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:isPartOf ] .
+
+rec:OutdoorSpace a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Outdoor space"^^xsd:string ;
+    rdfs:subClassOf rec:Architecture .
+
+rec:OutpatientServicesRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Outpatient services room"^^xsd:string ;
+    rdfs:subClassOf rec:HealthcareRoom .
+
+rec:Pantry a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Pantry"^^xsd:string ;
+    rdfs:subClassOf rec:FoodHandlingRoom .
+
+rec:ParkingSpace a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Parking space"^^xsd:string ;
+    rdfs:subClassOf rec:Zone .
+
+rec:Partition a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Partition"^^xsd:string ;
+    rdfs:subClassOf rec:BarrierAsset .
+
+rec:PeopleCountSensorEquipment a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "People Count Sensor"^^xsd:string ;
+    rdfs:comment "People count sensor."^^xsd:string ;
+    rdfs:subClassOf rec:SensorEquipment ;
+    owl:deprecated true ;
+    brick:deprecatedInVersion "1.4.0" ;
+    brick:deprecationMitigationMessage "REC ICT classes are being phased out in favor of Brick classes. For a replacement, consider brick:People_Count_Sensor_Equipment" ;
+    brick:isReplacedBy brick:People_Count_Sensor_Equipment .
+
+rec:Person a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Person"^^xsd:string ;
+    rdfs:comment "A natural person (i.e., an individual human being)."^^xsd:string ;
+    rdfs:subClassOf rec:Agent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:string ;
+            sh:path rec:givenName ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:string ;
+            sh:path rec:familyName ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:string ;
+            sh:name "gender"^^xsd:string ;
+            sh:path rec:gender ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:anyURI ;
+            sh:description "URL link to an image that represents the person."^^xsd:string ;
+            sh:name "image"^^xsd:string ;
+            sh:path rec:image ] .
+
+rec:PersonalHygiene a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Personal hygiene room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:PharmacyRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Pharmacy room"^^xsd:string ;
+    rdfs:subClassOf rec:HealthcareRoom .
+
+rec:PhoneBooth a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "PhoneBooth"^^xsd:string ;
+    rdfs:subClassOf rec:Office .
+
+rec:Point a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Point"^^xsd:string ;
+    rdfs:subClassOf rec:Geometry ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype <https://geojson.org/Point> ;
+            sh:description "A GeoJSON Point coordinate listing. Coordinate may be expressed in two or three dimensions. Ex: [30.0, 10.0, 0.0]."^^xsd:string ;
+            sh:maxCount 1 ;
+            sh:name "coordinates"^^xsd:string ;
+            sh:path rec:coordinates ] .
+
+rec:PointEvent a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Point event"^^xsd:string ;
+    rdfs:comment "An event emanating from or targeting a Point; e.g., an individual Observation from a Sensor point, or an Actuation sent to a Command point. In other terms, the Points indicate the capability of some Space or Equipment to emit or accept data, while this class represents those actual data messages. Note that in most non-trivially sized systems, these events are not stored in the knowledge graph itself, but are rather forwarded to some C&C system or time series database."^^xsd:string ;
+    rdfs:subClassOf rec:Event .
+
+rec:PointOfInterest a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Point of Interest"^^xsd:string ;
+    rdfs:subClassOf rec:Information ;
+    sh:property [ a sh:PropertyShape ;
+            sh:maxCount 1 ;
+            sh:name "object of interest"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:objectOfInterest ] .
+
+rec:Polygon a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Polygon"^^xsd:string ;
+    rdfs:subClassOf rec:Geometry ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype <https://geojson.org/Polygon> ;
+            sh:description "A GeoJSON Polygon coordinate listing. Coordinates may be expressed in two or three dimensions. Ex: [[30.0, 10.0, 0.0], [40.0, 40.0, 2.0], [20.0, 40.0, 2.0], [10.0, 20.0, 2.0], [30.0, 10.0, 0.0]]."^^xsd:string ;
+            sh:maxCount 1 ;
+            sh:name "coordinates"^^xsd:string ;
+            sh:path rec:coordinates ] .
+
+rec:Portfolio a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Portfolio"^^xsd:string ;
+    rdfs:comment "A portfolio is a grouping of buildings, sites, apartments, campuses, etc. that share some business-relevant commonality, e.g., are managed by the same company, are rented out to the same tenant, share utilization or legal definition (industrial vs commercial), etc."^^xsd:string ;
+    rdfs:subClassOf rec:Collection ;
+    sh:property [ a sh:PropertyShape ;
+            sh:minCount 1 ;
+            sh:name "includes"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:includes ] .
+
+rec:PostalAddress a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Postal address"^^xsd:string ;
+    rdfs:subClassOf rec:Information ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:name "address line 1"^^xsd:string ;
+            sh:path rec:addressLine1 ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:name "postal code"^^xsd:string ;
+            sh:path rec:postalCode ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:string ;
+            sh:description "The country, e.g., USA, Sweden, Argentina, or optionally a two-letter ISO 3166-1 alpha-2 country code, e.g., \"SE\", \"US\", etc."^^xsd:string ;
+            sh:maxCount 1 ;
+            sh:name "country"^^xsd:string ;
+            sh:path rec:country ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:name "region"^^xsd:string ;
+            sh:path rec:region ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:name "city"^^xsd:string ;
+            sh:path rec:city ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:name "address line 2"^^xsd:string ;
+            sh:path rec:addressLine2 ] .
+
+rec:PowerObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Power observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:Power ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:Premises a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Premises"^^xsd:string ;
+    rdfs:comment "A premises is an administrative grouping of spaces that are used for some commercial or industrial purpose by a real estate holder or tenant. E.g, a suite of offices, a shop, or an industrial workshop."^^xsd:string ;
+    rdfs:subClassOf rec:Collection ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class rec:Architecture ;
+            sh:minCount 1 ;
+            sh:name "includes"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:includes ] .
+
+rec:PressureObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Pressure observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:Pressure ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:PrinterCart a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Printer cart"^^xsd:string ;
+    rdfs:subClassOf rec:Cart .
+
+rec:PrinterStand a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Printer stand"^^xsd:string ;
+    rdfs:subClassOf rec:Stand .
+
+rec:RadiologyRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Radiology room"^^xsd:string ;
+    rdfs:subClassOf rec:HealthcareRoom .
+
+rec:RealEstate a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Real Estate"^^xsd:string ;
+    rdfs:comment "The legal/administrative representation of some lands and/or buildings. I.e., \"Fastighet\" (Swedish), \"Ejendom\" (Denmark), etc."^^xsd:string ;
+    rdfs:subClassOf rec:Collection ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class rec:Architecture ;
+            sh:minCount 1 ;
+            sh:name "includes"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:includes ] .
+
+rec:Reception a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Reception"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:ReceptionTable a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Reception table"^^xsd:string ;
+    rdfs:subClassOf rec:Table .
+
+rec:RecordingRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Recording room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:RecreationalRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Recreational room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:Region a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Region"^^xsd:string ;
+    rdfs:comment "An administrative geospatial unit larger than the individual real estate. For instance, \"Lombary\", \"North America\", \"The Back Bay\", \"Elnätsområde Syd\", etc."^^xsd:string ;
+    rdfs:subClassOf rec:Space .
+
+rec:RelativeHumidityObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Relative humidity observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:RelativeHumidity ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:ResistanceObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Resistance observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:Resistance ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:RestingRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Resting room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:RetailRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Retail room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:Roof a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Roof"^^xsd:string ;
+    rdfs:subClassOf rec:BuildingElement .
+
+rec:RoofLevel a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Roof level"^^xsd:string ;
+    rdfs:subClassOf rec:Level .
+
+rec:Room a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Room"^^xsd:string ;
+    rdfs:subClassOf rec:Architecture .
+
+rec:Safe a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Safe"^^xsd:string ;
+    rdfs:subClassOf rec:Furniture .
+
+rec:Sauna a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Sauna"^^xsd:string ;
+    rdfs:subClassOf rec:PersonalHygiene .
+
+rec:School a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "School"^^xsd:string ;
+    rdfs:subClassOf rec:Building .
+
+rec:SecurityRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Security room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:SensorEquipment a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Sensor Equipment"^^xsd:string ;
+    rdfs:comment "Sensor equipment."^^xsd:string ;
+    rdfs:subClassOf rec:ICTEquipment ;
+    owl:deprecated true ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:name "Wi-Fi Signal Strength"^^xsd:string ;
+            sh:path rec:wifiSignalStrength ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:name "Battery Percentage"^^xsd:string ;
+            sh:path rec:batteryPercentage ] ;
+    brick:deprecatedInVersion "1.4.0" ;
+    brick:deprecationMitigationMessage "REC ICT classes are being phased out in favor of Brick classes. For a replacement, consider brick:Sensor_Equipment" ;
+    brick:isReplacedBy brick:Sensor_Equipment .
+
+rec:Server a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Server"^^xsd:string ;
+    rdfs:comment "Server."^^xsd:string ;
+    rdfs:subClassOf rec:ICTHardware ;
+    owl:deprecated true ;
+    brick:deprecatedInVersion "1.4.0" ;
+    brick:deprecationMitigationMessage "REC ICT classes are being phased out in favor of Brick classes. For a replacement, consider brick:Server" ;
+    brick:isReplacedBy brick:Server .
+
+rec:ServiceEntrance a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Service entrance"^^xsd:string ;
+    rdfs:subClassOf rec:Entrance .
+
+rec:ServiceObject a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Service object"^^xsd:string ;
+    rdfs:subClassOf rec:Information ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:dateTime ;
+            sh:maxCount 1 ;
+            sh:name "acknowledged time"^^xsd:string ;
+            sh:path rec:acknowledgedTime ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:string ;
+            sh:in ( "Severe"^^xsd:string "Major"^^xsd:string "Minor"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "severity"^^xsd:string ;
+            sh:path rec:severity ],
+        [ a sh:PropertyShape ;
+            sh:class rec:Agent ;
+            sh:maxCount 1 ;
+            sh:name "acknowledged by"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:acknowledgedBy ],
+        [ a sh:PropertyShape ;
+            sh:class rec:Agent ;
+            sh:maxCount 1 ;
+            sh:name "closed by"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:closedBy ],
+        [ a sh:PropertyShape ;
+            sh:class rec:Agent ;
+            sh:maxCount 1 ;
+            sh:name "created by"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:createdBy ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:dateTime ;
+            sh:maxCount 1 ;
+            sh:name "created time"^^xsd:string ;
+            sh:path rec:createdTime ],
+        [ a sh:PropertyShape ;
+            sh:minCount 1 ;
+            sh:name "related to"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:relatedTo ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:dateTime ;
+            sh:maxCount 1 ;
+            sh:name "closed time"^^xsd:string ;
+            sh:path rec:closedTime ],
+        [ a sh:PropertyShape ;
+            sh:class brick:Point ;
+            sh:name "produced by"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:producedBy ],
+        [ a sh:PropertyShape ;
+            sh:datatype xsd:string ;
+            sh:in ( "Unacknowledged"^^xsd:string "Acknowledged"^^xsd:string "Closed"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "status"^^xsd:string ;
+            sh:path rec:status ] .
+
+rec:ServiceShaft a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Service shaft"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:Shelter a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Shelter"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:ShelterGasLock a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Shelter gas lock"^^xsd:string ;
+    rdfs:subClassOf rec:Shelter .
+
+rec:ShelterRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Shelter room"^^xsd:string ;
+    rdfs:subClassOf rec:Shelter .
+
+rec:ShoppingMall a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Shopping mall"^^xsd:string ;
+    rdfs:subClassOf rec:Building .
+
+rec:ShowerRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Shower room"^^xsd:string ;
+    rdfs:subClassOf rec:PersonalHygiene .
+
+rec:Site a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Site"^^xsd:string ;
+    rdfs:comment "A piece of land upon which zero or more buildings may be situated."^^xsd:string ;
+    rdfs:subClassOf rec:Architecture .
+
+rec:Slab a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Slab"^^xsd:string ;
+    rdfs:subClassOf rec:BuildingElement .
+
+rec:SmallStudyRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Small study room"^^xsd:string ;
+    rdfs:subClassOf rec:EducationalRoom .
+
+rec:Sofa a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Sofa"^^xsd:string ;
+    rdfs:subClassOf rec:Furniture .
+
+rec:SoundPressureObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Sound pressure observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:SoundPressure ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:Space a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Space"^^xsd:string ;
+    rdfs:comment "A contiguous part of the physical world that contains or can contain sub-spaces. E.g., a Region can contain many Sites, which in turn can contain many Buildings."^^xsd:string ;
+    rdfs:subClassOf rdfs:Resource ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class rec:Space ;
+            sh:maxCount 1 ;
+            sh:name "is part of"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:isPartOf ],
+        [ a sh:PropertyShape ;
+            sh:class rec:Space ;
+            sh:name "has part"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:hasPart ],
+        [ a sh:PropertyShape ;
+            sh:class rec:Georeference ;
+            sh:description "A georeference creates a relationship between the local coordinate system used within a building (e.g., measured in meters) and a geographic coordinate system (e.g., lat, long, alt), such that locally placed Spaces can be resolved and rendered in that geographic coordinate system (e.g., for mapping purposes)."^^xsd:string ;
+            sh:maxCount 1 ;
+            sh:name "georeference"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:georeference ],
+        [ a sh:PropertyShape ;
+            sh:class rec:Geometry ;
+            sh:description "Polygon representing the spatial extent of this Space."^^xsd:string ;
+            sh:maxCount 1 ;
+            sh:name "geometry"^^xsd:string ;
+            sh:path rec:geometry ],
+        [ a sh:PropertyShape ;
+            sh:name "is location of"^^xsd:string ;
+            sh:nodeKind sh:IRI ;
+            sh:path rec:isLocationOf ] .
+
+rec:SprinklerRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Sprinkler room"^^xsd:string ;
+    rdfs:subClassOf rec:UtilitiesRoom .
+
+rec:Stadium a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Stadium"^^xsd:string ;
+    rdfs:subClassOf rec:Building .
+
+rec:StaffRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Staff room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:Stairwell a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Stairwell"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:Stand a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Stand"^^xsd:string ;
+    rdfs:subClassOf rec:Furniture .
+
+rec:Storage a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Storage"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:StorageCabinet a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Storage cabinet"^^xsd:string ;
+    rdfs:subClassOf rec:Furniture .
+
+rec:SubBuilding a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Sub-building"^^xsd:string ;
+    rdfs:subClassOf rec:Architecture .
+
+rec:TVStand a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "TV stand"^^xsd:string ;
+    rdfs:subClassOf rec:Stand .
+
+rec:Table a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Table"^^xsd:string ;
+    rdfs:subClassOf rec:Furniture .
+
+rec:TeamRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Team Room" ;
+    rdfs:comment "This concept definition comes from the Brick distribution until it is added in the REC ontology Turtle distribution." ;
+    rdfs:subClassOf rec:Room .
+
+rec:TelecommunicationRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Telecommunication room"^^xsd:string ;
+    rdfs:subClassOf rec:CableRoom .
+
+rec:TemperatureObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Temperature observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:Temperature ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:Theater a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Theater"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:TherapyRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Therapy room"^^xsd:string ;
+    rdfs:subClassOf rec:HealthcareRoom .
+
+rec:ThermostatEquipment a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Thermostat"^^xsd:string ;
+    rdfs:comment "Thermostat."^^xsd:string ;
+    rdfs:subClassOf rec:SensorEquipment ;
+    owl:deprecated true ;
+    brick:deprecatedInVersion "1.4.0" ;
+    brick:deprecationMitigationMessage "REC ICT classes are being phased out in favor of Brick classes. For a replacement, consider brick:Thermostat" ;
+    brick:isReplacedBy brick:Thermostat .
+
+rec:ThrustObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Thrust observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:Thrust ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:TimeSpanObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Timespan observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:Time ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:Toilet a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Toilet"^^xsd:string ;
+    rdfs:subClassOf rec:PersonalHygiene .
+
+rec:TorqueObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Torque observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:Torque ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:TreatmentRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Treatment room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:TreatmentWaitingRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Treatment waiting room"^^xsd:string ;
+    rdfs:subClassOf rec:TreatmentRoom .
+
+rec:UtilitiesRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Utilities room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:VelocityObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Velocity observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:Velocity ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:VibrationSensorEquipment a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Vibration Sensor"^^xsd:string ;
+    rdfs:comment "Vibration sensor."^^xsd:string ;
+    rdfs:subClassOf rec:SensorEquipment ;
+    owl:deprecated true ;
+    brick:deprecatedInVersion "1.4.0" ;
+    brick:deprecationMitigationMessage "REC ICT classes are being phased out in favor of Brick classes. For a replacement, consider brick:Vibration_Sensor_Equipment" ;
+    brick:isReplacedBy brick:Vibration_Sensor_Equipment .
+
+rec:VirtualBuilding a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Virtual building"^^xsd:string ;
+    rdfs:subClassOf rec:Building .
+
+rec:VoltageObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Voltage observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:Voltage ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:VolumeFlowRateObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Volume flow rate observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:VolumeFlowRate ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:VolumeObservation a <dtmi:dtdl:class:Component>,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Volume observation"^^xsd:string ;
+    qudt:hasQuantityKind qudtqk:Volume ;
+    rdfs:subClassOf rec:ObservationEvent ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "value"^^xsd:string ;
+            sh:path rec:value ] .
+
+rec:Wall a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Wall"^^xsd:string ;
+    rdfs:subClassOf rec:BuildingElement .
+
+rec:WallInner a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Wall (inner)"^^xsd:string ;
+    rdfs:subClassOf rec:Wall .
+
+rec:WasteBasket a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Waste basket"^^xsd:string ;
+    rdfs:subClassOf rec:Furniture .
+
+rec:WasteManagementRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Waste management room"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:Window a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Window"^^xsd:string ;
+    rdfs:subClassOf rec:BarrierAsset .
+
+rec:Wing a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Wing" ;
+    rdfs:comment "This concept definition comes from the Brick distribution until it is added in the REC ontology Turtle distribution." ;
+    rdfs:subClassOf rec:Architecture .
+
+rec:WirelessAccessPoint a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Wireless Access Point"^^xsd:string ;
+    rdfs:comment "Wireless access point."^^xsd:string ;
+    rdfs:subClassOf rec:DataNetworkEquipment ;
+    owl:deprecated true ;
+    sh:property [ a sh:PropertyShape ;
+            sh:datatype xsd:string ;
+            sh:in ( "WiFi4"^^xsd:string "WiFi5"^^xsd:string "WiFi6"^^xsd:string "WiFi6E"^^xsd:string "WiFi7"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:name "Generation"^^xsd:string ;
+            sh:path rec:generation ] ;
+    brick:deprecatedInVersion "1.4.0" ;
+    brick:deprecationMitigationMessage "REC ICT classes are being phased out in favor of Brick classes. For a replacement, consider brick:Wireless_Access_Point" ;
+    brick:isReplacedBy brick:Wireless_Access_Point .
+
+rec:WorkOrder a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Work order"^^xsd:string ;
+    rdfs:subClassOf rec:ServiceObject .
+
+rec:Workshop a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Workshop"^^xsd:string ;
+    rdfs:subClassOf rec:Room .
+
+rec:Workspace a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Workspace"^^xsd:string ;
+    rdfs:subClassOf rec:Zone .
+
+rec:Zone a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Zone"^^xsd:string ;
+    rdfs:comment "A sub-zone within or outside of a building defined to support some technology and/or use, e.g., an HVAC zone, a parking space, a security zone, etc."^^xsd:string ;
+    rdfs:subClassOf rec:Architecture .
+
+ns2:AHU01 a brick:Air_Handling_Unit ;
+    brick:feeds ns2:VAVRM1-2603B,
+        ns2:VAVRM1-3501,
+        ns2:VAVRM1018,
+        ns2:VAVRM1111,
+        ns2:VAVRM1113,
+        ns2:VAVRM1117-1,
+        ns2:VAVRM1117-2,
+        ns2:VAVRM1225,
+        ns2:VAVRM1410B,
+        ns2:VAVRM1608,
+        ns2:VAVRM1703,
+        ns2:VAVRM1715,
+        ns2:VAVRM1719,
+        ns2:VAVRM2-2603B,
+        ns2:VAVRM2-3501,
+        ns2:VAVRM2117-1,
+        ns2:VAVRM2117-2,
+        ns2:VAVRM2603,
+        ns2:VAVRM2603A,
+        ns2:VAVRM2603B,
+        ns2:VAVRM2608,
+        ns2:VAVRM2613,
+        ns2:VAVRM2613A,
+        ns2:VAVRM2619,
+        ns2:VAVRM2619A,
+        ns2:VAVRM3-3501,
+        ns2:VAVRM3117-1,
+        ns2:VAVRM3117-2,
+        ns2:VAVRM3501A,
+        ns2:VAVRM3501B,
+        ns2:VAVRM3605,
+        ns2:VAVRM3608,
+        ns2:VAVRM3613,
+        ns2:VAVRM3617,
+        ns2:VAVRM3617A,
+        ns2:VAVRM3619,
+        ns2:VAVRM4117-1,
+        ns2:VAVRM4117-2,
+        ns2:VAVRM4501A,
+        ns2:VAVRM4501B,
+        ns2:VAVRM4605,
+        ns2:VAVRM4608,
+        ns2:VAVRM4613,
+        ns2:VAVRM4617,
+        ns2:VAVRM4617B,
+        ns2:VAVRM4617C,
+        ns2:VAVRM4619,
+        ns2:VAVRM5117-1,
+        ns2:VAVRM5117-2,
+        ns2:VAVRM5501A,
+        ns2:VAVRM5501B,
+        ns2:VAVRM5501C,
+        ns2:VAVRM5501D,
+        ns2:VAVRM5605,
+        ns2:VAVRM5605A,
+        ns2:VAVRM5605B,
+        ns2:VAVRM5605D,
+        ns2:VAVRM5605E,
+        ns2:VAVRM5605F,
+        ns2:VAVRM5608,
+        ns2:VAVRM5613,
+        ns2:VAVRM5615,
+        ns2:VAVRM5617,
+        ns2:VAVRM5619,
+        ns2:VAVRM6117-1,
+        ns2:VAVRM6117-2,
+        ns2:VAVRM6501A,
+        ns2:VAVRM6501B,
+        ns2:VAVRM6501C,
+        ns2:VAVRM6505A,
+        ns2:VAVRM6605,
+        ns2:VAVRM6605A,
+        ns2:VAVRM6605B,
+        ns2:VAVRM6605C,
+        ns2:VAVRM6605D,
+        ns2:VAVRM6608,
+        ns2:VAVRM6611,
+        ns2:VAVRM6617,
+        ns2:VAVRM6619 ;
+    brick:hasPoint ns2:bldg11.AHU.AHU01.CCV,
+        ns2:bldg11.AHU.AHU01.Cooling_Valve_Output,
+        ns2:bldg11.AHU.AHU01.Heating_Valve_Output,
+        ns2:bldg11.AHU.AHU01.Outside_Air_Temp,
+        ns2:bldg11.AHU.AHU01.Supply_Air_Pressure,
+        ns2:bldg11.AHU.AHU01.Supply_Air_Temp,
+        ns2:bldg11.AHU.AHU01.Supply_Air_Temp_Setpoint,
+        ns2:bldg11.AHU.AHU01.Zone_Air_Temp ;
+    brick:isFedBy ns2:chiller .
+
+ns2:AHU02 a brick:Air_Handling_Unit ;
+    brick:feeds ns2:VAVRM1402,
+        ns2:VAVRM1406,
+        ns2:VAVRM1410,
+        ns2:VAVRM1410A,
+        ns2:VAVRM1414,
+        ns2:VAVRM1414A,
+        ns2:VAVRM1610A,
+        ns2:VAVRM2111,
+        ns2:VAVRM2225,
+        ns2:VAVRM2402,
+        ns2:VAVRM2402A,
+        ns2:VAVRM2402B,
+        ns2:VAVRM2404A,
+        ns2:VAVRM2406,
+        ns2:VAVRM2406A,
+        ns2:VAVRM2406B,
+        ns2:VAVRM2410,
+        ns2:VAVRM2410A,
+        ns2:VAVRM2410B,
+        ns2:VAVRM2610,
+        ns2:VAVRM3111,
+        ns2:VAVRM3225,
+        ns2:VAVRM3402,
+        ns2:VAVRM3402A,
+        ns2:VAVRM3402B,
+        ns2:VAVRM3406,
+        ns2:VAVRM3406A,
+        ns2:VAVRM3406B,
+        ns2:VAVRM3410,
+        ns2:VAVRM3410A,
+        ns2:VAVRM3410B,
+        ns2:VAVRM3610,
+        ns2:VAVRM4111,
+        ns2:VAVRM4225,
+        ns2:VAVRM4610,
+        ns2:VAVRM5111,
+        ns2:VAVRM5225,
+        ns2:VAVRM5330A,
+        ns2:VAVRM5402,
+        ns2:VAVRM5404,
+        ns2:VAVRM5404A,
+        ns2:VAVRM5404B,
+        ns2:VAVRM5408,
+        ns2:VAVRM5412,
+        ns2:VAVRM5610,
+        ns2:VAVRM6111,
+        ns2:VAVRM6225,
+        ns2:VAVRM6402,
+        ns2:VAVRM6404,
+        ns2:VAVRM6404A,
+        ns2:VAVRM6404B,
+        ns2:VAVRM6404C,
+        ns2:VAVRM6404D,
+        ns2:VAVRM6406,
+        ns2:VAVRM6408,
+        ns2:VAVRM6410,
+        ns2:VAVRM6412,
+        ns2:VAVRM6610 ;
+    brick:hasPoint ns2:bldg11.AHU.AHU02.CCV,
+        ns2:bldg11.AHU.AHU02.Cooling_Valve_Output,
+        ns2:bldg11.AHU.AHU02.Heating_Valve_Output,
+        ns2:bldg11.AHU.AHU02.Supply_Air_Pressure,
+        ns2:bldg11.AHU.AHU02.Supply_Air_Temp,
+        ns2:bldg11.AHU.AHU02.Supply_Air_Temp_Setpoint,
+        ns2:bldg11.AHU.AHU02.Zone_Air_Temp ;
+    brick:isFedBy ns2:chiller .
+
+ns2:AHU03 a brick:Air_Handling_Unit ;
+    brick:feeds ns2:VAVRM1-1218A,
+        ns2:VAVRM1-1226,
+        ns2:VAVRM1105,
+        ns2:VAVRM1212,
+        ns2:VAVRM1212A,
+        ns2:VAVRM1212B,
+        ns2:VAVRM1212C,
+        ns2:VAVRM1213,
+        ns2:VAVRM1214,
+        ns2:VAVRM1218,
+        ns2:VAVRM1218B,
+        ns2:VAVRM1220,
+        ns2:VAVRM1222,
+        ns2:VAVRM1226,
+        ns2:VAVRM2-1218A,
+        ns2:VAVRM2-1226,
+        ns2:VAVRM2105,
+        ns2:VAVRM2212,
+        ns2:VAVRM2212A,
+        ns2:VAVRM2216,
+        ns2:VAVRM2216A,
+        ns2:VAVRM2216B,
+        ns2:VAVRM2217,
+        ns2:VAVRM2220,
+        ns2:VAVRM2220A,
+        ns2:VAVRM2220B,
+        ns2:VAVRM2221,
+        ns2:VAVRM3105,
+        ns2:VAVRM3212,
+        ns2:VAVRM3212A,
+        ns2:VAVRM3216,
+        ns2:VAVRM3216B,
+        ns2:VAVRM3217,
+        ns2:VAVRM3220,
+        ns2:VAVRM3220A,
+        ns2:VAVRM3220B,
+        ns2:VAVRM4105,
+        ns2:VAVRM4210,
+        ns2:VAVRM4212,
+        ns2:VAVRM4212B,
+        ns2:VAVRM4212C,
+        ns2:VAVRM4216,
+        ns2:VAVRM4217,
+        ns2:VAVRM4218,
+        ns2:VAVRM4301B,
+        ns2:VAVRM4301C,
+        ns2:VAVRM5105,
+        ns2:VAVRM5210,
+        ns2:VAVRM5212,
+        ns2:VAVRM5212A,
+        ns2:VAVRM5212B,
+        ns2:VAVRM5212C,
+        ns2:VAVRM5216,
+        ns2:VAVRM5217,
+        ns2:VAVRM5218,
+        ns2:VAVRM5301B,
+        ns2:VAVRM5301C,
+        ns2:VAVRM6105,
+        ns2:VAVRM6210,
+        ns2:VAVRM6212,
+        ns2:VAVRM6212A,
+        ns2:VAVRM6212B,
+        ns2:VAVRM6212C,
+        ns2:VAVRM6215,
+        ns2:VAVRM6216,
+        ns2:VAVRM6217,
+        ns2:VAVRM6218,
+        ns2:VAVRM6301B ;
+    brick:hasPoint ns2:bldg11.AHU.AHU03.CCV,
+        ns2:bldg11.AHU.AHU03.Cooling_Valve_Output,
+        ns2:bldg11.AHU.AHU03.Heating_Valve_Output,
+        ns2:bldg11.AHU.AHU03.Outside_Air_Temp,
+        ns2:bldg11.AHU.AHU03.Supply_Air_Pressure,
+        ns2:bldg11.AHU.AHU03.Supply_Air_Temp,
+        ns2:bldg11.AHU.AHU03.Supply_Air_Temp_Setpoint,
+        ns2:bldg11.AHU.AHU03.Zone_Air_Temp ;
+    brick:isFedBy ns2:chiller .
+
+ns2:AHU04 a brick:Air_Handling_Unit ;
+    brick:feeds ns2:VAVRM1-3530,
+        ns2:VAVRM1010,
+        ns2:VAVRM2-3530,
+        ns2:VAVRM2409,
+        ns2:VAVRM2409A,
+        ns2:VAVRM2409B,
+        ns2:VAVRM2413,
+        ns2:VAVRM2413A,
+        ns2:VAVRM2413B,
+        ns2:VAVRM2417,
+        ns2:VAVRM2417A,
+        ns2:VAVRM2417B,
+        ns2:VAVRM3407,
+        ns2:VAVRM3409,
+        ns2:VAVRM3409A,
+        ns2:VAVRM3413,
+        ns2:VAVRM3415,
+        ns2:VAVRM3530A,
+        ns2:VAVRM3530B,
+        ns2:VAVRM3530C,
+        ns2:VAVRM4407,
+        ns2:VAVRM4409,
+        ns2:VAVRM4409B,
+        ns2:VAVRM4409C,
+        ns2:VAVRM4409D,
+        ns2:VAVRM4413,
+        ns2:VAVRM4415,
+        ns2:VAVRM4530A,
+        ns2:VAVRM4530B,
+        ns2:VAVRM4530C,
+        ns2:VAVRM5409,
+        ns2:VAVRM5409A,
+        ns2:VAVRM5409C,
+        ns2:VAVRM5413,
+        ns2:VAVRM5415,
+        ns2:VAVRM5415A,
+        ns2:VAVRM5415B,
+        ns2:VAVRM5417,
+        ns2:VAVRM5530A,
+        ns2:VAVRM6407,
+        ns2:VAVRM6409,
+        ns2:VAVRM6413,
+        ns2:VAVRM6413A,
+        ns2:VAVRM6413B,
+        ns2:VAVRM6413C,
+        ns2:VAVRM6415,
+        ns2:VAVRM6530C,
+        ns2:VAVRM6530D ;
+    brick:hasPoint ns2:bldg11.AHU.AHU04.CCV,
+        ns2:bldg11.AHU.AHU04.Cooling_Valve_Output,
+        ns2:bldg11.AHU.AHU04.Heating_Valve_Output,
+        ns2:bldg11.AHU.AHU04.Supply_Air_Pressure,
+        ns2:bldg11.AHU.AHU04.Supply_Air_Temp,
+        ns2:bldg11.AHU.AHU04.Supply_Air_Temp_Setpoint,
+        ns2:bldg11.AHU.AHU04.Zone_Air_Temp ;
+    brick:isFedBy ns2:chiller .
+
+ns2:AHU05 a brick:Air_Handling_Unit ;
+    brick:feeds ns2:VAVRM2502,
+        ns2:VAVRM2505,
+        ns2:VAVRM2511,
+        ns2:VAVRM2515,
+        ns2:VAVRM2519,
+        ns2:VAVRM3502,
+        ns2:VAVRM3503,
+        ns2:VAVRM3510,
+        ns2:VAVRM3511,
+        ns2:VAVRM3512,
+        ns2:VAVRM3517,
+        ns2:VAVRM4502,
+        ns2:VAVRM4502_MIX,
+        ns2:VAVRM4503,
+        ns2:VAVRM4510,
+        ns2:VAVRM4511,
+        ns2:VAVRM4512,
+        ns2:VAVRM4517,
+        ns2:VAVRM5502,
+        ns2:VAVRM5503,
+        ns2:VAVRM5510,
+        ns2:VAVRM5511,
+        ns2:VAVRM5512,
+        ns2:VAVRM5515,
+        ns2:VAVRM5521,
+        ns2:VAVRM6502,
+        ns2:VAVRM6502_MIX,
+        ns2:VAVRM6503,
+        ns2:VAVRM6510,
+        ns2:VAVRM6511,
+        ns2:VAVRM6512,
+        ns2:VAVRM6515,
+        ns2:VAVRM6521,
+        ns2:VAVRM6521_MIX ;
+    brick:hasPoint ns2:bldg11.AHU.AHU05.CCV,
+        ns2:bldg11.AHU.AHU05.Cooling_Valve_Output,
+        ns2:bldg11.AHU.AHU05.Heating_Valve_Output,
+        ns2:bldg11.AHU.AHU05.Mixed_Air_Temp,
+        ns2:bldg11.AHU.AHU05.Mode,
+        ns2:bldg11.AHU.AHU05.Outside_Air_Temp,
+        ns2:bldg11.AHU.AHU05.Return_Air_Temp,
+        ns2:bldg11.AHU.AHU05.SUPFLOW,
+        ns2:bldg11.AHU.AHU05.Supply_Air_Pressure,
+        ns2:bldg11.AHU.AHU05.Supply_Air_Temp,
+        ns2:bldg11.AHU.AHU05.Supply_Air_Temp_Setpoint,
+        ns2:bldg11.AHU.AHU05.Zone_Air_Temp ;
+    brick:isFedBy ns2:chiller .
+
+ns2:AHU06 a brick:Air_Handling_Unit ;
+    brick:feeds ns2:VAVRM1109,
+        ns2:VAVRM1300,
+        ns2:VAVRM1311,
+        ns2:VAVRM1313,
+        ns2:VAVRM1314,
+        ns2:VAVRM1319,
+        ns2:VAVRM2303,
+        ns2:VAVRM2306,
+        ns2:VAVRM2311,
+        ns2:VAVRM2312,
+        ns2:VAVRM2317,
+        ns2:VAVRM2317_MIX,
+        ns2:VAVRM2319,
+        ns2:VAVRM3302,
+        ns2:VAVRM3303,
+        ns2:VAVRM3311,
+        ns2:VAVRM3313,
+        ns2:VAVRM3313_MIX,
+        ns2:VAVRM3315,
+        ns2:VAVRM3321,
+        ns2:VAVRM4302,
+        ns2:VAVRM4303,
+        ns2:VAVRM4310,
+        ns2:VAVRM4311,
+        ns2:VAVRM4312,
+        ns2:VAVRM4319,
+        ns2:VAVRM4321,
+        ns2:VAVRM4330,
+        ns2:VAVRM4330_MIX,
+        ns2:VAVRM4332,
+        ns2:VAVRM4333,
+        ns2:VAVRM4336,
+        ns2:VAVRM4337,
+        ns2:VAVRM4340,
+        ns2:VAVRM5302,
+        ns2:VAVRM5302_MIX,
+        ns2:VAVRM5303,
+        ns2:VAVRM5310,
+        ns2:VAVRM5311,
+        ns2:VAVRM5312,
+        ns2:VAVRM5315,
+        ns2:VAVRM5321,
+        ns2:VAVRM6302,
+        ns2:VAVRM6303,
+        ns2:VAVRM6310,
+        ns2:VAVRM6311,
+        ns2:VAVRM6312,
+        ns2:VAVRM6315,
+        ns2:VAVRM6321 ;
+    brick:hasPoint ns2:bldg11.AHU.AHU06.Cooling_Valve_Output,
+        ns2:bldg11.AHU.AHU06.Heating_Valve_Output,
+        ns2:bldg11.AHU.AHU06.Mixed_Air_Temp,
+        ns2:bldg11.AHU.AHU06.Outside_Air_Temp,
+        ns2:bldg11.AHU.AHU06.Return_Air_Temp,
+        ns2:bldg11.AHU.AHU06.SUPFLOW,
+        ns2:bldg11.AHU.AHU06.Supply_Air_Pressure,
+        ns2:bldg11.AHU.AHU06.Supply_Air_Temp,
+        ns2:bldg11.AHU.AHU06.Supply_Air_Temp_Setpoint,
+        ns2:bldg11.AHU.AHU06.Zone_Air_Temp ;
+    brick:isFedBy ns2:chiller .
+
+ns2:AHU07 a brick:Air_Handling_Unit ;
+    brick:feeds ns2:VAVRM1103,
+        ns2:VAVRM1202,
+        ns2:VAVRM1202A,
+        ns2:VAVRM1202_MIX,
+        ns2:VAVRM2103,
+        ns2:VAVRM2202,
+        ns2:VAVRM3103,
+        ns2:VAVRM3202,
+        ns2:VAVRM3206,
+        ns2:VAVRM4103,
+        ns2:VAVRM4202,
+        ns2:VAVRM5103,
+        ns2:VAVRM5202,
+        ns2:VAVRM5206,
+        ns2:VAVRM6103,
+        ns2:VAVRM6202 ;
+    brick:hasPoint ns2:bldg11.AHU.AHU07.CCV,
+        ns2:bldg11.AHU.AHU07.Cooling_Valve_Output,
+        ns2:bldg11.AHU.AHU07.Heating_Valve_Output,
+        ns2:bldg11.AHU.AHU07.Mixed_Air_Temp,
+        ns2:bldg11.AHU.AHU07.Outside_Air_Temp,
+        ns2:bldg11.AHU.AHU07.Return_Air_Temp,
+        ns2:bldg11.AHU.AHU07.SUPFLOW,
+        ns2:bldg11.AHU.AHU07.Supply_Air_Pressure,
+        ns2:bldg11.AHU.AHU07.Supply_Air_Temp,
+        ns2:bldg11.AHU.AHU07.Supply_Air_Temp_Setpoint,
+        ns2:bldg11.AHU.AHU07.Zone_Air_Temp ;
+    brick:isFedBy ns2:chiller .
+
+ns2:AHU08 a brick:Air_Handling_Unit ;
+    brick:feeds ns2:VAVRM1002,
+        ns2:VAVRM1005-1,
+        ns2:VAVRM1005-2 ;
+    brick:hasPoint ns2:bldg11.AHU.AHU08.CCV,
+        ns2:bldg11.AHU.AHU08.Cooling_Valve_Output,
+        ns2:bldg11.AHU.AHU08.Heating_Valve_Output,
+        ns2:bldg11.AHU.AHU08.Mixed_Air_Temp,
+        ns2:bldg11.AHU.AHU08.Outside_Air_Temp,
+        ns2:bldg11.AHU.AHU08.Return_Air_Temp,
+        ns2:bldg11.AHU.AHU08.SUPFLOW,
+        ns2:bldg11.AHU.AHU08.Supply_Air_Pressure,
+        ns2:bldg11.AHU.AHU08.Supply_Air_Temp,
+        ns2:bldg11.AHU.AHU08.Supply_Air_Temp_Setpoint,
+        ns2:bldg11.AHU.AHU08.Zone_Air_Temp ;
+    brick:isFedBy ns2:chiller .
+
+ns2:AHU09 a brick:Air_Handling_Unit ;
+    brick:feeds ns2:VAVRM0101,
+        ns2:VAVRM0111,
+        ns2:VAVRM0202A,
+        ns2:VAVRM0210,
+        ns2:VAVRM0301,
+        ns2:VAVRM0302,
+        ns2:VAVRM0303,
+        ns2:VAVRM0304,
+        ns2:VAVRM0307,
+        ns2:VAVRM0308,
+        ns2:VAVRM0311,
+        ns2:VAVRM0404A,
+        ns2:VAVRM0406,
+        ns2:VAVRM0600,
+        ns2:VAVRM0605,
+        ns2:VAVRM0609,
+        ns2:VAVRM0613,
+        ns2:VAVRM0620,
+        ns2:VAVRM0620A,
+        ns2:VAVRM0621,
+        ns2:VAVRM0622,
+        ns2:VAVRM0623,
+        ns2:VAVRM0624,
+        ns2:VAVRM0624B,
+        ns2:VAVRM0634A,
+        ns2:VAVRM0645,
+        ns2:VAVRM0650,
+        ns2:VAVRM0652,
+        ns2:VAVRM0656,
+        ns2:VAVRM1-0603,
+        ns2:VAVRM1-0611,
+        ns2:VAVRM1-0613,
+        ns2:VAVRM1-0626,
+        ns2:VAVRM1-0628,
+        ns2:VAVRM1-0645A,
+        ns2:VAVRM2-0605,
+        ns2:VAVRM2-0611,
+        ns2:VAVRM4-0605,
+        ns2:VAVRM410 ;
+    brick:hasPoint ns2:bldg11.AHU.AHU09.CCV,
+        ns2:bldg11.AHU.AHU09.Cooling_Valve_Output,
+        ns2:bldg11.AHU.AHU09.Heating_Valve_Output,
+        ns2:bldg11.AHU.AHU09.Supply_Air_Pressure,
+        ns2:bldg11.AHU.AHU09.Supply_Air_Temp,
+        ns2:bldg11.AHU.AHU09.Supply_Air_Temp_Setpoint,
+        ns2:bldg11.AHU.AHU09.Zone_Air_Temp ;
+    brick:isFedBy ns2:chiller .
+
+ns2:AHU10 a brick:Air_Handling_Unit ;
+    brick:hasPoint ns2:bldg11.AHU.AHU10.Cooling_Valve_Output,
+        ns2:bldg11.AHU.AHU10.Zone_Air_Temp ;
+    brick:isFedBy ns2:chiller .
+
+ns2:AHU11 a brick:Air_Handling_Unit ;
+    brick:hasPoint ns2:bldg11.AHU.AHU11.CCV,
+        ns2:bldg11.AHU.AHU11.Cooling_Valve_Output,
+        ns2:bldg11.AHU.AHU11.Heating_Valve_Output,
+        ns2:bldg11.AHU.AHU11.Outside_Air_Temp,
+        ns2:bldg11.AHU.AHU11.Supply_Air_Temp,
+        ns2:bldg11.AHU.AHU11.Supply_Air_Temp_Setpoint,
+        ns2:bldg11.AHU.AHU11.Zone_Air_Temp ;
+    brick:isFedBy ns2:chiller .
+
+ns2:bldg11 a brick:Building ;
+    brick:area [ brick:hasUnits unit:FT_2 ;
+            brick:value "228431^^<http://www.w3.org/2001/XMLSchema#integer>" ] .
+
+ns2:bldg11_ChilledWater_Demand_kBtu a brick:Electric_Meter ;
+    rdfs:label "bldg11_ChilledWater_Demand_kBtu" ;
+    brick:isPointOf ns2:chiller ;
+    ref:hasExternalReference [ ref:hasTimeseriesId "ff56e8d1-e0b8-4081-9a05-033c420428a8" ] .
+
+ns2:bldg11_Electricity_Demand_kBtu a brick:Building_Electrical_Meter ;
+    rdfs:label "bldg11_Electricity_Demand_kBtu" ;
+    ref:hasExternalReference [ ref:hasTimeseriesId "644780fe-7b3c-4ad8-ac16-786c4eeccd4a" ],
+        [ ref:hasTimeseriesId "644780fe-7b3c-4ad8-ac16-786c4eeccd4a" ] .
+
+ns2:damperVAVRM1002 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU08.RM1002.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM1002 .
+
+ns2:damperVAVRM1005-1 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU08.RM1005-1.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM1005-1 .
+
+ns2:damperVAVRM1005-2 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU08.RM1005-2.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM1005-2 .
+
+ns2:damperVAVRM1103 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU07.RM1103.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM1103 .
+
+ns2:damperVAVRM1109 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM1109.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM1109 .
+
+ns2:damperVAVRM1202 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU07.RM1202.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM1202 .
+
+ns2:damperVAVRM1300 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM1300.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM1300 .
+
+ns2:damperVAVRM1311 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM1311.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM1311 .
+
+ns2:damperVAVRM1313 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM1313.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM1313 .
+
+ns2:damperVAVRM1314 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM1314.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM1314 .
+
+ns2:damperVAVRM1319 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM1319.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM1319 .
+
+ns2:damperVAVRM2103 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU07.RM2103.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM2103 .
+
+ns2:damperVAVRM2202 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU07.RM2202.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM2202 .
+
+ns2:damperVAVRM2303 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM2303.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM2303 .
+
+ns2:damperVAVRM2306 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM2306.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM2306 .
+
+ns2:damperVAVRM2311 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM2311.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM2311 .
+
+ns2:damperVAVRM2312 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM2312.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM2312 .
+
+ns2:damperVAVRM2317 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM2317.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM2317 .
+
+ns2:damperVAVRM2319 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM2319.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM2319 .
+
+ns2:damperVAVRM2502 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM2502.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM2502 .
+
+ns2:damperVAVRM2505 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM2505.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM2505 .
+
+ns2:damperVAVRM2511 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM2511.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM2511 .
+
+ns2:damperVAVRM2515 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM2515.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM2515 .
+
+ns2:damperVAVRM2519 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM2519.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM2519 .
+
+ns2:damperVAVRM3103 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU07.RM3103.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM3103 .
+
+ns2:damperVAVRM3202 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU07.RM3202.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM3202 .
+
+ns2:damperVAVRM3206 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU07.RM3206.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM3206 .
+
+ns2:damperVAVRM3302 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM3302.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM3302 .
+
+ns2:damperVAVRM3303 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM3303.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM3303 .
+
+ns2:damperVAVRM3311 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM3311.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM3311 .
+
+ns2:damperVAVRM3313 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM3313.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM3313 .
+
+ns2:damperVAVRM3315 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM3315.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM3315 .
+
+ns2:damperVAVRM3321 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM3321.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM3321 .
+
+ns2:damperVAVRM3502 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM3502.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM3502 .
+
+ns2:damperVAVRM3503 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM3503.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM3503 .
+
+ns2:damperVAVRM3510 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM3510.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM3510 .
+
+ns2:damperVAVRM3511 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM3511.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM3511 .
+
+ns2:damperVAVRM3512 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM3512.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM3512 .
+
+ns2:damperVAVRM3517 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM3517.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM3517 .
+
+ns2:damperVAVRM4103 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU07.RM4103.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM4103 .
+
+ns2:damperVAVRM4202 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU07.RM4202.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM4202 .
+
+ns2:damperVAVRM4302 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM4302.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM4302 .
+
+ns2:damperVAVRM4303 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM4303.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM4303 .
+
+ns2:damperVAVRM4310 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM4310.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM4310 .
+
+ns2:damperVAVRM4311 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM4311.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM4311 .
+
+ns2:damperVAVRM4312 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM4312.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM4312 .
+
+ns2:damperVAVRM4319 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM4319.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM4319 .
+
+ns2:damperVAVRM4321 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM4321.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM4321 .
+
+ns2:damperVAVRM4330 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM4330.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM4330 .
+
+ns2:damperVAVRM4332 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM4332.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM4332 .
+
+ns2:damperVAVRM4333 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM4333.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM4333 .
+
+ns2:damperVAVRM4336 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM4336.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM4336 .
+
+ns2:damperVAVRM4337 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM4337.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM4337 .
+
+ns2:damperVAVRM4340 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM4340.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM4340 .
+
+ns2:damperVAVRM4502 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM4502.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM4502 .
+
+ns2:damperVAVRM4503 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM4503.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM4503 .
+
+ns2:damperVAVRM4510 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM4510.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM4510 .
+
+ns2:damperVAVRM4511 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM4511.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM4511 .
+
+ns2:damperVAVRM4512 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM4512.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM4512 .
+
+ns2:damperVAVRM4517 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM4517.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM4517 .
+
+ns2:damperVAVRM5103 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU07.RM5103.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM5103 .
+
+ns2:damperVAVRM5202 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU07.RM5202.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM5202 .
+
+ns2:damperVAVRM5206 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU07.RM5206.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM5206 .
+
+ns2:damperVAVRM5302 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM5302.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM5302 .
+
+ns2:damperVAVRM5303 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM5303.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM5303 .
+
+ns2:damperVAVRM5310 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM5310.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM5310 .
+
+ns2:damperVAVRM5311 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM5311.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM5311 .
+
+ns2:damperVAVRM5312 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM5312.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM5312 .
+
+ns2:damperVAVRM5315 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM5315.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM5315 .
+
+ns2:damperVAVRM5321 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM5321.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM5321 .
+
+ns2:damperVAVRM5502 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM5502.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM5502 .
+
+ns2:damperVAVRM5503 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM5503.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM5503 .
+
+ns2:damperVAVRM5510 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM5510.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM5510 .
+
+ns2:damperVAVRM5511 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM5511.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM5511 .
+
+ns2:damperVAVRM5512 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM5512.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM5512 .
+
+ns2:damperVAVRM5515 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM5515.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM5515 .
+
+ns2:damperVAVRM5521 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM5521.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM5521 .
+
+ns2:damperVAVRM6103 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU07.RM6103.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM6103 .
+
+ns2:damperVAVRM6202 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU07.RM6202.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM6202 .
+
+ns2:damperVAVRM6302 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM6302.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM6302 .
+
+ns2:damperVAVRM6303 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM6303.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM6303 .
+
+ns2:damperVAVRM6310 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM6310.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM6310 .
+
+ns2:damperVAVRM6311 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM6311.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM6311 .
+
+ns2:damperVAVRM6312 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM6312.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM6312 .
+
+ns2:damperVAVRM6315 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM6315.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM6315 .
+
+ns2:damperVAVRM6321 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU06.RM6321.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM6321 .
+
+ns2:damperVAVRM6502 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM6502.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM6502 .
+
+ns2:damperVAVRM6503 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM6503.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM6503 .
+
+ns2:damperVAVRM6510 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM6510.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM6510 .
+
+ns2:damperVAVRM6511 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM6511.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM6511 .
+
+ns2:damperVAVRM6512 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM6512.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM6512 .
+
+ns2:damperVAVRM6515 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM6515.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM6515 .
+
+ns2:damperVAVRM6521 a brick:Damper ;
+    brick:hasPoint ns2:bldg11.ZONE.AHU05.RM6521.Zone_Air_Damper_Command ;
+    brick:isPartOf ns2:VAVRM6521 .
+
+ns2:floor0 a brick:Floor ;
+    brick:hasPart ns2:RM0101_room,
+        ns2:RM0111_room,
+        ns2:RM0202A_room,
+        ns2:RM0210_room,
+        ns2:RM0301_room,
+        ns2:RM0302_room,
+        ns2:RM0303_room,
+        ns2:RM0304_room,
+        ns2:RM0307_room,
+        ns2:RM0308_room,
+        ns2:RM0311_room,
+        ns2:RM0404A_room,
+        ns2:RM0406_room,
+        ns2:RM0600_room,
+        ns2:RM0605_room,
+        ns2:RM0609_room,
+        ns2:RM0613_room,
+        ns2:RM0620A_room,
+        ns2:RM0620_room,
+        ns2:RM0621_room,
+        ns2:RM0622_room,
+        ns2:RM0623_room,
+        ns2:RM0624B_room,
+        ns2:RM0624_room,
+        ns2:RM0634A_room,
+        ns2:RM0645_room,
+        ns2:RM0650_room,
+        ns2:RM0652_room,
+        ns2:RM0656_room .
+
+ns2:floor1 a brick:Floor ;
+    brick:hasPart ns2:RM1-0603_room,
+        ns2:RM1-0611_room,
+        ns2:RM1-0613_room,
+        ns2:RM1-0626_room,
+        ns2:RM1-0628_room,
+        ns2:RM1-0645A_room,
+        ns2:RM1-1218A_room,
+        ns2:RM1-1226_room,
+        ns2:RM1-2603B_room,
+        ns2:RM1-3501_room,
+        ns2:RM1-3530_room,
+        ns2:RM1002_room,
+        ns2:RM1005-1_room,
+        ns2:RM1005-2_room,
+        ns2:RM1010_room,
+        ns2:RM1018_room,
+        ns2:RM1103_room,
+        ns2:RM1105_room,
+        ns2:RM1109_room,
+        ns2:RM1111_room,
+        ns2:RM1113_room,
+        ns2:RM1117-1_room,
+        ns2:RM1117-2_room,
+        ns2:RM1202A_room,
+        ns2:RM1202_MIX_room,
+        ns2:RM1202_room,
+        ns2:RM1212A_room,
+        ns2:RM1212B_room,
+        ns2:RM1212C_room,
+        ns2:RM1212_room,
+        ns2:RM1213_room,
+        ns2:RM1214_room,
+        ns2:RM1218B_room,
+        ns2:RM1218_room,
+        ns2:RM1220_room,
+        ns2:RM1222_room,
+        ns2:RM1225_room,
+        ns2:RM1226_room,
+        ns2:RM1300_room,
+        ns2:RM1311_room,
+        ns2:RM1313_room,
+        ns2:RM1314_room,
+        ns2:RM1319_room,
+        ns2:RM1402_room,
+        ns2:RM1406_room,
+        ns2:RM1410A_room,
+        ns2:RM1410B_room,
+        ns2:RM1410_room,
+        ns2:RM1414A_room,
+        ns2:RM1414_room,
+        ns2:RM1608_room,
+        ns2:RM1610A_room,
+        ns2:RM1703_room,
+        ns2:RM1715_room,
+        ns2:RM1719_room .
+
+ns2:floor2 a brick:Floor ;
+    brick:hasPart ns2:RM2-0605_room,
+        ns2:RM2-0611_room,
+        ns2:RM2-1218A_room,
+        ns2:RM2-1226_room,
+        ns2:RM2-2603B_room,
+        ns2:RM2-3501_room,
+        ns2:RM2-3530_room,
+        ns2:RM2103_room,
+        ns2:RM2105_room,
+        ns2:RM2111_room,
+        ns2:RM2117-1_room,
+        ns2:RM2117-2_room,
+        ns2:RM2202_room,
+        ns2:RM2212A_room,
+        ns2:RM2212_room,
+        ns2:RM2216A_room,
+        ns2:RM2216B_room,
+        ns2:RM2216_room,
+        ns2:RM2217_room,
+        ns2:RM2220A_room,
+        ns2:RM2220B_room,
+        ns2:RM2220_room,
+        ns2:RM2221_room,
+        ns2:RM2225_room,
+        ns2:RM2303_room,
+        ns2:RM2306_room,
+        ns2:RM2311_room,
+        ns2:RM2312_room,
+        ns2:RM2317_MIX_room,
+        ns2:RM2317_room,
+        ns2:RM2319_room,
+        ns2:RM2402A_room,
+        ns2:RM2402B_room,
+        ns2:RM2402_room,
+        ns2:RM2404A_room,
+        ns2:RM2406A_room,
+        ns2:RM2406B_room,
+        ns2:RM2406_room,
+        ns2:RM2409A_room,
+        ns2:RM2409B_room,
+        ns2:RM2409_room,
+        ns2:RM2410A_room,
+        ns2:RM2410B_room,
+        ns2:RM2410_room,
+        ns2:RM2413A_room,
+        ns2:RM2413B_room,
+        ns2:RM2413_room,
+        ns2:RM2417A_room,
+        ns2:RM2417B_room,
+        ns2:RM2417_room,
+        ns2:RM2502_room,
+        ns2:RM2505_room,
+        ns2:RM2511_room,
+        ns2:RM2515_room,
+        ns2:RM2519_room,
+        ns2:RM2603A_room,
+        ns2:RM2603B_room,
+        ns2:RM2603_room,
+        ns2:RM2608_room,
+        ns2:RM2610_room,
+        ns2:RM2613A_room,
+        ns2:RM2613_room,
+        ns2:RM2619A_room,
+        ns2:RM2619_room .
+
+ns2:floor3 a brick:Floor ;
+    brick:hasPart ns2:RM3-3501_room,
+        ns2:RM3103_room,
+        ns2:RM3105_room,
+        ns2:RM3111_room,
+        ns2:RM3117-1_room,
+        ns2:RM3117-2_room,
+        ns2:RM3202_room,
+        ns2:RM3206_room,
+        ns2:RM3212A_room,
+        ns2:RM3212_room,
+        ns2:RM3216B_room,
+        ns2:RM3216_room,
+        ns2:RM3217_room,
+        ns2:RM3220A_room,
+        ns2:RM3220B_room,
+        ns2:RM3220_room,
+        ns2:RM3225_room,
+        ns2:RM3302_room,
+        ns2:RM3303_room,
+        ns2:RM3311_room,
+        ns2:RM3313_MIX_room,
+        ns2:RM3313_room,
+        ns2:RM3315_room,
+        ns2:RM3321_room,
+        ns2:RM3402A_room,
+        ns2:RM3402B_room,
+        ns2:RM3402_room,
+        ns2:RM3406A_room,
+        ns2:RM3406B_room,
+        ns2:RM3406_room,
+        ns2:RM3407_room,
+        ns2:RM3409A_room,
+        ns2:RM3409_room,
+        ns2:RM3410A_room,
+        ns2:RM3410B_room,
+        ns2:RM3410_room,
+        ns2:RM3413_room,
+        ns2:RM3415_room,
+        ns2:RM3501A_room,
+        ns2:RM3501B_room,
+        ns2:RM3502_room,
+        ns2:RM3503_room,
+        ns2:RM3510_room,
+        ns2:RM3511_room,
+        ns2:RM3512_room,
+        ns2:RM3517_room,
+        ns2:RM3530A_room,
+        ns2:RM3530B_room,
+        ns2:RM3530C_room,
+        ns2:RM3605_room,
+        ns2:RM3608_room,
+        ns2:RM3610_room,
+        ns2:RM3613_room,
+        ns2:RM3617A_room,
+        ns2:RM3617_room,
+        ns2:RM3619_room .
+
+ns2:floor4 a brick:Floor ;
+    brick:hasPart ns2:RM4-0605_room,
+        ns2:RM4103_room,
+        ns2:RM4105_room,
+        ns2:RM410_room,
+        ns2:RM4111_room,
+        ns2:RM4117-1_room,
+        ns2:RM4117-2_room,
+        ns2:RM4202_room,
+        ns2:RM4210_room,
+        ns2:RM4212B_room,
+        ns2:RM4212C_room,
+        ns2:RM4212_room,
+        ns2:RM4216_room,
+        ns2:RM4217_room,
+        ns2:RM4218_room,
+        ns2:RM4225_room,
+        ns2:RM4301B_room,
+        ns2:RM4301C_room,
+        ns2:RM4302_room,
+        ns2:RM4303_room,
+        ns2:RM4310_room,
+        ns2:RM4311_room,
+        ns2:RM4312_room,
+        ns2:RM4319_room,
+        ns2:RM4321_room,
+        ns2:RM4330_MIX_room,
+        ns2:RM4330_room,
+        ns2:RM4332_room,
+        ns2:RM4333_room,
+        ns2:RM4336_room,
+        ns2:RM4337_room,
+        ns2:RM4340_room,
+        ns2:RM4407_room,
+        ns2:RM4409B_room,
+        ns2:RM4409C_room,
+        ns2:RM4409D_room,
+        ns2:RM4409_room,
+        ns2:RM4413_room,
+        ns2:RM4415_room,
+        ns2:RM4501A_room,
+        ns2:RM4501B_room,
+        ns2:RM4502_MIX_room,
+        ns2:RM4502_room,
+        ns2:RM4503_room,
+        ns2:RM4510_room,
+        ns2:RM4511_room,
+        ns2:RM4512_room,
+        ns2:RM4517_room,
+        ns2:RM4530A_room,
+        ns2:RM4530B_room,
+        ns2:RM4530C_room,
+        ns2:RM4605_room,
+        ns2:RM4608_room,
+        ns2:RM4610_room,
+        ns2:RM4613_room,
+        ns2:RM4617B_room,
+        ns2:RM4617C_room,
+        ns2:RM4617_room,
+        ns2:RM4619_room .
+
+ns2:floor5 a brick:Floor ;
+    brick:hasPart ns2:RM5103_room,
+        ns2:RM5105_room,
+        ns2:RM5111_room,
+        ns2:RM5117-1_room,
+        ns2:RM5117-2_room,
+        ns2:RM5202_room,
+        ns2:RM5206_room,
+        ns2:RM5210_room,
+        ns2:RM5212A_room,
+        ns2:RM5212B_room,
+        ns2:RM5212C_room,
+        ns2:RM5212_room,
+        ns2:RM5216_room,
+        ns2:RM5217_room,
+        ns2:RM5218_room,
+        ns2:RM5225_room,
+        ns2:RM5301B_room,
+        ns2:RM5301C_room,
+        ns2:RM5302_MIX_room,
+        ns2:RM5302_room,
+        ns2:RM5303_room,
+        ns2:RM5310_room,
+        ns2:RM5311_room,
+        ns2:RM5312_room,
+        ns2:RM5315_room,
+        ns2:RM5321_room,
+        ns2:RM5330A_room,
+        ns2:RM5402_room,
+        ns2:RM5404A_room,
+        ns2:RM5404B_room,
+        ns2:RM5404_room,
+        ns2:RM5408_room,
+        ns2:RM5409A_room,
+        ns2:RM5409C_room,
+        ns2:RM5409_room,
+        ns2:RM5412_room,
+        ns2:RM5413_room,
+        ns2:RM5415A_room,
+        ns2:RM5415B_room,
+        ns2:RM5415_room,
+        ns2:RM5417_room,
+        ns2:RM5501A_room,
+        ns2:RM5501B_room,
+        ns2:RM5501C_room,
+        ns2:RM5501D_room,
+        ns2:RM5502_room,
+        ns2:RM5503_room,
+        ns2:RM5510_room,
+        ns2:RM5511_room,
+        ns2:RM5512_room,
+        ns2:RM5515_room,
+        ns2:RM5521_room,
+        ns2:RM5530A_room,
+        ns2:RM5605A_room,
+        ns2:RM5605B_room,
+        ns2:RM5605D_room,
+        ns2:RM5605E_room,
+        ns2:RM5605F_room,
+        ns2:RM5605_room,
+        ns2:RM5608_room,
+        ns2:RM5610_room,
+        ns2:RM5613_room,
+        ns2:RM5615_room,
+        ns2:RM5617_room,
+        ns2:RM5619_room .
+
+ns2:floor6 a brick:Floor ;
+    brick:hasPart ns2:RM6103_room,
+        ns2:RM6105_room,
+        ns2:RM6111_room,
+        ns2:RM6117-1_room,
+        ns2:RM6117-2_room,
+        ns2:RM6202_room,
+        ns2:RM6210_room,
+        ns2:RM6212A_room,
+        ns2:RM6212B_room,
+        ns2:RM6212C_room,
+        ns2:RM6212_room,
+        ns2:RM6215_room,
+        ns2:RM6216_room,
+        ns2:RM6217_room,
+        ns2:RM6218_room,
+        ns2:RM6225_room,
+        ns2:RM6301B_room,
+        ns2:RM6302_room,
+        ns2:RM6303_room,
+        ns2:RM6310_room,
+        ns2:RM6311_room,
+        ns2:RM6312_room,
+        ns2:RM6315_room,
+        ns2:RM6321_room,
+        ns2:RM6402_room,
+        ns2:RM6404A_room,
+        ns2:RM6404B_room,
+        ns2:RM6404C_room,
+        ns2:RM6404D_room,
+        ns2:RM6404_room,
+        ns2:RM6406_room,
+        ns2:RM6407_room,
+        ns2:RM6408_room,
+        ns2:RM6409_room,
+        ns2:RM6410_room,
+        ns2:RM6412_room,
+        ns2:RM6413A_room,
+        ns2:RM6413B_room,
+        ns2:RM6413C_room,
+        ns2:RM6413_room,
+        ns2:RM6415_room,
+        ns2:RM6501A_room,
+        ns2:RM6501B_room,
+        ns2:RM6501C_room,
+        ns2:RM6502_MIX_room,
+        ns2:RM6502_room,
+        ns2:RM6503_room,
+        ns2:RM6505A_room,
+        ns2:RM6510_room,
+        ns2:RM6511_room,
+        ns2:RM6512_room,
+        ns2:RM6515_room,
+        ns2:RM6521_MIX_room,
+        ns2:RM6521_room,
+        ns2:RM6530C_room,
+        ns2:RM6530D_room,
+        ns2:RM6605A_room,
+        ns2:RM6605B_room,
+        ns2:RM6605C_room,
+        ns2:RM6605D_room,
+        ns2:RM6605_room,
+        ns2:RM6608_room,
+        ns2:RM6610_room,
+        ns2:RM6611_room,
+        ns2:RM6617_room,
+        ns2:RM6619_room .
+
+brick:Ablutions_Room a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Ablutions Room"@en ;
+    rdfs:subClassOf brick:Room ;
+    owl:deprecated true ;
+    skos:definition "A room for performing cleansing rituals before prayer"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Ablutions ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Location ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Room ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Space ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:deprecatedInVersion "1.4.0" ;
+    brick:deprecationMitigationMessage "Brick location classes are being phased out in favor of RealEstateCore classes. There is not yet a replacement in REC for Ablutions_Room" ;
+    brick:hasAssociatedTag tag:Ablutions,
+        tag:Location,
+        tag:Room,
+        tag:Space ;
+    brick:isReplacedBy rec:Room .
+
+brick:Absolute_Humidity_Sensor a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Absolute Humidity Sensor"@en ;
+    rdfs:subClassOf brick:Humidity_Sensor ;
+    skos:definition "Measures the present state of absolute humidity"@en ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class rec:AbsoluteHumidityObservation ;
+            sh:maxCount 1 ;
+            sh:name "last known value" ;
+            sh:nodeKind sh:IRI ;
+            sh:path brick:lastKnownValue ] ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Absolute ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Air ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Humidity ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Sensor ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Absolute,
+        tag:Air,
+        tag:Humidity,
+        tag:Point,
+        tag:Sensor ;
+    brick:hasQuantity qudtqk:AbsoluteHumidity ;
+    brick:hasSubstance brick:Air .
+
+brick:Absorption_Chiller a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Absorption Chiller"@en ;
+    rdfs:subClassOf brick:Chiller ;
+    skos:definition "A chiller that utilizes a thermal or/and chemical process to produce the refrigeration effect necessary to provide chilled water. There is no mechanical compression of the refrigerant taking place within the machine, as occurs within more traditional vapor compression type chillers."@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Absorption ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Chiller ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Equipment ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Absorption,
+        tag:Chiller,
+        tag:Equipment .
+
+brick:Acceleration_Time owl:deprecated true ;
+    brick:deprecatedInVersion "1.4.4" ;
+    brick:deprecationMitigationMessage "Brick-defined quantity 'Acceleration_Time' is deprecated. Use the equivalent QUDT quantity 'qudt:QuantityKind/Time' directly." ;
+    brick:isReplacedBy qudtqk:Time .
+
+brick:Acceleration_Time_Setpoint a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Acceleration Time Setpoint"@en ;
+    rdfs:subClassOf brick:Time_Setpoint ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Acceleration ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Setpoint ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Time ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Acceleration,
+        tag:Point,
+        tag:Setpoint,
+        tag:Time ;
+    brick:hasQuantity qudtqk:Time .
+
+brick:Access_Reader a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Access Reader"@en ;
+    rdfs:subClassOf brick:Access_Control_Equipment ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Access ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Control ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Equipment ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Reader ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Security ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Access,
+        tag:Control,
+        tag:Equipment,
+        tag:Reader,
+        tag:Security .
+
+brick:Active_Chilled_Beam a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Active Chilled Beam"@en ;
+    rdfs:subClassOf brick:Chilled_Beam ;
+    skos:definition "A Chilled Beam with an integral primary air connection that induces air flow through the device."@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Active ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Beam ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Chilled ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Equipment ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Active,
+        tag:Beam,
+        tag:Chilled,
+        tag:Equipment .
+
+brick:Active_Power_Sensor a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Active Power Sensor"@en ;
+    rdfs:seeAlso <https://en.wikipedia.org/wiki/AC_power#Active,_reactive,_and_apparent_power> ;
+    rdfs:subClassOf brick:Electric_Power_Sensor ;
+    skos:definition "Measures the portion of power that, averaged over a complete cycle of the AC waveform, results in net transfer of energy in one direction"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Electric ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Power ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Real ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Sensor ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Electric,
+        tag:Point,
+        tag:Power,
+        tag:Real,
+        tag:Sensor ;
+    brick:hasQuantity qudtqk:ActivePower .
+
+brick:Air_Cooled_Chiller a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Air Cooled Chiller"@en ;
+    rdfs:subClassOf brick:Chiller ;
+    skos:definition "A chiller that uses air to cool the refrigerant, used in various commercial and industrial cooling applications"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Chiller ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Cooled ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Equipment ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Water ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Chiller,
+        tag:Cooled,
+        tag:Equipment,
+        tag:Water .
+
+brick:Air_Flow_Loss_Alarm a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Air Flow Loss Alarm"@en ;
+    rdfs:subClassOf brick:Air_Flow_Alarm ;
+    skos:definition "An alarm that indicates loss in air flow."@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Air ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Alarm ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Flow ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Loss ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Air,
+        tag:Alarm,
+        tag:Flow,
+        tag:Loss,
+        tag:Point .
+
+brick:Air_Loop a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Air Loop"@en ;
+    rdfs:subClassOf brick:Loop ;
+    skos:definition "The set of connected equipment serving one path of air"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Air ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Loop ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Air,
+        tag:Loop .
+
+brick:Alarm_Delay_Parameter a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Alarm Delay Parameter"@en ;
+    rdfs:subClassOf brick:Delay_Parameter ;
+    skos:definition "A parameter determining how long to delay an alarm after sufficient conditions have been met"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Alarm ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Delay ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Parameter ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Alarm,
+        tag:Delay,
+        tag:Parameter,
+        tag:Point .
+
+brick:Alternating_Current_Frequency a brick:Quantity ;
+    rdfs:label "Alternating Current Frequency"@en ;
+    qudt:applicableUnit unit:GigaHZ,
+        unit:HZ,
+        unit:KiloHZ,
+        unit:MegaHZ ;
+    qudt:hasDimensionVector <http://qudt.org/vocab/dimensionvector/A0E0L0I0M0H0T-1D0> ;
+    rdfs:isDefinedBy <https://brickschema.org/schema/Brick> ;
+    skos:broader qudtqk:Frequency ;
+    skos:definition "The frequency of the oscillations of alternating current",
+        "The frequency of the oscillations of alternating current"@en .
+
+brick:Ammonia_Sensor a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Ammonia Sensor"@en ;
+    rdfs:subClassOf brick:Air_Quality_Sensor ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Ammonia ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Sensor ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Ammonia,
+        tag:Point,
+        tag:Sensor ;
+    brick:hasQuantity brick:Ammonia_Concentration ;
+    brick:hasSubstance brick:Air .
+
+brick:Atmospheric_Pressure owl:deprecated true ;
+    brick:deprecatedInVersion "1.4.4" ;
+    brick:deprecationMitigationMessage "Brick-defined quantity 'Atmospheric_Pressure' is deprecated. Use the equivalent QUDT quantity 'qudt:QuantityKind/AtmosphericPressure' directly." ;
+    brick:isReplacedBy qudtqk:AtmosphericPressure .
+
+brick:Atrium a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Atrium"@en ;
+    rdfs:seeAlso <https://en.wikipedia.org/wiki/Atrium_(architecture)> ;
+    rdfs:subClassOf brick:Common_Space ;
+    owl:deprecated true ;
+    skos:definition "a large open-air or skylight covered space surrounded by a building."@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Atrium ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Common ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Location ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Space ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:deprecatedInVersion "1.4.0" ;
+    brick:deprecationMitigationMessage "Brick location classes are being phased out in favor of RealEstateCore classes. For a replacement, consider rec:Atrium" ;
+    brick:hasAssociatedTag tag:Atrium,
+        tag:Common,
+        tag:Location,
+        tag:Space ;
+    brick:isReplacedBy rec:Atrium .
+
+brick:Auditorium a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Auditorium"@en ;
+    rdfs:subClassOf brick:Common_Space ;
+    owl:deprecated true ;
+    skos:definition "A space for performances or larger gatherings"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Auditorium ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Common ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Location ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Space ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:deprecatedInVersion "1.4.0" ;
+    brick:deprecationMitigationMessage "Brick location classes are being phased out in favor of RealEstateCore classes. For a replacement, consider rec:Auditorium" ;
+    brick:hasAssociatedTag tag:Auditorium,
+        tag:Common,
+        tag:Location,
+        tag:Space ;
+    brick:isReplacedBy rec:Auditorium .
+
+brick:Automatic_Mode_Command a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Automatic Mode Command"@en ;
+    rdfs:subClassOf brick:Mode_Command ;
+    skos:definition "Controls whether or not a device or controller is operating in \"Automatic\" mode"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Automatic ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Command ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Mode ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Automatic,
+        tag:Command,
+        tag:Mode,
+        tag:Point .
+
+brick:Automatic_Tint_Window a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Automatic Tint Window"@en ;
+    rdfs:subClassOf brick:Shading_Equipment ;
+    skos:definition "A window with tint control."@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Automatic ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Equipment ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Shade ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Tint ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Window ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Automatic,
+        tag:Equipment,
+        tag:Shade,
+        tag:Tint,
+        tag:Window .
+
+brick:Automatic_Tint_Window_Array a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Automatic Tint Window Array"@en ;
+    rdfs:subClassOf brick:System ;
+    skos:definition "An array of Automatic Tint Windows."@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Array ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Shade ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:System ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Tint ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Array,
+        tag:Shade,
+        tag:System,
+        tag:Tint .
+
+brick:Automatic_Transfer_Switch a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Automatic Transfer Switch"@en ;
+    rdfs:subClassOf brick:Automatic_Switch,
+        brick:Transfer_Switch ;
+    skos:definition "An automatic transfer switch (ATS) is a device that automatically transfers a power supply from its primary source to a backup source when it senses a failure or outage in the primary source."@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Automatic ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Equipment ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Switch ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Transfer ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Automatic,
+        tag:Equipment,
+        tag:Switch,
+        tag:Transfer .
+
+brick:Availability_Status a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Availability Status"@en ;
+    rdfs:subClassOf brick:Status ;
+    skos:definition "Indicates if a piece of equipment, system, or functionality is available for operation"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Availability ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Status ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Availability,
+        tag:Point,
+        tag:Status .
+
+brick:Average_Cooling_Demand_Sensor a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Average Cooling Demand Sensor"@en ;
+    rdfs:subClassOf brick:Cooling_Demand_Sensor ;
+    skos:definition "Measures the average power consumed by a cooling process as the amount of power consumed over some interval"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Average ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Cool ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Demand ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Sensor ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Average,
+        tag:Cool,
+        tag:Demand,
+        tag:Point,
+        tag:Sensor ;
+    brick:hasQuantity qudtqk:Power .
+
+brick:Average_Exhaust_Air_Static_Pressure_Sensor a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Average Exhaust Air Static Pressure Sensor"@en ;
+    rdfs:subClassOf brick:Exhaust_Air_Static_Pressure_Sensor ;
+    skos:definition "The computed average static pressure of air in exhaust regions of an HVAC system over some period of time"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Air ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Average ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Exhaust ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Pressure ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Sensor ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Static ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Air,
+        tag:Average,
+        tag:Exhaust,
+        tag:Point,
+        tag:Pressure,
+        tag:Sensor,
+        tag:Static ;
+    brick:hasQuantity qudtqk:StaticPressure .
+
+brick:Average_Heating_Demand_Sensor a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Average Heating Demand Sensor"@en ;
+    rdfs:subClassOf brick:Heating_Demand_Sensor ;
+    skos:definition "Measures the average power consumed by a heating process as the amount of power consumed over some interval"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Average ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Demand ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Heat ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Sensor ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Average,
+        tag:Demand,
+        tag:Heat,
+        tag:Point,
+        tag:Sensor ;
+    brick:hasQuantity qudtqk:Power .
+
+brick:Average_Zone_Air_Temperature_Sensor a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Average Zone Air Temperature Sensor"@en ;
+    rdfs:subClassOf brick:Zone_Air_Temperature_Sensor ;
+    skos:definition "The computed average temperature of air in a zone, over some period of time"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Air ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Average ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Sensor ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Temperature ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Zone ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Air,
+        tag:Average,
+        tag:Point,
+        tag:Sensor,
+        tag:Temperature,
+        tag:Zone ;
+    brick:hasQuantity qudtqk:Temperature .
+
+brick:Backflow_Preventer_Valve a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Backflow Preventer Valve"@en ;
+    rdfs:subClassOf brick:Check_Valve ;
+    skos:definition "Valve designed to prevent the reverse flow of fluid, typically water, thereby protecting potable water supplies from contamination or pollution."@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Backflow ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Preventer ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Valve ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Backflow,
+        tag:Preventer,
+        tag:Valve .
+
+brick:Basement a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Basement"@en ;
+    rdfs:subClassOf brick:Floor ;
+    owl:deprecated true ;
+    skos:definition "The floor of a building which is partly or entirely below ground level."@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Basement ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Floor ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Location ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:deprecatedInVersion "1.4.0" ;
+    brick:deprecationMitigationMessage "Brick location classes are being phased out in favor of RealEstateCore classes. For a replacement, consider rec:BasementLevel" ;
+    brick:hasAssociatedTag tag:Basement,
+        tag:Floor,
+        tag:Location ;
+    brick:isReplacedBy rec:BasementLevel .
+
+brick:Battery a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Battery"@en ;
+    rdfs:subClassOf brick:Energy_Storage ;
+    skos:definition "A container that stores chemical energy that can be converted into electricity and used as a source of power"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Battery ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Energy ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Equipment ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Storage ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Battery,
+        tag:Energy,
+        tag:Equipment,
+        tag:Storage .
+
+brick:Battery_Energy_Storage_System a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Battery Energy Storage System"@en ;
+    rdfs:subClassOf brick:Energy_Storage_System ;
+    skos:definition "A collection of batteries that provides energy storage, along with their supporting equipment"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Battery ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Energy ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Storage ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:System ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Battery,
+        tag:Energy,
+        tag:Storage,
+        tag:System .
+
+brick:Battery_Room a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Battery Room"@en ;
+    rdfs:subClassOf brick:Electrical_Room ;
+    owl:deprecated true ;
+    skos:definition "A room used to hold batteries for backup power"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Battery ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Electrical ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Location ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Room ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Service ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Space ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:deprecatedInVersion "1.4.0" ;
+    brick:deprecationMitigationMessage "Brick location classes are being phased out in favor of RealEstateCore classes. For a replacement, consider rec:ElectricityRoom" ;
+    brick:hasAssociatedTag tag:Battery,
+        tag:Electrical,
+        tag:Location,
+        tag:Room,
+        tag:Service,
+        tag:Space ;
+    brick:isReplacedBy rec:ElectricityRoom .
+
+brick:Battery_Voltage_Sensor a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Battery Voltage Sensor"@en ;
+    rdfs:subClassOf brick:Voltage_Sensor ;
+    skos:definition "Measures the capacity of a battery"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Battery ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Sensor ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Voltage ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Battery,
+        tag:Point,
+        tag:Sensor,
+        tag:Voltage ;
+    brick:hasQuantity qudtqk:Voltage .
+
+brick:Bench_Space a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Bench Space"@en ;
+    rdfs:subClassOf brick:Outdoor_Area ;
+    owl:deprecated true ;
+    skos:definition "For areas of play in a stadium, the area for partcipants and referees by the side of the field"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Area ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Bench ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Location ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Outdoor ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:deprecatedInVersion "1.4.0" ;
+    brick:deprecationMitigationMessage "Brick location classes are being phased out in favor of RealEstateCore classes. For a replacement, consider creating a rec:Zone that is part of a rec:Stadium" ;
+    brick:hasAssociatedTag tag:Area,
+        tag:Bench,
+        tag:Location,
+        tag:Outdoor ;
+    brick:isReplacedBy rec:Zone .
+
+brick:Blind a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Blind"@en ;
+    rdfs:seeAlso <https://en.wikipedia.org/wiki/Window_blind> ;
+    rdfs:subClassOf brick:Shading_Equipment ;
+    skos:definition "A window covering."@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Blind ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Equipment ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Shade ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Blind,
+        tag:Equipment,
+        tag:Shade .
+
+brick:Blind_Group a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Blind Group"@en ;
+    rdfs:subClassOf brick:Shading_System ;
+    skos:definition "A group of Blinds commonly attached to a single controller."@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Blind ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Group ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Shade ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:System ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Blind,
+        tag:Group,
+        tag:Shade,
+        tag:System .
+
+brick:Boiler_Command a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Boiler Command"@en ;
+    rdfs:subClassOf brick:Command ;
+    skos:definition "A command to control a boiler"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Boiler ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Command ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Boiler,
+        tag:Command,
+        tag:Point .
+
+brick:Booster_Fan a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Booster Fan"@en ;
+    rdfs:subClassOf brick:Fan ;
+    skos:definition "Fan activated to increase airflow beyond what is provided by the default configuration"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Booster ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Equipment ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Fan ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Booster,
+        tag:Equipment,
+        tag:Fan .
+
+brick:Box_Mode_Command a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Box Mode Command"@en ;
+    rdfs:subClassOf brick:Mode_Command ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Box ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Command ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Mode ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Box,
+        tag:Command,
+        tag:Mode,
+        tag:Point .
+
+brick:Branch_Selector a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Branch Selector"@en ;
+    rdfs:subClassOf brick:HVAC_Equipment ;
+    skos:definition "A device in VRF systems that regulates the flow of refrigerant to different indoor units or branches, ensuring optimal distribution of heating or cooling according to the specific requirements of each zone or area in the building."@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Branch ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Equipment ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:HVAC ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Selector ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Branch,
+        tag:Equipment,
+        tag:HVAC,
+        tag:Selector .
+
+brick:Breaker_Panel a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Breaker Panel"@en ;
+    rdfs:subClassOf brick:Electrical_Equipment ;
+    skos:definition "Breaker Panel distributes power into various end-uses."@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Breaker ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Equipment ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Breaker,
+        tag:Equipment .
+
+brick:Broadcast_Room a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Broadcast Room"@en ;
+    rdfs:subClassOf brick:Media_Room ;
+    owl:deprecated true ;
+    skos:definition "A space to organize and manage a broadcast. Separate from studio"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Broadcast ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Location ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Media ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Room ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Space ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:deprecatedInVersion "1.4.0" ;
+    brick:deprecationMitigationMessage "Brick location classes are being phased out in favor of RealEstateCore classes. For a replacement, consider rec:RecordingRoom" ;
+    brick:hasAssociatedTag tag:Broadcast,
+        tag:Location,
+        tag:Media,
+        tag:Room,
+        tag:Space ;
+    brick:isReplacedBy rec:RecordingRoom .
+
+brick:Building_Air_Humidity_Setpoint a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Building Air Humidity Setpoint"@en ;
+    rdfs:subClassOf brick:Humidity_Setpoint ;
+    skos:definition "Setpoint for humidity in a building"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Air ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Building ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Humidity ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Setpoint ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Air,
+        tag:Building,
+        tag:Humidity,
+        tag:Point,
+        tag:Setpoint ;
+    brick:hasQuantity qudtqk:RelativeHumidity ;
+    brick:hasSubstance brick:Building_Air .
+
+brick:Building_Air_Static_Pressure_Sensor a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Building Air Static Pressure Sensor"@en ;
+    rdfs:subClassOf brick:Air_Static_Pressure_Sensor ;
+    skos:definition "The static pressure of air within a building"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Air ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Building ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Pressure ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Sensor ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Static ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Air,
+        tag:Building,
+        tag:Point,
+        tag:Pressure,
+        tag:Sensor,
+        tag:Static ;
+    brick:hasQuantity qudtqk:StaticPressure ;
+    brick:hasSubstance brick:Building_Air .
+
+brick:Building_Air_Static_Pressure_Setpoint a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Building Air Static Pressure Setpoint"@en ;
+    rdfs:subClassOf brick:Air_Pressure_Setpoint,
+        brick:Static_Pressure_Setpoint ;
+    skos:definition "Sets static pressure of the entire building"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Air ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Building ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Point ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Pressure ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Setpoint ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Static ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ] ;
+    brick:hasAssociatedTag tag:Air,
+        tag:Building,
+        tag:Point,
+        tag:Pressure,
+        tag:Setpoint,
+        tag:Static ;
+    brick:hasQuantity qudtqk:StaticPressure ;
+    brick:hasSubstance brick:Building_Air .
+
+brick:Building_Chilled_Water_Meter a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Building Chilled Water Meter"@en ;
+    rdfs:subClassOf brick:Building_Meter,
+        brick:Chilled_Water_Meter ;
+    skos:definition "A meter that measures the usage or consumption of chilled water of a whole building"@en ;
+    sh:rule [ a sh:TripleRule ;
+            sh:object tag:Building ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Chilled ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Equipment ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Meter ;
+            sh:predicate brick:hasTag ;
+            sh:subject sh:this ],
+        [ a sh:TripleRule ;
+            sh:object tag:Water ;

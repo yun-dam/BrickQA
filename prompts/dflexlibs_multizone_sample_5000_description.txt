@@ -1,0 +1,153 @@
+# Building Schema Sample - dflexlibs_multizone
+
+This file contains the **COMPLETE** Brick Schema for the dflexlibs_multizone building.
+Since the original TTL file has only 594 lines, this sample includes the entire building model.
+
+## Standard Prefixes
+**Crucial**: Use these prefixes for all SPARQL queries.
+
+PREFIX brick: <https://brickschema.org/schema/Brick#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX bldg1: <http://dflex.com/bldg1#>
+
+## What These Triples Represent
+
+This schema describes a multi-zone HVAC system with distributed control for different building zones.
+
+### Building Structure
+
+**Namespace**: Uses `bldg1:` prefix for all building-specific entities
+
+**Equipment Types**:
+- **HVAC System (AHU)**:
+  - bldg1:hvac_ahu - Air Handling Unit (Main equipment feeding zones)
+  - bldg1:hvac_fanSup - Supply Fan
+  - bldg1:cooling_coil - Cooling Coil
+  - bldg1:heating_coil - Heating Coil
+
+- **Chilled Water System**:
+  - bldg1:chiller - Chiller
+  - bldg1:chi_pump - Chilled Water Pump
+  - bldg1:chi_reaTSup_y - Chilled Water Supply Temperature Sensor
+  - bldg1:chi_reaTRet_y - Chilled Water Return Temperature Sensor
+
+- **Heating System**:
+  - bldg1:heat_pump - Heat Pump
+  - bldg1:heaPum_reaPHeaPum_y - Heat Pump Power Sensor
+
+### Zone Configuration
+
+The building has **5 thermal zones**. These are logical groupings of spaces and equipment.
+1. **cor** (Corridor)
+2. **eas** (East zone)
+3. **nor** (North zone)
+4. **sou** (South zone)
+5. **wes** (West zone)
+
+Each zone contains distinct points:
+- `LowerSetp_*` - Minimum Air Temperature Setpoint
+- `UpperSetp_*` - Maximum Air Temperature Setpoint
+- VAV (Variable Air Volume) dampers with position setpoints
+- Heating valve commands
+- Occupancy sensors
+- Temperature sensors
+- CO2 sensors
+
+### Points and Sensors
+
+**Setpoints**:
+- Zone temperature setpoints (min/max for each zone)
+- Supply air temperature setpoint (bldg1:hvac_oveAhu_TSupSet_u)
+- Damper position setpoints for each zone
+
+**Sensors**:
+- Electric power sensors (for chiller, pumps, heat pump)
+- Temperature sensors (chilled water, zone temperatures)
+- CO2 sensors (for each zone)
+- Occupancy sensors (for each zone)
+
+**Commands**:
+- Valve commands (heating valves for each zone)
+- Damper position commands
+- Fan control commands
+
+## Graph Topology & Relationships (CRITICAL)
+
+**You must use these specific predicates to traverse the graph:**
+
+1.  **Equipment → Point**
+    * **Relationship:** `brick:hasPoint`
+    * **Pattern:** `?equipment brick:hasPoint ?point`
+    * *Example:* The Chiller (`bldg1:chiller`) has points like `bldg1:chi_reaTSup_y`.
+
+2.  **System Hierarchy (Flow)**
+    * **Relationship:** `brick:feeds`
+    * **Pattern:** `?upstream brick:feeds ?downstream`
+    * *Flow Chain:* Chiller/HeatPump → AHU → VAV/Zones
+    * *Example:* `bldg1:chiller brick:feeds bldg1:hvac_ahu`
+
+3.  **AHU → Zone**
+    * **Relationship:** `brick:feeds`
+    * **Pattern:** `bldg1:hvac_ahu brick:feeds ?zone`
+
+4.  **Zone Association**
+    * **Implicit Association**: Points are often associated with zones by their suffix naming convention (e.g., `_cor`, `_eas`).
+    * **Explicit Association**: Check for `?zone brick:hasPoint ?sensor` if explicit links exist.
+
+## Entity Naming Convention (Regex Patterns)
+
+The building uses a hierarchical naming pattern. Use these strings in `FILTER(CONTAINS(...))` clauses:
+
+- **Equipment Prefixes**:
+  - `hvac_` : Main HVAC/AHU components
+  - `chi_` : Chiller components
+  - `heaPum_` : Heat Pump components
+
+- **Zone Suffixes** (Use these to filter points by location):
+  - `_cor` : Corridor
+  - `_eas` : East Zone
+  - `_nor` : North Zone
+  - `_sou` : South Zone
+  - `_wes` : West Zone
+
+- **Point Types**:
+  - `ove*` : Override/Command points (Writable)
+  - `rea*_y` : Measured/Reading points (Sensors/Readable)
+
+## SPARQL Query Tips
+
+When querying this building:
+
+1.  **Find sensors for a specific zone (e.g., North)**:
+    ```sparql
+    ?sensor rdf:type brick:Sensor .
+    FILTER(CONTAINS(STR(?sensor), "_nor"))
+    ```
+
+2.  **Find the AHU and the zones it feeds**:
+    ```sparql
+    ?ahu rdf:type brick:Air_Handling_Unit .
+    ?ahu brick:feeds ?zone .
+    ?zone rdf:type brick:Zone .
+    ```
+
+3.  **Find Setpoints (overrides) for the South zone**:
+    ```sparql
+    ?sp rdf:type brick:Setpoint .
+    FILTER(CONTAINS(STR(?sp), "ove") && CONTAINS(STR(?sp), "_sou"))
+    ```
+
+4.  **Find Power Sensors for main equipment**:
+    ```sparql
+    ?sensor rdf:type/rdfs:subClassOf* brick:Electric_Power_Sensor .
+    # This will likely return points with 'reaP' in the name
+    ```
+
+5.  **Trace Chilled Water Temperature**:
+    ```sparql
+    ?chiller rdf:type brick:Chiller .
+    ?chiller brick:hasPoint ?tempSensor .
+    ?tempSensor rdf:type brick:Temperature_Sensor .
+    FILTER(CONTAINS(STR(?tempSensor), "chi_"))
+    ```

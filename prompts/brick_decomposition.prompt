@@ -1,0 +1,143 @@
+# Instruction
+Your task is to decompose a natural language question about building sensor data into structured components. This decomposition will be used to generate a SPARQL query for the Brick Schema.
+
+Analyze the user question and extract:
+
+1.  **Sensors**: Identify all sensors, setpoints, and equipment mentioned. Map to Brick classes.
+2.  **Temporal Constraints**: Identify any time-related requirements (yesterday, last 24 hours, specific dates, etc.)
+3.  **Aggregations**: Identify any aggregation operations needed (average, max, min, count, etc.)
+4.  **Query Intent**: Briefly describe the goal.
+
+**Rules:**
+* **Be Building-Agnostic**: Do NOT use specific instance IDs (like `FCU_01`) unless explicitly named in the input.
+* **Use Brick Classes**: Always map terms to the ontology class (e.g., use `brick:Air_Handling_Unit`, not just "AHU").
+* **Infer Implicit Entities**: If the user asks "is the room too hot?", infer they need both `brick:Zone_Air_Temperature_Sensor` and `brick:Zone_Air_Temperature_Setpoint`.
+* **Extract Temporal**: Look for time references like "yesterday", "last 24 hours", "on December 25th", "between 9 AM and 5 PM".
+* **Extract Aggregations**: Look for words like "average", "maximum", "minimum", "count", "total", "compare".
+
+# Domain Knowledge: Brick Class Mappings
+Use this table to map common natural language terms to Brick classes.
+
+**1. Sensors & Setpoints**
+* "Room/Zone Temperature" -> `brick:Zone_Air_Temperature_Sensor`
+* "Room Setpoint" -> `brick:Zone_Air_Temperature_Setpoint`
+* "Supply/Discharge Air Temp" -> `brick:Discharge_Air_Temperature_Sensor`
+* "Return Air Temp" -> `brick:Return_Air_Temperature_Sensor`
+* "Outdoor/Outside Temp" -> `brick:Outside_Air_Temperature_Sensor`
+* "CO2" / "Air Quality" -> `brick:CO2_Sensor`
+* "Occupancy" -> `brick:Occupancy_Sensor`
+
+**2. Equipment**
+* "AHU" / "Air Handler" -> `brick:Air_Handling_Unit`
+* "VAV" / "Box" -> `brick:VAV`
+* "FCU" / "Fan Coil" -> `brick:FCU`
+* "Meter" -> `brick:Building_Electrical_Meter`
+
+**3. Commands vs. Sensors**
+* **Sensor**: "Reading", "Measurement", "Value" (e.g., `brick:Damper_Position_Sensor`).
+* **Command**: "Setting", "Signal", "Output" (e.g., `brick:Damper_Position_Command`).
+
+# Output Format
+Return a JSON object with the following structure:
+
+```json
+{
+  "sensors": [
+    {
+      "mention": "original text from question",
+      "sensor_id": "brick:ClassName",
+      "description": "what this sensor measures"
+    }
+  ],
+  "sensor_count": <number>,
+  "temporal": {
+    "has_constraint": true/false,
+    "type": "latest | yesterday | last_n_hours | specific_date | date_range | none",
+    "details": { "date": "YYYY-MM-DD", "hours": N, "start": "...", "end": "..." }
+  },
+  "aggregation": {
+    "required": true/false,
+    "operations": ["AVG", "MAX", "MIN", "COUNT", "SUM"],
+    "conditions": ["value > X", "when sensor = Y"]
+  },
+  "query_intent": "brief description of the goal"
+}
+```
+
+**Temporal Types:**
+- `latest`: "current", "most recent"
+- `yesterday`: "yesterday"
+- `last_n_hours`: "last 24 hours", "last N hours"
+- `specific_date`: "on September 25th", "on December 30th"
+- `date_range`: "between 9 AM and 5 PM on Sep 1st"
+- `none`: no temporal constraint
+
+# Examples
+
+**Example 1: Simple query (no temporal/aggregation)**
+**Input:** "What is the current room temperature?"
+**Output:**
+```json
+{
+  "sensors": [
+    { "mention": "room temperature", "sensor_id": "brick:Zone_Air_Temperature_Sensor", "description": "Zone air temperature" }
+  ],
+  "sensor_count": 1,
+  "temporal": { "has_constraint": true, "type": "latest", "details": {} },
+  "aggregation": { "required": false, "operations": [], "conditions": [] },
+  "query_intent": "Get current sensor value"
+}
+```
+
+**Example 2: Temporal query with specific date**
+**Input:** "Show me the outdoor air humidity on September 20th when the cooling water flow was zero."
+**Output:**
+```json
+{
+  "sensors": [
+    { "mention": "outdoor air humidity", "sensor_id": "brick:Outside_Air_Humidity_Sensor", "description": "Outside air humidity" },
+    { "mention": "cooling water flow", "sensor_id": "brick:Chilled_Water_Supply_Flow_Sensor", "description": "Cooling coil water flow" }
+  ],
+  "sensor_count": 2,
+  "temporal": { "has_constraint": true, "type": "specific_date", "details": { "date": "September 20th" } },
+  "aggregation": { "required": false, "operations": [], "conditions": ["cooling water flow = 0"] },
+  "query_intent": "Get humidity readings filtered by water flow condition on specific date"
+}
+```
+
+**Example 3: Aggregation query**
+**Input:** "Calculate the average difference between discharge air temperature and room temperature on August 25th."
+**Output:**
+```json
+{
+  "sensors": [
+    { "mention": "discharge air temperature", "sensor_id": "brick:Discharge_Air_Temperature_Sensor", "description": "Discharge air temp" },
+    { "mention": "room temperature", "sensor_id": "brick:Zone_Air_Temperature_Sensor", "description": "Zone air temp" }
+  ],
+  "sensor_count": 2,
+  "temporal": { "has_constraint": true, "type": "specific_date", "details": { "date": "August 25th" } },
+  "aggregation": { "required": true, "operations": ["AVG"], "conditions": ["difference between two sensors"] },
+  "query_intent": "Calculate average temperature difference on specific date"
+}
+```
+
+**Example 4: Yesterday/relative time**
+**Input:** "Show the average fan power consumption for each hour of yesterday."
+**Output:**
+```json
+{
+  "sensors": [
+    { "mention": "fan power consumption", "sensor_id": "brick:Electrical_Power_Sensor", "description": "Fan power" }
+  ],
+  "sensor_count": 1,
+  "temporal": { "has_constraint": true, "type": "yesterday", "details": {} },
+  "aggregation": { "required": true, "operations": ["AVG"], "conditions": ["group by hour"] },
+  "query_intent": "Calculate hourly average power for yesterday"
+}
+```
+
+# Input
+User Question: {{ question }}
+
+# Output
+Return only the JSON object, no additional text.

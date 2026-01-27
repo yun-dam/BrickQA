@@ -1,0 +1,296 @@
+# instruction
+Your task is to write a generic, building-agnostic Brick Schema SPARQL query to answer the given question about building data. You must navigate the graph topology rather than guessing specific instance IDs.
+
+Follow a step-by-step process:
+1. Identify the Brick Class of the equipment (e.g., brick:FCU) and the points (e.g., brick:Supply_Air_Temperature_Sensor) mentioned.
+2. Construct fragments to find these entities using rdf:type and rdfs:subClassOf*.
+3. Link sensors to equipment using topological relationships (e.g., brick:hasPoint, brick:feeds, brick:isLocationOf).
+4. Execute fragments to verify the graph structure exists before adding data constraints.
+5. For timeseries, join the identified sensor to its observations or external references.
+
+Form exactly one "Thought" and perform exactly one "Action", then wait for the "Observation".
+
+Possible actions are:
+
+- search_brick(string): Searches the Brick ontology for entities and classes (e.g., searching for "temperature" returns "brick:Temperature_Sensor", "brick:Zone_Air_Temperature_Sensor").
+- get_brick_entity(URI): Gets detailed information about a specific Brick entity, including its properties and relationships.
+- get_property_examples(property_URI): Shows examples of how a specific Brick property is used in the graph.
+- execute_sparql(SPARQL): Runs a SPARQL query on the Brick graph and returns results.
+  CRITICAL: EVERY SPARQL query MUST start with PREFIX declarations (brick:, rdf:, rdfs:, ref:, xsd:).
+  If you forget PREFIX declarations, the query will fail.
+- stop(): Marks the last executed SPARQL query as the final answer and ends the process.
+
+Key Brick Schema Patterns (Building-Agnostic):
+
+1. Finding Sensors by Type (Never guess IDs!):
+   Use rdf:type and rdfs:subClassOf* to catch all variations.
+   ?sensor rdf:type/rdfs:subClassOf* brick:Temperature_Sensor .
+
+2. Finding Sensors on Specific Equipment:
+   Do not assume a sensor name. Find the equipment, then find the point attached to it.
+   Example: Find Discharge Air Temp on an FCU
+   PREFIX brick: <https://brickschema.org/schema/Brick#>
+   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+   SELECT ?sensor WHERE {
+       ?equip rdf:type brick:FCU .
+       ?equip brick:hasPoint ?sensor .
+       ?sensor rdf:type brick:Discharge_Air_Temperature_Sensor .
+   }
+
+3. Finding Sensors in a Specific Location:
+   ?zone rdf:type brick:Zone .
+   ?zone brick:hasPart ?room .
+   ?sensor brick:isPointOf ?room .
+
+4. Handling Timeseries (Basic Observations):
+   ?sensor ref:hasObservation ?obs .
+   ?obs ref:hasValue ?value .
+   ?obs ref:hasTimestamp ?timestamp .
+
+   - Timestamps are xsd:dateTime type (format: "2018-12-28T14:00:00"^^xsd:dateTime)
+   - Do NOT add timezone 'Z' suffix.
+
+5. TIMESERIES via EXTERNAL REFERENCES (IMPORTANT!):
+   In many buildings, timeseries IDs are stored in external reference objects using property paths.
+
+   Pattern:
+   ?sensor ref:hasExternalReference/ref:hasTimeseriesId ?timeseriesId .
+
+   The slash (/) syntax means "follow this property, then that property":
+   1. From sensor to external reference object (often a blank node: [ ref:hasTimeseriesId "..." ])
+   2. From external reference to the actual timeseries ID value
+
+   Full Example - Get sensors and their timeseries IDs:
+   PREFIX brick: <https://brickschema.org/schema/Brick#>
+   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+   PREFIX ref: <https://brickschema.org/schema/Brick/ref#>
+   SELECT ?sensor ?tsId WHERE {
+       ?sensor rdf:type/rdfs:subClassOf* brick:Temperature_Sensor .
+       ?sensor ref:hasExternalReference/ref:hasTimeseriesId ?tsId .
+   }
+
+   NOTE: Try this pattern FIRST when questions ask for "timeseries ID", "data point ID", or "point identifier".
+   If it returns no results, then try ref:hasObservation pattern from #4 above.
+
+6. IFC REFERENCES - Zone/Space Names:
+   IFC (Industry Foundation Classes) identifiers are commonly used for zone and space names.
+   These are stored in ref:IFCReference objects.
+
+   Pattern for getting IFC names:
+   ?entity ref:hasExternalReference ?extRef .
+   ?extRef a ref:IFCReference .
+   ?extRef ref:ifcName ?name .
+
+   Full Example - Get zones with their IFC names:
+   PREFIX brick: <https://brickschema.org/schema/Brick#>
+   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+   PREFIX ref: <https://brickschema.org/schema/Brick/ref#>
+   SELECT ?zoneName WHERE {
+       ?zone rdf:type brick:Zone .
+       ?zone ref:hasExternalReference ?extRef .
+       ?extRef a ref:IFCReference ;
+               ref:ifcName ?zoneName .
+   }
+
+   Other useful IFC properties:
+   - ref:ifcGlobalID - Globally unique identifier
+   - ref:ifcName - Human-readable name (use this for "zone name", "space name")
+
+   When questions ask for "zone ID", "zone name", "zone reference", "IFC reference",
+   they typically mean the ref:ifcName value from the IFC reference.
+
+7. ZONE → SPACE → EQUIPMENT → POINT PATTERN (IMPORTANT!):
+   In most buildings, sensors/points are NOT directly connected to zones.
+   The typical hierarchy is:
+
+   Zone → contains Spaces (rooms) → has Equipment located in them → has Points
+
+   Pattern (step by step):
+   ?zone rdf:type brick:Zone ;
+         brick:hasPart ?space .
+   ?space brick:isLocationOf ?equipment .
+   ?equipment brick:hasPoint ?sensor .
+
+   Property Path Shorthand (combines all 3 relationships):
+   ?zone brick:hasPart/brick:isLocationOf/brick:hasPoint ?sensor .
+
+   Full Example - Get sensors in zones:
+   PREFIX brick: <https://brickschema.org/schema/Brick#>
+   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+   SELECT ?zone ?sensor WHERE {
+       ?zone rdf:type brick:Zone .
+       ?zone brick:hasPart ?space .
+       ?space brick:isLocationOf ?equipment .
+       ?equipment brick:hasPoint ?sensor .
+       ?sensor rdf:type brick:Temperature_Sensor .
+   }
+
+   CRITICAL: If you query "?zone brick:hasPoint ?sensor" and get NO results,
+   this means the building uses the Space-based pattern above. Switch to it immediately.
+
+8. SPARQL PROPERTY PATHS - Advanced Syntax:
+   Property paths allow traversing multiple relationships in one pattern.
+
+   Syntax:
+   - A/B means "follow property A, then property B"
+   - A/B/C means "follow A, then B, then C"
+   - A+ means "follow property A one or more times" (useful for feeds chains)
+   - A* means "follow property A zero or more times"
+
+   Common Patterns:
+   - ref:hasExternalReference/ref:hasTimeseriesId (timeseries IDs through external refs)
+   - ref:hasExternalReference/ref:ifcName (IFC names through external refs)
+   - brick:hasPart/brick:isLocationOf/brick:hasPoint (zone to points through spaces)
+   - brick:feeds+ (equipment feeding other equipment, any depth)
+
+   Example combining multiple property paths:
+   PREFIX brick: <https://brickschema.org/schema/Brick#>
+   PREFIX ref: <https://brickschema.org/schema/Brick/ref#>
+   SELECT ?zoneName ?timeseriesId WHERE {
+       ?zone rdf:type brick:Zone ;
+             ref:hasExternalReference/ref:ifcName ?zoneName ;
+             brick:hasPart/brick:isLocationOf/brick:hasPoint ?sensor .
+       ?sensor rdf:type brick:Temperature_Sensor ;
+               ref:hasExternalReference/ref:hasTimeseriesId ?timeseriesId .
+   }
+
+9. PLANNING YOUR SELECT CLAUSE (IMPORTANT!):
+   Before writing execute_sparql, identify ALL variables the question asks for.
+
+   Example Question: "For each zone, what is its name and temperature sensor's timeseries ID?"
+   Required Output Variables:
+   - Zone name → ?zoneName
+   - Timeseries ID → ?timeseriesId
+
+   SELECT Clause MUST include both: SELECT ?zoneName ?timeseriesId WHERE { ... }
+
+   Common Mistake: Querying intermediate entities but forgetting to output the final values.
+   WRONG: SELECT ?zone WHERE { ?zone ref:hasExternalReference/ref:ifcName ?zoneName }
+   RIGHT: SELECT ?zoneName WHERE { ?zone ref:hasExternalReference/ref:ifcName ?zoneName }
+
+Rules for Multi-Sensor Queries:
+
+1. Synchronize Time: When querying MULTIPLE sensors together (e.g., comparing, calculating ratios), you MUST join all sensors on the SAME ?timestamp variable.
+2. Unique Variables: Use UNIQUE observation variables for each sensor (e.g., ?obs_setpoint and ?obs_temp). DO NOT reuse ?obs.
+3. Calculations: For conditions ("when X", "if Y") add FILTER on the condition sensor. For calculations (ratio, difference), use arithmetic in the SELECT clause.
+
+DOMAIN KNOWLEDGE: HVAC Systems & Sensors
+Use the following descriptions to understand the physics and intent of the user's questions. Map these concepts to the appropriate Brick Classes.
+
+Conventions:
+- 0–1 signals: 0.0 = fully closed/off, 1.0 = fully open/on.
+- Units: Airflow (CFM), Water Flow (GPM), Temperature (°F), Humidity (%RH).
+- Definitions: Discharge air = supply air leaving the unit. Return air = room air returning to the unit. Mixed air = blend of return and outdoor air.
+
+Point Descriptions:
+- FCU Operating Mode: Selector for Shutdown (0), Operate (1), or Setback (2).
+- Fan Command: Signal to start/stop fan. 1 = Auto/On, 2 = Off.
+- Fan Speed: Mechanical speed (rev/s or %) used to infer airflow.
+- Fan Power: Electrical power (Watts) drawn by the fan motor.
+- Room Temperature: Primary controlled variable for thermal comfort.
+- Room Cooling/Heating Setpoints: The target temperature range. If Room Temp > Cooling Setpoint, cooling is needed.
+- Mixed Air Temperature (MAT): Temp upstream of the coil where outdoor and return air mix.
+- Discharge Air Temperature (DAT): Temp leaving the FCU into the room. Controlled by valves/fan.
+- Return Air Temperature (RAT): Temp of air leaving the zone entering the FCU.
+- Outdoor Air Temperature (OAT): Temp outside the building. Used for economizer logic.
+- Mixed/Outdoor/Discharge/Return Humidity: Relative humidity (%RH) at respective locations. Used for latent load and dehumidification logic.
+- Discharge Air Flow: Flow rate (CFM) leaving the unit.
+- Outdoor Air Flow: Flow rate (CFM) of fresh air entering the unit.
+- Damper Position (Feedback): Actual physical position of the damper (0-1).
+- Damper Command: Signal sent to the damper actuator (0-1). Comparing Command vs. Feedback reveals faults.
+- Cooling/Heating Valve Position (Feedback): Actual opening of the water valve (0-1).
+- Cooling/Heating Valve Command: Signal sent to the valve actuator (0-1).
+- Cooling/Heating Coil Water Flow: Rate (GPM) of water through the coil.
+- Entering/Leaving Water Temperatures (EWT/LWT): Temp of water entering or leaving the coil. The delta-T (EWT-LWT) indicates heat transfer.
+Control Logic Context:
+- Deadband: The range between Heating and Cooling setpoints where no energy is used.
+- Economizer: When OAT is cool, Dampers open to use free cooling.
+- Valve Tracking: Command and Feedback should match. Mismatches indicate stuck valves.
+
+DOMAIN KNOWLEDGE: Brick Class Mapping & Conventions
+Use this mapping to translate natural language concepts into the correct Brick Schema Classes.
+
+1. TEMPERATURE SENSORS
+- Room/Zone Temperature -> brick:Zone_Air_Temperature_Sensor
+- Discharge/Supply Air Temp -> brick:Discharge_Air_Temperature_Sensor
+- Return Air Temp -> brick:Return_Air_Temperature_Sensor
+- Mixed Air Temp -> brick:Mixed_Air_Temperature_Sensor
+- Outdoor Air Temp -> brick:Outside_Air_Temperature_Sensor
+- Water Temp (Entering) -> brick:Entering_Water_Temperature_Sensor
+- Water Temp (Leaving/Return) -> brick:Leaving_Water_Temperature_Sensor
+
+2. HUMIDITY SENSORS (Unit: %RH)
+- Room/Zone Humidity -> brick:Zone_Air_Humidity_Sensor
+- Discharge Humidity -> brick:Discharge_Air_Humidity_Sensor
+- Outdoor Humidity -> brick:Outside_Air_Humidity_Sensor
+
+3. FLOW SENSORS
+- Air Flow (Unit: CFM) -> brick:Air_Flow_Sensor (or brick:Discharge_Air_Flow_Sensor)
+- Water Flow (Unit: GPM) -> brick:Water_Flow_Sensor
+
+4. COMMANDS vs. POSITIONS (Valves & Dampers)
+*CRITICAL:* "Command" is the signal (0-1) sent TO the device. "Position" (or Feedback) is the sensor reading FROM the device.
+- Damper Position -> brick:Damper_Position_Sensor (0=Closed, 1=Open)
+- Damper Command -> brick:Damper_Position_Command
+- Cooling Valve Position -> brick:Cooling_Valve_Position_Sensor
+- Cooling Valve Command -> brick:Cooling_Valve_Command
+- Heating Valve Position -> brick:Heating_Valve_Position_Sensor
+- Heating Valve Command -> brick:Heating_Valve_Command
+
+5. SETPOINTS
+- Maximum Temperature Setpoint -> brick:Max_Air_Temperature_Setpoint
+- Minimum Temperature Setpoint -> brick:Min_Air_Temperature_Setpoint
+- Cooling Setpoint -> brick:Cooling_Temperature_Setpoint
+- Heating Setpoint -> brick:Heating_Temperature_Setpoint
+- General Setpoint -> brick:Air_Temperature_Setpoint
+
+6. EQUIPMENT & STATUS
+- AHU (Air Handling Unit) -> brick:Air_Handling_Unit
+- FCU (Fan Coil Unit) -> brick:FCU
+- VAV (Variable Air Volume Box) -> brick:VAV
+- HVAC Zone (Room/Space) -> brick:HVAC_Zone or brick:Zone
+- Thermostat -> brick:Thermostat (often equivalent to a Zone Temperature Sensor)
+- Electric Meter -> brick:Building_Electrical_Meter (or brick:Electric_Meter)
+- Dampers -> brick:Damper
+- Fans -> brick:Fan
+  * Fan Status (On/Off) -> brick:Fan_Status
+  * Fan Speed (0-100%) -> brick:Fan_Speed_Sensor
+  * Fan Start/Stop Cmd -> brick:Fan_Start_Stop_Command
+- Occupancy -> brick:Occupancy_Sensor
+- Coils -> brick:Cooling_Coil or brick:Heating_Coil
+
+# distillation instruction
+Think and perform the next action.
+
+CRITICAL OUTPUT FORMAT:
+You MUST respond in EXACTLY this format (no variations):
+
+Thought: <your reasoning in one paragraph>
+Action: <action_name>(<argument>)
+
+Rules:
+- Do NOT use markdown formatting (no **bold**, no `code blocks`)
+- Do NOT include multiple Thought/Action pairs (only ONE of each)
+- Do NOT include "Observation:" in your response (that comes later)
+- Do NOT repeat the prompt instruction
+- For execute_sparql, put the entire SPARQL query as the argument in parentheses
+
+# input
+{% for i in range(0, conversation_history|length) %}
+User Question: {{ conversation_history[i]["question"] }}
+{% for j in range(0, conversation_history[i]["action_history"]|length) %}
+{{ conversation_history[i]["action_history"][j] }}
+{% endfor %}
+--
+{% endfor %}
+
+User Question: {{ question }}
+
+{% if action_history %}
+{% for i in range(0, action_history|length) %}
+
+{{ action_history[i] }}
+{% endfor %}
+{% endif %}
+
+Output one "Thought" and one "Action":

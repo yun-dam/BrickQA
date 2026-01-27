@@ -1,0 +1,139 @@
+# Building Schema Sample - TUC_building
+
+This file contains the **COMPLETE** Brick Schema for the TUC (Technische Universität Chemnitz) building.
+Since the original TTL file has only 1851 lines, this sample includes the entire building model.
+
+## Standard Prefixes
+**Crucial**: Use these prefixes for all SPARQL queries.
+
+PREFIX brick: <https://brickschema.org/schema/Brick#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX s4bldg: <https://saref.etsi.org/saref4bldg/>
+PREFIX saref: <https://saref.etsi.org/core/>
+PREFIX om: <http://www.tu-chemnitz.de/informatik/TUC_Building#>
+PREFIX ref: <https://brickschema.org/schema/Brick/ref#>
+
+## What These Triples Represent
+
+This schema describes a university building with extensive spatial modeling and zone control systems.
+
+### Building Structure
+
+**Namespace**: Uses `om:` prefix (Ontology Management) for all building-specific entities
+
+**Key Characteristics**:
+- Integration with IFC (Industry Foundation Classes) building model
+- Uses multiple ontologies: Brick, SAREF, s4bldg (SAREF for Buildings)
+- Strong emphasis on spatial hierarchy (Spaces → Zones)
+- Extensive thermostat and control point modeling
+
+### Spatial Organization
+
+**Spaces**: Over 100+ individual spaces (rooms)
+- Examples: om:Space_2217, om:Space_4035, om:Space_7818
+- Each space has type: brick:Space and s4bldg:BuildingSpace
+- Linked to zones via ref:IFCReference
+
+**Zones**: Multiple thermal zones
+- Examples: om:Zone_63060, om:Zone_62985
+- Type: brick:Zone
+- Groups multiple spaces for HVAC control
+
+### Equipment and Control
+
+**Thermostats**: Multiple RC04N series thermostats
+- Pattern: om:RC04N00*_Equipment
+- Type: brick:Thermostat and s4bldg:UnitaryControlElement
+- Each thermostat controls one or more spaces
+
+**Control Points per Thermostat**:
+1. **Sensing Points**:
+   - TempSensingPoint - Temperature sensor
+   - OccSensingPoint - Occupancy sensor
+   - HumProperty - Humidity property
+
+2. **Setpoints**:
+   - TempSetpointMax - Maximum temperature setpoint
+   - (May also have min setpoints)
+
+3. **Commands**:
+   - OnOffCommand - Equipment on/off control
+   - Mode_Command - Operating mode selection
+   - Run_Request_Command - Runtime request
+   - Lockout_Command - Safety lockout
+
+4. **Parameters**:
+   - Delay_Parameter - Time delay settings
+
+### Naming Convention
+
+The TUC building uses a structured naming pattern:
+
+**Thermostats**: `om:RC04N00##_Equipment` (where ## is a number)
+**Points**: `om:RC04N00##_PointType`
+
+Examples:
+- om:RC04N0047_TempSensingPoint
+- om:RC04N0047_OccSensingPoint
+- om:RC04N0047_TempSetpointMax
+- om:RC04N0048_Mode_Command
+- om:RC04N0048_Lockout_Command
+
+Each thermostat (RC04N00##) has multiple associated points with the same number prefix.
+
+## Graph Topology & Relationships (CRITICAL)
+
+**You must use these specific predicates to traverse the graph:**
+
+1.  **Thermostat → Point**
+    * **Relationship:** `brick:hasPoint`
+    * **Pattern:** `?thermostat brick:hasPoint ?point`
+    * *Note:* Points are also implicitly linked via the naming string convention (RC04N##).
+
+2.  **Thermostat → Zone**
+    * **Relationship:** `brick:feeds` (or check for `brick:controls`)
+    * **Pattern:** `?thermostat brick:feeds ?zone`
+
+3.  **Zone → Space**
+    * **Relationship:** `brick:hasPart`
+    * **Pattern:** `?zone brick:hasPart ?space`
+    * *Note:* Spaces may also be linked to zones via `ref:IFCReference` nodes, but prefer `brick:hasPart` for direct queries.
+
+4.  **Reference System**
+    * **Relationship:** `ref:hasExternalReference`
+    * **Pattern:** `?entity ref:hasExternalReference ?ref`
+
+## SPARQL Query Tips
+
+When querying this building:
+
+1. **Find thermostats (Standard)**:
+   ?thermostat rdf:type brick:Thermostat .
+
+2. **Find spaces in a specific zone (Using Correct Predicate)**:
+   ?zone rdf:type brick:Zone .
+   ?zone brick:hasPart ?space .  # Using hasPart based on Topology
+
+3. **Find all points for a specific thermostat (Graph Traversal)**:
+   ?tstat rdf:type brick:Thermostat .
+   ?tstat brick:hasPoint ?point .
+   FILTER(CONTAINS(STR(?tstat), "RC04N0047"))
+
+4. **Find all temperature sensors**:
+   # Search by Type AND Naming Convention for safety
+   ?sensor rdf:type brick:Temperature_Sensor .
+   FILTER(CONTAINS(STR(?sensor), "TempSensingPoint"))
+
+5. **Find occupancy-related sensors**:
+   FILTER(CONTAINS(STR(?point), "OccSensingPoint"))
+
+6. **Find control commands**:
+   FILTER(CONTAINS(STR(?point), "_Command"))
+
+## Key Patterns
+
+1. **Thermostat Grouping**: All points for a thermostat share the same RC04N number
+2. **Space Hierarchy**: Space → Zone → (via IFCReference)
+3. **Multi-Ontology**: Entities have types from multiple ontologies (brick:, s4bldg:, saref:)
+4. **Control Hierarchy**: Equipment → Commands/Setpoints → Sensing Points

@@ -1,0 +1,285 @@
+dataset,query_id,question_number,question_source,method,arity_f1,entity_set_f1,row_matching_f1,exact_match_f1,status
+Dflexlibs,DFLEXLIBS_001,1,human,BrickQA,0.0,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_001,1,human,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_001,2,LLM_1,BrickQA,0.5714285714285714,0.0,0.0,0.0,success
+Dflexlibs,DFLEXLIBS_001,2,LLM_1,Gemini Flash 2.5,,0.0,0.0,0.0,success
+Dflexlibs,DFLEXLIBS_001,3,LLM_2,BrickQA,0.0,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_001,3,LLM_2,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_001,4,LLM_3,BrickQA,0.0,0.0,0.0,0.0,failed
+Dflexlibs,DFLEXLIBS_001,4,LLM_3,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_001,5,LLM_4,BrickQA,0.0,0.0,0.0,0.0,failed
+Dflexlibs,DFLEXLIBS_001,5,LLM_4,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_001,6,LLM_5,BrickQA,0.46153846153846156,0.0,0.0,0.0,success
+Dflexlibs,DFLEXLIBS_001,6,LLM_5,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_002,1,human,BrickQA,1.0,0.0196078431372549,0.0,0.0,success
+Dflexlibs,DFLEXLIBS_002,1,human,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_002,2,LLM_1,BrickQA,0.0,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_002,2,LLM_1,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_002,3,LLM_2,BrickQA,0.0,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_002,3,LLM_2,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_002,4,LLM_3,BrickQA,0.0,0.0,0.0,0.0,failed
+Dflexlibs,DFLEXLIBS_002,4,LLM_3,Gemini Flash 2.5,,0.0,0.0,0.0,success
+Dflexlibs,DFLEXLIBS_002,5,LLM_4,BrickQA,0.8,0.125,0.0,0.0,success
+Dflexlibs,DFLEXLIBS_002,5,LLM_4,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_002,6,LLM_5,BrickQA,0.0,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_002,6,LLM_5,Gemini Flash 2.5,,0.0,0.0,0.0,success
+Dflexlibs,DFLEXLIBS_003,1,human,BrickQA,0.6666666666666666,1.0,0.5,0.0,success
+Dflexlibs,DFLEXLIBS_003,1,human,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_003,2,LLM_1,BrickQA,0.6666666666666666,1.0,0.5,0.0,success
+Dflexlibs,DFLEXLIBS_003,2,LLM_1,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_003,3,LLM_2,BrickQA,0.6666666666666666,1.0,1.0,0.0,success
+Dflexlibs,DFLEXLIBS_003,3,LLM_2,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_003,4,LLM_3,BrickQA,0.6666666666666666,1.0,0.5,0.0,success
+Dflexlibs,DFLEXLIBS_003,4,LLM_3,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_003,5,LLM_4,BrickQA,0.6666666666666666,1.0,0.5,0.0,success
+Dflexlibs,DFLEXLIBS_003,5,LLM_4,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_003,6,LLM_5,BrickQA,0.6666666666666666,1.0,0.5,0.0,success
+Dflexlibs,DFLEXLIBS_003,6,LLM_5,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_004,1,human,BrickQA,0.0,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_004,1,human,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_004,2,LLM_1,BrickQA,1.0,0.0,0.0,0.0,success
+Dflexlibs,DFLEXLIBS_004,2,LLM_1,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_004,3,LLM_2,BrickQA,0.0,0.0,0.0,0.0,failed
+Dflexlibs,DFLEXLIBS_004,3,LLM_2,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_004,4,LLM_3,BrickQA,0.5,1.0,1.0,0.0,success
+Dflexlibs,DFLEXLIBS_004,4,LLM_3,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_004,5,LLM_4,BrickQA,0.0,0.0,0.0,0.0,failed
+Dflexlibs,DFLEXLIBS_004,5,LLM_4,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_004,6,LLM_5,BrickQA,1.0,1.0,1.0,1.0,success
+Dflexlibs,DFLEXLIBS_004,6,LLM_5,Gemini Flash 2.5,,0.0,0.0,0.0,success
+Dflexlibs,DFLEXLIBS_005,1,human,BrickQA,1.0,1.0,1.0,1.0,success
+Dflexlibs,DFLEXLIBS_005,1,human,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_005,2,LLM_1,BrickQA,0.6666666666666666,1.0,0.5,0.0,success
+Dflexlibs,DFLEXLIBS_005,2,LLM_1,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_005,3,LLM_2,BrickQA,0.6666666666666666,1.0,0.5,0.0,success
+Dflexlibs,DFLEXLIBS_005,3,LLM_2,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_005,4,LLM_3,BrickQA,0.6666666666666666,1.0,0.5,0.0,success
+Dflexlibs,DFLEXLIBS_005,4,LLM_3,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_005,5,LLM_4,BrickQA,0.6666666666666666,1.0,0.5,0.0,success
+Dflexlibs,DFLEXLIBS_005,5,LLM_4,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_005,6,LLM_5,BrickQA,0.6666666666666666,1.0,0.5,0.0,success
+Dflexlibs,DFLEXLIBS_005,6,LLM_5,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_006,1,human,BrickQA,0.6666666666666666,1.0,0.5,0.0,success
+Dflexlibs,DFLEXLIBS_006,1,human,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_006,2,LLM_1,BrickQA,0.6666666666666666,0.0,0.0,0.0,success
+Dflexlibs,DFLEXLIBS_006,2,LLM_1,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_006,3,LLM_2,BrickQA,0.6666666666666666,1.0,0.5,0.0,success
+Dflexlibs,DFLEXLIBS_006,3,LLM_2,Gemini Flash 2.5,,1.0,0.5,0.0,success
+Dflexlibs,DFLEXLIBS_006,4,LLM_3,BrickQA,0.6666666666666666,1.0,0.5,0.0,success
+Dflexlibs,DFLEXLIBS_006,4,LLM_3,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_006,5,LLM_4,BrickQA,0.6666666666666666,1.0,0.5,0.0,success
+Dflexlibs,DFLEXLIBS_006,5,LLM_4,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+Dflexlibs,DFLEXLIBS_006,6,LLM_5,BrickQA,0.6666666666666666,1.0,0.5,0.0,success
+Dflexlibs,DFLEXLIBS_006,6,LLM_5,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_001,1,human,BrickQA,1.0,1.0,1.0,1.0,success
+TUC,TUC_001,1,human,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_001,2,LLM_1,BrickQA,1.0,1.0,1.0,1.0,success
+TUC,TUC_001,2,LLM_1,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_001,3,LLM_2,BrickQA,1.0,1.0,1.0,1.0,success
+TUC,TUC_001,3,LLM_2,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_001,4,LLM_3,BrickQA,1.0,1.0,1.0,1.0,success
+TUC,TUC_001,4,LLM_3,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_001,5,LLM_4,BrickQA,0.8,0.5,0.0,0.0,success
+TUC,TUC_001,5,LLM_4,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_001,6,LLM_5,BrickQA,1.0,0.5,0.0,0.0,success
+TUC,TUC_001,6,LLM_5,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_002,1,human,BrickQA,1.0,1.0,1.0,1.0,success
+TUC,TUC_002,1,human,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_002,2,LLM_1,BrickQA,1.0,1.0,1.0,1.0,success
+TUC,TUC_002,2,LLM_1,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_002,3,LLM_2,BrickQA,1.0,1.0,1.0,1.0,success
+TUC,TUC_002,3,LLM_2,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_002,4,LLM_3,BrickQA,1.0,1.0,1.0,1.0,success
+TUC,TUC_002,4,LLM_3,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_002,5,LLM_4,BrickQA,1.0,1.0,1.0,1.0,success
+TUC,TUC_002,5,LLM_4,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_002,6,LLM_5,BrickQA,0.0,0.0,0.0,0.0,no_results
+TUC,TUC_002,6,LLM_5,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_003,1,human,BrickQA,1.0,1.0,1.0,1.0,success
+TUC,TUC_003,1,human,Gemini Flash 2.5,,0.0,0.0,0.0,success
+TUC,TUC_003,2,LLM_1,BrickQA,1.0,1.0,1.0,1.0,success
+TUC,TUC_003,2,LLM_1,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_003,3,LLM_2,BrickQA,1.0,1.0,1.0,1.0,success
+TUC,TUC_003,3,LLM_2,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_003,4,LLM_3,BrickQA,1.0,1.0,1.0,1.0,success
+TUC,TUC_003,4,LLM_3,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_003,5,LLM_4,BrickQA,0.0,0.0,0.0,0.0,no_results
+TUC,TUC_003,5,LLM_4,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_003,6,LLM_5,BrickQA,0.6666666666666666,1.0,1.0,0.0,success
+TUC,TUC_003,6,LLM_5,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_004,1,human,BrickQA,1.0,0.5,0.0,0.0,success
+TUC,TUC_004,1,human,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_004,2,LLM_1,BrickQA,1.0,1.0,1.0,1.0,success
+TUC,TUC_004,2,LLM_1,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_004,3,LLM_2,BrickQA,1.0,0.5,0.0,0.0,success
+TUC,TUC_004,3,LLM_2,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_004,4,LLM_3,BrickQA,1.0,0.5,0.0,0.0,success
+TUC,TUC_004,4,LLM_3,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_004,5,LLM_4,BrickQA,0.0,0.0,0.0,0.0,no_results
+TUC,TUC_004,5,LLM_4,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_004,6,LLM_5,BrickQA,0.0,0.0,0.0,0.0,no_results
+TUC,TUC_004,6,LLM_5,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_005,1,human,BrickQA,1.0,1.0,1.0,1.0,success
+TUC,TUC_005,1,human,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_005,2,LLM_1,BrickQA,1.0,1.0,1.0,1.0,success
+TUC,TUC_005,2,LLM_1,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_005,3,LLM_2,BrickQA,1.0,1.0,1.0,1.0,success
+TUC,TUC_005,3,LLM_2,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_005,4,LLM_3,BrickQA,1.0,1.0,1.0,1.0,success
+TUC,TUC_005,4,LLM_3,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_005,5,LLM_4,BrickQA,1.0,1.0,1.0,1.0,success
+TUC,TUC_005,5,LLM_4,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+TUC,TUC_005,6,LLM_5,BrickQA,1.0,1.0,1.0,1.0,success
+TUC,TUC_005,6,LLM_5,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_001,1,human,BrickQA,0.6666666666666666,0.0,0.0,0.0,success
+bldg11,MORTAR_001,1,human,Gemini Flash 2.5,,0.0,0.0,0.0,success
+bldg11,MORTAR_001,2,human,BrickQA,0.6666666666666666,0.0,0.0,0.0,success
+bldg11,MORTAR_001,2,human,Gemini Flash 2.5,,0.0,0.0,0.0,success
+bldg11,MORTAR_001,3,human,BrickQA,0.6666666666666666,0.0,0.0,0.0,success
+bldg11,MORTAR_001,3,human,Gemini Flash 2.5,,0.0,0.0,0.0,success
+bldg11,MORTAR_001,4,human,BrickQA,0.6666666666666666,0.0,0.0,0.0,success
+bldg11,MORTAR_001,4,human,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_001,5,LLM_1,BrickQA,1.0,1.0,0.9772209567198178,0.9772209567198178,success
+bldg11,MORTAR_001,5,LLM_1,Gemini Flash 2.5,,0.98989898989899,0.2543894920251976,0.0,success
+bldg11,MORTAR_001,6,LLM_2,BrickQA,1.0,1.0,1.0,1.0,success
+bldg11,MORTAR_001,6,LLM_2,Gemini Flash 2.5,,0.98989898989899,0.2543894920251976,0.0,success
+bldg11,MORTAR_001,7,LLM_3,BrickQA,1.0,0.9631595463307482,0.9224,0.9224,success
+bldg11,MORTAR_001,7,LLM_3,Gemini Flash 2.5,,0.98989898989899,0.2543894920251976,0.0,success
+bldg11,MORTAR_001,8,LLM_4,BrickQA,1.0,1.0,0.9772209567198178,0.9772209567198178,success
+bldg11,MORTAR_001,8,LLM_4,Gemini Flash 2.5,,0.98989898989899,0.2543894920251976,0.0,success
+bldg11,MORTAR_001,9,LLM_5,BrickQA,1.0,0.5,0.0,0.0,success
+bldg11,MORTAR_001,9,LLM_5,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_002,1,human,BrickQA,1.0,1.0,1.0,0.0,success
+bldg11,MORTAR_002,1,human,Gemini Flash 2.5,,1.0,0.3333333333333333,0.0,success
+bldg11,MORTAR_002,2,human,BrickQA,1.0,1.0,1.0,0.0,success
+bldg11,MORTAR_002,2,human,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_002,3,human,BrickQA,1.0,1.0,1.0,0.0,success
+bldg11,MORTAR_002,3,human,Gemini Flash 2.5,,1.0,1.0,0.0,success
+bldg11,MORTAR_002,4,human,BrickQA,0.6666666666666666,0.0,0.0,0.0,success
+bldg11,MORTAR_002,4,human,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_002,5,LLM_1,BrickQA,1.0,0.9779735682819383,0.9779735682819383,0.0,success
+bldg11,MORTAR_002,5,LLM_1,Gemini Flash 2.5,,1.0,1.0,0.0,success
+bldg11,MORTAR_002,6,LLM_2,BrickQA,1.0,0.9779735682819383,0.9779735682819383,0.0,success
+bldg11,MORTAR_002,6,LLM_2,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_002,7,LLM_3,BrickQA,1.0,0.48898678414096913,0.0,0.0,success
+bldg11,MORTAR_002,7,LLM_3,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_002,8,LLM_4,BrickQA,0.8,0.9144254278728605,0.9144254278728605,0.0,success
+bldg11,MORTAR_002,8,LLM_4,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_002,9,LLM_5,BrickQA,0.6666666666666666,0.0,0.0,0.0,success
+bldg11,MORTAR_002,9,LLM_5,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_003,1,human,BrickQA,1.0,1.0,1.0,0.0,success
+bldg11,MORTAR_003,1,human,Gemini Flash 2.5,,1.0,0.6666666666666666,0.0,success
+bldg11,MORTAR_003,2,human,BrickQA,1.0,1.0,1.0,0.0,success
+bldg11,MORTAR_003,2,human,Gemini Flash 2.5,,1.0,0.5714285714285715,0.0,success
+bldg11,MORTAR_003,3,human,BrickQA,1.0,1.0,1.0,1.0,success
+bldg11,MORTAR_003,3,human,Gemini Flash 2.5,,1.0,0.6666666666666666,0.0,success
+bldg11,MORTAR_003,4,LLM_1,BrickQA,1.0,1.0,1.0,1.0,success
+bldg11,MORTAR_003,4,LLM_1,Gemini Flash 2.5,,1.0,0.6666666666666666,0.0,success
+bldg11,MORTAR_003,5,LLM_2,BrickQA,0.6666666666666666,0.0,0.0,0.0,success
+bldg11,MORTAR_003,5,LLM_2,Gemini Flash 2.5,,0.0,0.0,0.0,success
+bldg11,MORTAR_003,6,LLM_3,BrickQA,0.6666666666666666,0.0,0.0,0.0,success
+bldg11,MORTAR_003,6,LLM_3,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_003,7,LLM_4,BrickQA,0.6666666666666666,0.0,0.0,0.0,success
+bldg11,MORTAR_003,7,LLM_4,Gemini Flash 2.5,,0.0,0.0,0.0,success
+bldg11,MORTAR_003,8,LLM_5,BrickQA,0.6666666666666666,0.0,0.0,0.0,success
+bldg11,MORTAR_003,8,LLM_5,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_004,1,human,BrickQA,1.0,1.0,1.0,0.0,success
+bldg11,MORTAR_004,1,human,Gemini Flash 2.5,,1.0,1.0,0.0,success
+bldg11,MORTAR_004,2,human,BrickQA,1.0,1.0,1.0,0.0,success
+bldg11,MORTAR_004,2,human,Gemini Flash 2.5,,1.0,1.0,0.0,success
+bldg11,MORTAR_004,3,human,BrickQA,1.0,1.0,1.0,1.0,success
+bldg11,MORTAR_004,3,human,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_004,4,LLM_1,BrickQA,1.0,1.0,1.0,1.0,success
+bldg11,MORTAR_004,4,LLM_1,Gemini Flash 2.5,,1.0,1.0,0.0,success
+bldg11,MORTAR_004,5,LLM_2,BrickQA,0.6666666666666666,0.0,0.0,0.0,success
+bldg11,MORTAR_004,5,LLM_2,Gemini Flash 2.5,,0.0,0.0,0.0,success
+bldg11,MORTAR_004,6,LLM_3,BrickQA,1.0,1.0,1.0,0.0,success
+bldg11,MORTAR_004,6,LLM_3,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_004,7,LLM_4,BrickQA,0.0,0.0,0.0,0.0,success
+bldg11,MORTAR_004,7,LLM_4,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_004,8,LLM_5,BrickQA,0.0,0.0,0.0,0.0,success
+bldg11,MORTAR_004,8,LLM_5,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_005,1,human,BrickQA,1.0,0.9761904761904763,0.9761904761904763,0.0,success
+bldg11,MORTAR_005,1,human,Gemini Flash 2.5,,1.0,1.0,0.0,success
+bldg11,MORTAR_005,2,human,BrickQA,0.8,0.0,0.0,0.0,success
+bldg11,MORTAR_005,2,human,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_005,3,LLM_1,BrickQA,1.0,0.3333333333333333,0.0,0.0,success
+bldg11,MORTAR_005,3,LLM_1,Gemini Flash 2.5,,1.0,1.0,0.0,success
+bldg11,MORTAR_005,4,LLM_2,BrickQA,1.0,0.0,0.0,0.0,success
+bldg11,MORTAR_005,4,LLM_2,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_005,5,LLM_3,BrickQA,1.0,0.8023694215598952,0.6913996627318719,0.0,success
+bldg11,MORTAR_005,5,LLM_3,Gemini Flash 2.5,,1.0,1.0,0.0,success
+bldg11,MORTAR_005,6,LLM_4,BrickQA,0.8571428571428571,1.0,1.0,0.0,success
+bldg11,MORTAR_005,6,LLM_4,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_005,7,LLM_5,BrickQA,1.0,0.9761904761904763,0.9761904761904763,0.0,success
+bldg11,MORTAR_005,7,LLM_5,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_006,1,human,BrickQA,0.8,0.0,0.0,0.0,success
+bldg11,MORTAR_006,1,human,Gemini Flash 2.5,,0.4248830812955314,0.0,0.0,success
+bldg11,MORTAR_006,2,human,BrickQA,0.8,0.0,0.0,0.0,success
+bldg11,MORTAR_006,2,human,Gemini Flash 2.5,,0.9353846153846154,0.070891514500537,0.0,success
+bldg11,MORTAR_006,3,human,BrickQA,1.0,1.0,1.0,0.0,success
+bldg11,MORTAR_006,3,human,Gemini Flash 2.5,,1.0,0.1092746604905779,0.0,success
+bldg11,MORTAR_006,4,LLM_1,BrickQA,1.0,0.4248830812955314,0.0,0.0,success
+bldg11,MORTAR_006,4,LLM_1,Gemini Flash 2.5,,0.0,0.0,0.0,success
+bldg11,MORTAR_006,5,LLM_2,BrickQA,0.0,0.0,0.0,0.0,execution_error
+bldg11,MORTAR_006,5,LLM_2,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_006,6,LLM_3,BrickQA,0.5,0.0,0.0,0.0,success
+bldg11,MORTAR_006,6,LLM_3,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_006,7,LLM_4,BrickQA,0.5,0.0,0.0,0.0,success
+bldg11,MORTAR_006,7,LLM_4,Gemini Flash 2.5,,0.0,0.0,0.0,success
+bldg11,MORTAR_006,8,LLM_5,BrickQA,0.5,0.0,0.0,0.0,success
+bldg11,MORTAR_006,8,LLM_5,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_007,1,human,BrickQA,0.5,0.0,0.0,0.0,success
+bldg11,MORTAR_007,1,human,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_007,2,human,BrickQA,0.5,0.0,0.0,0.0,success
+bldg11,MORTAR_007,2,human,Gemini Flash 2.5,,0.0,0.0,0.0,success
+bldg11,MORTAR_007,3,human,BrickQA,0.5,0.0,0.0,0.0,success
+bldg11,MORTAR_007,3,human,Gemini Flash 2.5,,0.0,0.0,0.0,success
+bldg11,MORTAR_007,4,human,BrickQA,1.0,0.3333333333333333,0.0,0.0,success
+bldg11,MORTAR_007,4,human,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_007,5,LLM_1,BrickQA,0.0,0.0,0.0,0.0,success
+bldg11,MORTAR_007,5,LLM_1,Gemini Flash 2.5,,1.0,0.5,0.0,success
+bldg11,MORTAR_007,6,LLM_2,BrickQA,1.0,1.0,1.0,0.0,success
+bldg11,MORTAR_007,6,LLM_2,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_007,7,LLM_3,BrickQA,1.0,0.9598108747044917,0.9743589743589743,0.0,success
+bldg11,MORTAR_007,7,LLM_3,Gemini Flash 2.5,,0.9598108747044916,0.4935064935064935,0.0,success
+bldg11,MORTAR_007,8,LLM_4,BrickQA,1.0,0.545609548167093,0.0,0.0,success
+bldg11,MORTAR_007,8,LLM_4,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_007,9,LLM_5,BrickQA,0.8,0.0,0.0,0.0,success
+bldg11,MORTAR_007,9,LLM_5,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_008,1,human,BrickQA,0.6666666666666666,0.0,0.0,0.0,success
+bldg11,MORTAR_008,1,human,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_008,2,human,BrickQA,0.6666666666666666,0.0,0.0,0.0,success
+bldg11,MORTAR_008,2,human,Gemini Flash 2.5,,0.0,0.0,0.0,success
+bldg11,MORTAR_008,3,human,BrickQA,0.6666666666666666,0.0,0.0,0.0,success
+bldg11,MORTAR_008,3,human,Gemini Flash 2.5,,0.0,0.0,0.0,success
+bldg11,MORTAR_008,4,human,BrickQA,0.6666666666666666,1.0,0.6666666666666666,0.0,success
+bldg11,MORTAR_008,4,human,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_008,5,LLM_1,BrickQA,0.6666666666666666,0.0,0.0,0.0,success
+bldg11,MORTAR_008,5,LLM_1,Gemini Flash 2.5,,0.5,0.0,0.0,success
+bldg11,MORTAR_008,6,LLM_2,BrickQA,0.6666666666666666,0.0,0.0,0.0,success
+bldg11,MORTAR_008,6,LLM_2,Gemini Flash 2.5,,0.5,0.0,0.0,success
+bldg11,MORTAR_008,7,LLM_3,BrickQA,0.6666666666666666,0.0,0.0,0.0,success
+bldg11,MORTAR_008,7,LLM_3,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_008,8,LLM_4,BrickQA,0.6666666666666666,0.0,0.0,0.0,success
+bldg11,MORTAR_008,8,LLM_4,Gemini Flash 2.5,,0.0,0.0,0.0,success
+bldg11,MORTAR_008,9,LLM_5,BrickQA,0.6666666666666666,0.0,0.0,0.0,success
+bldg11,MORTAR_008,9,LLM_5,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_009,1,human,BrickQA,0.5,0.0,0.0,0.0,success
+bldg11,MORTAR_009,1,human,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_009,2,human,BrickQA,0.0,0.0,0.0,0.0,success
+bldg11,MORTAR_009,2,human,Gemini Flash 2.5,,0.0,0.0,0.0,success
+bldg11,MORTAR_009,3,human,BrickQA,0.0,0.0,0.0,0.0,success
+bldg11,MORTAR_009,3,human,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_009,4,human,BrickQA,0.8571428571428571,0.6290103496772488,0.0,0.0,success
+bldg11,MORTAR_009,4,human,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_009,5,LLM_1,BrickQA,1.0,1.0,1.0,0.0,success
+bldg11,MORTAR_009,5,LLM_1,Gemini Flash 2.5,,1.0,0.2704257767548907,0.0,success
+bldg11,MORTAR_009,6,LLM_2,BrickQA,1.0,0.6502681277687107,0.0,0.0,success
+bldg11,MORTAR_009,6,LLM_2,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_009,7,LLM_3,BrickQA,0.8,0.0,0.0,0.0,success
+bldg11,MORTAR_009,7,LLM_3,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_009,8,LLM_4,BrickQA,0.0,0.0,0.0,0.0,success
+bldg11,MORTAR_009,8,LLM_4,Gemini Flash 2.5,,0.0,0.0,0.0,no_results
+bldg11,MORTAR_009,9,LLM_5,BrickQA,1.0,0.29292929292929293,0.0,0.0,success
+bldg11,MORTAR_009,9,LLM_5,Gemini Flash 2.5,,0.0,0.0,0.0,no_results

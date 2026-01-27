@@ -1,0 +1,15 @@
+# BrickQA Requirements
+# Core dependencies for running BrickQA
+# Python >= 3.9 required
+# Data processing
+pandas>=2.0.0
+
+# RDF/SPARQL graph processing
+rdflib>=7.0.0
+
+# Google Vertex AI (Gemini models)
+google-cloud-aiplatform>=1.38.0
+
+# Optional: for development/testing
+# pytest>=7.0.0
+# jupyter>=1.0.0

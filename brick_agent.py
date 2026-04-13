@@ -137,6 +137,10 @@ class AgentState:
     final_sparql: Optional[BrickSparqlQuery] = None
     max_iterations: int = 15
     decomposition: Optional[QueryDecomposition] = None  # Query decomposition results
+    prompt_tokens: int = 0
+    completion_tokens: int = 0
+    total_tokens: int = 0
+    cooldown_seconds: float = 0
 
     def get_action_history(self, last_n: int = 10, include_observation: bool = True) -> str:
         """Get formatted action history for context"""
@@ -171,7 +175,7 @@ class BrickAgent:
     Main agent class that implements the iterative approach for Brick SPARQL generation.
     """
 
-    def __init__(self, engine: str = "gemini-flash", use_decomposer: bool = True, use_temporal_handler: bool = True, use_fewshot: bool = False, ttl_schema_file: str = None, schema_description_file: str = None, result_limit: int = None):
+    def __init__(self, engine: str = "gemini-flash", use_decomposer: bool = True, use_temporal_handler: bool = True, use_aggregation: bool = True, use_fewshot: bool = False, ttl_schema_file: str = None, schema_description_file: str = None, result_limit: int = None):
         """
         Initialize the agent.
 
@@ -179,6 +183,7 @@ class BrickAgent:
             engine: LLM engine to use (e.g., 'gemini-flash', 'gemini-pro', 'gemini-flash-lite')
             use_decomposer: If True, use query decomposer as preprocessing step
             use_temporal_handler: If True, apply temporal constraints separately after SPARQL generation
+            use_aggregation: If True, include aggregation info in prompt and validate aggregation
             use_fewshot: If True, include few-shot examples in the controller prompt
             ttl_schema_file: Path to .ttl schema file to include in prompt (optional)
             schema_description_file: Path to schema description .txt file (optional)
@@ -188,6 +193,7 @@ class BrickAgent:
         self.brick_graph = BrickGraph()
         self.use_decomposer = use_decomposer
         self.use_temporal_handler = use_temporal_handler
+        self.use_aggregation = use_aggregation
         self.use_fewshot = use_fewshot
         self.ttl_schema_file = ttl_schema_file
         self.ttl_schema_content = None
@@ -334,7 +340,8 @@ class BrickAgent:
             import time
 
             # Rate limiting: Add delay to avoid 429 errors
-            time.sleep(6)  # 1 second delay between API calls
+            state.cooldown_seconds += 6
+            time.sleep(6)
 
             # Initialize Vertex AI - get project from environment or use default
             import os
@@ -411,7 +418,7 @@ Use this to understand the structure, entities, relationships, and available sen
 Query Decomposition (use this to guide your actions):
 - Sensors needed ({decomp.sensor_count}): {', '.join([s.sensor_id for s in decomp.sensors])}
 - Temporal constraint: {decomp.temporal.type}{temporal_note}
-- Aggregation: {', '.join(decomp.aggregation.operations) if decomp.aggregation.required else 'None'}
+- Aggregation: {', '.join(decomp.aggregation.operations) if self.use_aggregation and decomp.aggregation.required else 'None'}
 - Intent: {decomp.query_intent}
 
 """
@@ -447,7 +454,17 @@ Query Decomposition (use this to guide your actions):
             # Call Gemini
             model = GenerativeModel("gemini-2.5-flash")
             response = model.generate_content(prompt)
-            time.sleep(60)  # 1-minute cooldown after each Vertex AI API call to avoid quota limits
+
+            # Accumulate token usage
+            if hasattr(response, 'usage_metadata') and response.usage_metadata:
+                um = response.usage_metadata
+                state.prompt_tokens += getattr(um, 'prompt_token_count', 0) or 0
+                state.completion_tokens += getattr(um, 'candidates_token_count', 0) or 0
+                state.total_tokens += getattr(um, 'total_token_count', 0) or 0
+
+            # Cooldown to avoid API quota limits (tracked separately from computation time)
+            state.cooldown_seconds += 60
+            time.sleep(60)
 
             # Handle multiple content parts (LLM sometimes duplicates output)
             try:
@@ -850,7 +867,7 @@ Output one "Thought" and one "Action":
                             # For now, just warn - LLM may fix in next iteration
 
                     # Check aggregation requirements
-                    if decomp.aggregation.required:
+                    if self.use_aggregation and decomp.aggregation.required:
                         agg_valid, agg_msg = validate_aggregation(corrected_sparql, decomp)
                         if agg_valid:
                             print(f"[INFO] ✓ {agg_msg}")
@@ -940,6 +957,8 @@ Output one "Thought" and one "Action":
 
                 decomposition = self.decomposer.decompose(question, verbose=verbose)
                 state.decomposition = decomposition
+                state.cooldown_seconds += self.decomposer.cooldown_seconds
+                self.decomposer.cooldown_seconds = 0
 
                 if verbose:
                     print()  # Add spacing after decomposition output
@@ -1028,6 +1047,8 @@ Output one "Thought" and one "Action":
                 print(action.to_string(include_observation=True))
                 print()
 
+
+
         # Set final SPARQL
         if state.generated_sparqls:
             state.final_sparql = state.generated_sparqls[-1]
@@ -1041,7 +1062,8 @@ Output one "Thought" and one "Action":
                 print(f"\n📊 Decomposition Summary:")
                 print(f"  - Sensors: {', '.join([s.sensor_id for s in state.decomposition.sensors])}")
                 print(f"  - Temporal: {state.decomposition.temporal.type}")
-                print(f"  - Aggregation: {', '.join(state.decomposition.aggregation.operations) if state.decomposition.aggregation.required else 'None'}")
+                if self.use_aggregation:
+                    print(f"  - Aggregation: {', '.join(state.decomposition.aggregation.operations) if state.decomposition.aggregation.required else 'None'}")
 
             if state.final_sparql:
                 print(f"\nFinal SPARQL:\n{state.final_sparql.sparql}")

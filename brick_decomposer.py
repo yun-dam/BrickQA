@@ -70,6 +70,7 @@ class BrickQueryDecomposer:
         """
         self.model_name = model
         self.project = project
+        self.cooldown_seconds = 0
 
     def should_decompose(self, question: str) -> bool:
         """
@@ -165,6 +166,7 @@ class BrickQueryDecomposer:
 
         try:
             # Rate limiting
+            self.cooldown_seconds += 6.5
             time.sleep(6.5)
 
             # Initialize Vertex AI

@@ -68,7 +68,7 @@ python main.py --ttl my_building.ttl --question "What sensors are in Zone 1?" --
 
 ## 📊 Temporal Evaluation
 
-For questions that involve temporal constraints, aggregations, or multi-sensor joins, use `main_temporal.py`. It loads a TTL schema plus a matching timeseries CSV, runs a single natural-language question with the temporal handler enabled, and writes a JSON report with the full process log (decomposition, thought/action/observation steps, intermediate and final SPARQL, results).
+Got a question about time ranges, averages, or "what happened when X was true"? Use `main_temporal.py`. It loads your TTL plus a timeseries CSV, runs one question, and saves the whole run to a JSON file so you can see what the agent did.
 
 ```bash
 python main_temporal.py \
@@ -79,10 +79,6 @@ python main_temporal.py \
     --question "Find the maximum outdoor air temperature observed during the last 24 hours." \
     --start-date YYYY-MM-DD --end-date YYYY-MM-DD
 ```
-
-Required: `--building-id`, `--ttl`, `--csv`, `--schema-in-prompt`, `--question` (`-q`). Useful optional flags include `--start-date` / `--end-date` (filter the CSV), `--max-rows` (default 2000), `--result-limit`, `--no-decomposer`, and `--no-temporal-handler`.
-
-JSON reports are written to `buildingqa_results/<building-id>_temporal/`.
 
 ## 💡 Example Questions
 Here are some questions you can try:
@@ -103,7 +99,7 @@ We hope BrickQA makes your building data exploration a little easier and a lot m
 
 ## 🧪 Evaluation
 
-BrickQA is benchmarked on the [BuildingQA dataset](https://github.com/INFERLab/BuildingQA) from INFERLab, a collection of natural-language questions over Brick-modeled buildings designed to stress-test question-answering systems on building knowledge graphs. The dataset spans multiple buildings and a range of difficulty levels, and it is the reference benchmark used in this repository for measuring generation accuracy.
+BrickQA is benchmarked on the [BuildingQA dataset](https://github.com/INFERLab/BuildingQA), a collection of natural-language questions over Brick-modeled buildings designed to stress-test question-answering systems on building knowledge graphs. The dataset spans multiple buildings and a range of difficulty levels, and it is the reference benchmark used in this repository for measuring generation accuracy.
 
 Per-query results are stored in `evaluation/`:
 

@@ -345,8 +345,14 @@ class BrickAgent:
 
             # Initialize Vertex AI - get project from environment or use default
             import os
-            project_id = os.getenv("GOOGLE_CLOUD_PROJECT", "cs224v-yundamko")
-            vertexai.init(project=project_id, location="us-central1")
+            project_id = os.getenv("GOOGLE_CLOUD_PROJECT")
+            if not project_id:
+                raise RuntimeError(
+                    "GOOGLE_CLOUD_PROJECT environment variable is not set. "
+                    "Set it to your GCP project ID before running."
+                )
+            location = os.getenv("GOOGLE_CLOUD_LOCATION", "us-central1")
+            vertexai.init(project=project_id, location=location)
 
             # Build prompt from template
             action_history_str = "\n\n".join([
